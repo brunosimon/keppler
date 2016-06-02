@@ -18,6 +18,8 @@
   "homepage": "https://github.com/brunosimon/code-spectactor",
   "dependencies": {
     "chokidar": "^1.5.1",
-    "colors": "^1.1.2"
+    "colors": "^1.1.2",
+    "ip": "^1.1.3",
+    "socket.io-client": "^1.4.6"
   }
 }
