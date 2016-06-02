@@ -6,9 +6,9 @@ let express   = require( 'express' ),
 	http      = require( 'http' ),
 	socket_io = require( 'socket.io' ),
 	colors    = require( 'colors' ),
-	path      = require( 'path' ),
 	ip        = require( 'ip' ),
-	util = require( 'util' )
+	util      = require( 'util' ),
+	Projects  = require( './models/projects.class.js' )
 
 /**
  * App class
@@ -32,20 +32,22 @@ class App
 	 */
 	set_models()
 	{
-		let Projects = require( './models/projects.class.js' )
+		// Set up
 		this.projects = new Projects()
 
+		// Tests
 		var project = this.projects.create_project( 'test' )
 
-		project.update_file( 'toto/tata/tete/tutu.txt', 'content 1' )
-		project.update_file( 'toto/tata/lorem.txt', 'content 2' )
-		project.update_file( 'toto/tata/ipsum.txt', 'content 3' )
+		// project.create_folder( 'toto' )
+		// project.get_folder( 'toto//tutu/tete', true )
+		// project.create_file( 'coucou/coco.txt', 'content 0' )
+		// project.update_file( 'toto/tutu/tete/tutu.txt', 'content 1' )
+		// project.update_file( 'toto/tata/lorem.txt', 'content 2' )
+		// project.update_file( 'toto/tata/ipsum.txt', 'content 3' )
+		// project.delete_folder( 'toto/tutu', true )
+		// project.delete_file( 'toto/tata/ipsum.txt' )
 
-		project.delete_file( 'toto/tata/tete/tutu.txt' )
-		project.delete_file( 'toto/tata/lorem.txt' )
-		project.delete_file( 'toto/tata/ipsum.txt' )
-
-		console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+		console.log( util.inspect( project, { depth: null, colors: true } ) )
 	}
 
 	/**
@@ -72,6 +74,7 @@ class App
 	{
 		// Set up
 		this.express = express()
+		this.express.use( helmet() )
 
 		// Controllers
 		this.express.use( '/codes', require( './controllers/index.js' ) )

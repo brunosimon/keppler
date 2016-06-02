@@ -15,9 +15,9 @@ class App
 	/**
 	 * Constructor
 	 */
-	constructor( options )
+	constructor( _options )
 	{
-		this.set_options( options )
+		this.set_options( _options )
 		this.set_args()
 		this.set_watcher()
 		this.set_socket()
@@ -26,21 +26,21 @@ class App
 	/**
 	 * Set options
 	 */
-	set_options( options )
+	set_options( _options )
 	{
 		// No option
-		if( typeof options !== 'object' )
-			options = {}
+		if( typeof _options !== 'object' )
+			_options = {}
 
 		// Defaults
-		if( typeof options.domain === 'undefined' )
-			options.domain = ip.address()
+		if( typeof _options.domain === 'undefined' )
+			_options.domain = ip.address()
 
-		if( typeof options.port === 'undefined' )
-			options.port = 3000
+		if( typeof _options.port === 'undefined' )
+			_options.port = 3000
 
 		// Save
-		this.options = options
+		this.options = _options
 	}
 
 	/**
@@ -102,33 +102,33 @@ class App
 			)
 
 		// Add event
-		this.watcher.on( 'add', ( path ) =>
+		this.watcher.on( 'add', ( _path ) =>
 		{
-			console.log( 'add:'.green.bold, path )
+			console.log( 'add:'.green.bold, _path )
 		} )
 
 		// Change event
-		this.watcher.on( 'change', ( path ) =>
+		this.watcher.on( 'change', ( _path ) =>
 		{
-			console.log( 'change:'.green.bold, path )
+			console.log( 'change:'.green.bold, _path )
 		} )
 
 		// Unlink event
-		this.watcher.on( 'unlink', ( path ) =>
+		this.watcher.on( 'unlink', ( _path ) =>
 		{
-			console.log( 'unlink:'.green.bold, path )
+			console.log( 'unlink:'.green.bold, _path )
 		} )
 
 		// AddDir event
-		this.watcher.on( 'addDir', ( path ) =>
+		this.watcher.on( 'addDir', ( _path ) =>
 		{
-			console.log( 'addDir:'.green.bold, path )
+			console.log( 'addDir:'.green.bold, _path )
 		} )
 
 		// UnlinkDir event
-		this.watcher.on( 'unlinkDir', ( path ) =>
+		this.watcher.on( 'unlinkDir', ( _path ) =>
 		{
-			console.log( 'unlinkDir:'.green.bold, path )
+			console.log( 'unlinkDir:'.green.bold, _path )
 		} )
 	}
 }
