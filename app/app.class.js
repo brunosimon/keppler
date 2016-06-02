@@ -5,7 +5,8 @@ let chokidar         = require( 'chokidar' ),
 	path             = require( 'path' ),
 	colors           = require( 'colors' ),
 	ip               = require( 'ip' ),
-	socket_io_client = require( 'socket.io-client' )
+	socket_io_client = require( 'socket.io-client' ),
+	fs               = require( 'fs' )
 
 /**
  * App class
@@ -81,8 +82,8 @@ class App
 		// Connect event
 		this.socket.on( 'connect', () =>
 		{
-			console.log( 'connected' )
-			this.socket.emit( 'start_project', { slug : this.arguments[ 0 ] } )
+			console.log( 'connected'.green )
+			this.socket.emit( 'start_project', { slug: this.arguments[ 0 ] } )
 		} )
 	}
 
@@ -96,39 +97,77 @@ class App
 		this.watcher = chokidar.watch(
 				process.cwd(),
 				{
-					ignored : /[\/\\]\./,
-					ignoreInitial : true
+					ignored      : /[\/\\]\./,
+					ignoreInitial: true
 				}
 			)
 
 		// Add event
 		this.watcher.on( 'add', ( _path ) =>
 		{
-			console.log( 'add:'.green.bold, _path )
+			// Set up
+			let relative_path = _path.replace( process.cwd() + '/', '' )
+
+			console.log( 'add:'.green.bold, relative_path )
+
+			// Read
+			fs.readFile( _path, ( error, data ) =>
+			{
+				// Send
+				this.socket.emit( 'create_file', { path: relative_path, content: data.toString() } )
+			} )
 		} )
 
 		// Change event
 		this.watcher.on( 'change', ( _path ) =>
 		{
-			console.log( 'change:'.green.bold, _path )
+			// Set up
+			let relative_path = _path.replace( process.cwd() + '/', '' )
+
+			console.log( 'change:'.green.bold, relative_path )
+
+			// Read
+			fs.readFile( _path, ( error, data ) =>
+			{
+				// Send
+				this.socket.emit( 'update_file', { path: relative_path, content: data.toString() } )
+			} )
 		} )
 
 		// Unlink event
 		this.watcher.on( 'unlink', ( _path ) =>
 		{
-			console.log( 'unlink:'.green.bold, _path )
+			// Set up
+			let relative_path = _path.replace( process.cwd() + '/', '' )
+
+			console.log( 'unlink:'.green.bold, relative_path )
+
+			// Send
+			this.socket.emit( 'delete_file', { path: relative_path } )
 		} )
 
 		// AddDir event
 		this.watcher.on( 'addDir', ( _path ) =>
 		{
-			console.log( 'addDir:'.green.bold, _path )
+			// Set up
+			let relative_path = _path.replace( process.cwd() + '/', '' )
+
+			console.log( 'addDir:'.green.bold, relative_path )
+
+			// Send
+			this.socket.emit( 'create_folder', { path: relative_path } )
 		} )
 
 		// UnlinkDir event
 		this.watcher.on( 'unlinkDir', ( _path ) =>
 		{
-			console.log( 'unlinkDir:'.green.bold, _path )
+			// Set up
+			let relative_path = _path.replace( process.cwd() + '/', '' )
+
+			console.log( 'unlinkDir:'.green.bold, relative_path )
+
+			// Send
+			this.socket.emit( 'delete_folder', { path: relative_path } )
 		} )
 	}
 }

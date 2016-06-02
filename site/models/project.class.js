@@ -11,9 +11,9 @@ class Project
 	{
 		this.name    = name
 		this.folders = {
-			root:
+			'.':
 			{
-				name   : 'root',
+				name   : '.',
 				files  : {},
 				folders: {}
 			}
@@ -124,7 +124,7 @@ class Project
 		// Set up
 		let normalize_path = path.normalize( _path ),
 			path_parts     = normalize_path.split( path.sep ),
-			folder         = this.folders.root
+			folder         = this
 
 		for( let _path_part of path_parts )
 		{
@@ -156,7 +156,7 @@ class Project
 
 		let normalize_path = path.normalize( _path ),
 			path_parts     = normalize_path.split( path.sep ),
-			folder         = this.folders.root,
+			folder         = this,
 			found          = true
 
 		for( let _path_part of path_parts )

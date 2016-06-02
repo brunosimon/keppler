@@ -35,9 +35,8 @@ class App
 		// Set up
 		this.projects = new Projects()
 
-		// Tests
-		var project = this.projects.create_project( 'test' )
-
+		// // Tests
+		// var project = this.projects.create_project( 'test' )
 		// project.create_folder( 'toto' )
 		// project.get_folder( 'toto//tutu/tete', true )
 		// project.create_file( 'coucou/coco.txt', 'content 0' )
@@ -46,8 +45,7 @@ class App
 		// project.update_file( 'toto/tata/ipsum.txt', 'content 3' )
 		// project.delete_folder( 'toto/tutu', true )
 		// project.delete_file( 'toto/tata/ipsum.txt' )
-
-		console.log( util.inspect( project, { depth: null, colors: true } ) )
+		// console.log( util.inspect( project, { depth: null, colors: true } ) )
 	}
 
 	/**
@@ -113,9 +111,42 @@ class App
 		{
 		    console.log( 'socket'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
 
+		    let project = null
+
 		    socket.on( 'start_project', ( data ) =>
 		    {
+		    	project = this.projects.create_project( data.slug )
+		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
+		    } )
 
+		    socket.on( 'update_file', ( data ) =>
+		    {
+		    	project.update_file( data.path, data.content )
+		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
+		    } )
+
+		    socket.on( 'create_file', ( data ) =>
+		    {
+		    	project.create_file( data.path, data.content )
+		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
+		    } )
+
+		    socket.on( 'delete_file', ( data ) =>
+		    {
+		    	project.delete_file( data.path )
+		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
+		    } )
+
+		    socket.on( 'create_folder', ( data ) =>
+		    {
+		    	project.create_folder( data.path, data.content )
+		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
+		    } )
+
+		    socket.on( 'delete_folder', ( data ) =>
+		    {
+		    	project.delete_folder( data.path )
+		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
 		    } )
 		} )
 	}

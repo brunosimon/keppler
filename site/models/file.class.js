@@ -1,5 +1,8 @@
 'use strict'
 
+// Depedencies
+let diff = require( 'diff' )
+
 class File
 {
 	constructor( _name, _content )
