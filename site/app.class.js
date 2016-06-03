@@ -8,6 +8,7 @@ let express   = require( 'express' ),
 	colors    = require( 'colors' ),
 	ip        = require( 'ip' ),
 	util      = require( 'util' ),
+	path      = require( 'path' ),
 	Projects  = require( './models/projects.class.js' )
 
 /**
@@ -73,6 +74,9 @@ class App
 		// Set up
 		this.express = express()
 		this.express.use( helmet() )
+		this.express.set( 'view engine', 'jade' );
+		this.express.set( 'views', path.join( __dirname, 'views' ) );
+		this.express.use( express.static( path.join( __dirname, 'public' ) ) );
 
 		// Controllers
 		this.express.use( '/codes', require( './controllers/index.js' ) )

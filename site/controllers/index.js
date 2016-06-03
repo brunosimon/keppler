@@ -3,7 +3,7 @@ var express = require( 'express' ),
 
 router.get( '/', function( request, response )
 {
-	response.send( 'Hello' );
+	response.render( 'index/index.jade', {} );
 } );
 
 module.exports = router;
