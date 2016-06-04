@@ -77,7 +77,7 @@ class App
 	set_socket()
 	{
 		// Set up
-		this.socket = socket_io_client( `http://${this.options.domain}:${this.options.port}` )
+		this.socket = socket_io_client( `http://${this.options.domain}:${this.options.port}/app` )
 
 		// Connect event
 		this.socket.on( 'connect', () =>
@@ -106,7 +106,7 @@ class App
 		this.watcher.on( 'add', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd() + '/', '' )
+			let relative_path = _path.replace( process.cwd(), '.' )
 
 			console.log( 'add:'.green.bold, relative_path )
 
@@ -122,7 +122,7 @@ class App
 		this.watcher.on( 'change', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd() + '/', '' )
+			let relative_path = _path.replace( process.cwd(), '.' )
 
 			console.log( 'change:'.green.bold, relative_path )
 
@@ -138,7 +138,7 @@ class App
 		this.watcher.on( 'unlink', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd() + '/', '' )
+			let relative_path = _path.replace( process.cwd(), '.' )
 
 			console.log( 'unlink:'.green.bold, relative_path )
 
@@ -150,7 +150,7 @@ class App
 		this.watcher.on( 'addDir', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd() + '/', '' )
+			let relative_path = _path.replace( process.cwd(), '.' )
 
 			console.log( 'addDir:'.green.bold, relative_path )
 
@@ -162,7 +162,7 @@ class App
 		this.watcher.on( 'unlinkDir', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd() + '/', '' )
+			let relative_path = _path.replace( process.cwd(), '.' )
 
 			console.log( 'unlinkDir:'.green.bold, relative_path )
 

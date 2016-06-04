@@ -4,17 +4,20 @@ angular_module.controller(
     'ApplicationController',
     [
         '$scope',
-        'data',
-        function( $scope, data )
+        'project',
+        function( $scope, project )
         {
-            console.log(data);
+            var that = this;
 
-            this.pwet = 'uh';
-            this.codes =
-            [
-                { title: 'Title 1' },
-                { title: 'Title 2' }
-            ];
+            project.on_update( function( data )
+            {
+                $scope.$apply( function()
+                {
+                    that.project = data;
+                } );
+            } );
+
+            this.project = project.data;
         }
     ]
 );

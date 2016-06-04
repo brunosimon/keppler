@@ -1,9 +1,9 @@
 'use strict'
 
 // Dependencies
-let path = require( 'path' ),
-	util = require( 'util' ),
-	File = require( './file.class.js' )
+let paths = require( '../utils/paths.class.js' ),
+	util  = require( 'util' ),
+	File  = require( './file.class.js' )
 
 class Project
 {
@@ -23,11 +23,11 @@ class Project
 	create_file( _path, _content )
 	{
 		// Set up
-		let normalize_path = path.normalize( _path ),
-			parsed_path    = path.parse( normalize_path )
+		let normalized_path = paths.normalize( _path ),
+			parsed_path     = paths.parse( normalized_path )
 
 		// Retrieve file
-		let file = this.get_file( normalize_path )
+		let file = this.get_file( normalized_path )
 
 		// File already exist
 		if( file )
@@ -54,8 +54,8 @@ class Project
 			_force_creation = false
 
 		// Set up
-		let normalize_path = path.normalize( _path ),
-			parsed_path    = path.parse( normalize_path )
+		let normalized_path = paths.normalize( _path ),
+			parsed_path     = paths.parse( normalized_path )
 
 		// Retrieve folder
 		let folder = this.get_folder( parsed_path.dir, _force_creation )
@@ -75,7 +75,7 @@ class Project
 		if( _force_creation )
 		{
 			// Create folders
-			file = this.create_file( normalize_path )
+			file = this.create_file( normalized_path )
 
 			return file
 		}
@@ -87,10 +87,10 @@ class Project
 	update_file( _path, _content )
 	{
 		// Set up
-		let normalize_path = path.normalize( _path )
+		let normalized_path = paths.normalize( _path )
 
 		// Retrieve file
-		let file = this.get_file( normalize_path, true )
+		let file = this.get_file( normalized_path, true )
 
 		// Create version
 		file.create_version( _content )
@@ -99,8 +99,7 @@ class Project
 	delete_file( _path )
 	{
 		// Set up
-		let normalize_path = path.normalize( _path ),
-			parsed_path    = path.parse( normalize_path )
+		let parsed_path = paths.parse( _path )
 
 		// Retrieve folder
 		let folder = this.get_folder( parsed_path.dir )
@@ -122,27 +121,27 @@ class Project
 	create_folder( _path )
 	{
 		// Set up
-		let normalize_path = path.normalize( _path ),
-			path_parts     = normalize_path.split( path.sep ),
-			folder         = this
+		let normalized_path = paths.normalize( _path ),
+			path_folders    = normalized_path.split( paths.separator ),
+			folder          = this
 
-		for( let _path_part of path_parts )
+		for( let _path_folder of path_folders )
 		{
 			// Temporary folder
-			let __folder = folder.folders[ _path_part ]
+			let _folder = folder.folders[ _path_folder ]
 
 			// Folder doesn't exist
-			if( typeof __folder === 'undefined' )
+			if( typeof _folder === 'undefined' )
 			{
-				__folder         = {}
-				__folder.name    = _path_part
-				__folder.files   = {}
-				__folder.folders = {}
+				_folder         = {}
+				_folder.name    = _path_folder
+				_folder.files   = {}
+				_folder.folders = {}
 
-				folder.folders[ _path_part ] = __folder
+				folder.folders[ _path_folder ] = _folder
 			}
 
-			folder = __folder
+			folder = _folder
 		}
 
 		return folder
@@ -154,14 +153,14 @@ class Project
 		if( typeof _force_creation === 'undefined' )
 			_force_creation = false
 
-		let normalize_path = path.normalize( _path ),
-			path_parts     = normalize_path.split( path.sep ),
-			folder         = this,
-			found          = true
+		let normalized_path = paths.normalize( _path ),
+			path_folders    = normalized_path.split( paths.separator ),
+			folder          = this,
+			found           = true
 
-		for( let _path_part of path_parts )
+		for( let _path_folder of path_folders )
 		{
-			folder = folder.folders[ _path_part ]
+			folder = folder.folders[ _path_folder ]
 
 			// Folder not found
 			if(typeof folder === 'undefined')
@@ -179,7 +178,7 @@ class Project
 		if( _force_creation )
 		{
 			// Create folders
-			folder = this.create_folder( normalize_path )
+			folder = this.create_folder( normalized_path )
 
 			return folder
 		}
@@ -191,9 +190,8 @@ class Project
 	delete_folder( _path )
 	{
 		// Set up
-		let normalize_path = path.normalize( _path ),
-			path_parts     = _path.split( path.sep ),
-			folder         = this.get_folder( normalize_path )
+		let normalized_path = paths.normalize( _path ),
+			folder          = this.get_folder( normalized_path )
 
 		// Folder not found
 		if( !folder )
