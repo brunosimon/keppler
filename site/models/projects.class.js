@@ -9,22 +9,22 @@ class Projects
 		this.all = {}
 	}
 
-	create_project( _slug )
+	create_project( _name )
 	{
 		// Create project
-		let project = new Project( _slug )
+		let project = new Project( _name )
 
 		// Save
-		this.all[ project.slug ] = project
+		this.all[ project.name ] = project
 
 		// Return
 		return project
 	}
 
-	get_project_by_slug( _slug )
+	get_project_by_name( _name )
 	{
 		// Find project
-		let project = this.all[ _slug ]
+		let project = this.all[ _name ]
 
 		// Found
 		if( project )
@@ -32,6 +32,23 @@ class Projects
 
 		// Not found
 		return false
+	}
+
+	describe()
+	{
+		let result = {}
+		result.all = {}
+
+		for( let _name in this.all )
+		{
+			let _project = this.all[ _name ]
+
+			result.all[ _name ] = {
+				name : _project.name
+			}
+		}
+
+		return result
 	}
 }
 

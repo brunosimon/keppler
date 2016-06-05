@@ -29,7 +29,7 @@ angular_module.factory(
                     update_callback.apply( this, [ data ] );
             } );
 
-            result.data = {"name":"pwet","folders":{".":{"name":".","files":{"test-1.txt":{"name":"test-1.txt","versions":[{"date":"2016-06-03T21:16:35.574Z","content":"dsfsdf\n\naaaa\n\ndsfsdf\n\nbbbb\n\ndsfsdf\nsodifja\n","diff":false}]},"test-2.txt":{"name":"test-2.txt","versions":[{"date":"2016-06-03T21:16:38.667Z","content":"kqsdqsdjn\niudfgdfg\n\nqsdiuhqsdiuqhsd\n","diff":false}]}},"folders":{}},"folder-2":{"name":"folder-2","files":{"hey.txt":{"name":"hey.txt","versions":[{"date":"2016-06-03T21:16:32.742Z","content":"qdsqsdsq\n","diff":false}]}},"folders":{}}}};
+            result.data = {"name":"pwet","folders":{".":{"name":".","files":{"test-1.txt":{"name":"test-1.txt","versions":[{"date":"2016-06-04T23:26:45.759Z","content":"dsfsdf\n\naaaa\n\ndsfsdf\n\nbbbbiuhsdfiuhsdfdsf\n\n\ndsfsdf\nsodifja\n","diff":false}]}},"folders":{"folder-2":{"name":"folder-2","files":{"hey.txt":{"name":"hey.txt","versions":[{"date":"2016-06-04T23:26:41.642Z","content":"qdsqsdsq\n","diff":false}]}},"folders":{}},"folder-1":{"name":"folder-1","files":{"test-4.txt":{"name":"test-4.txt","versions":[{"date":"2016-06-04T23:26:46.571Z","content":"sdnufoisdf\n","diff":false}]}},"folders":{}}}}}};
 
             return result;
         }

@@ -3,7 +3,12 @@ var express = require( 'express' ),
 
 router.get( '/', function( request, response )
 {
-	response.render( 'index/index.jade', {} );
+    response.render( 'pages/index/projects.jade', {} );
+} );
+
+router.get( /project\/[a-z]([a-z0-9_-])?/, function( request, response )
+{
+    response.render( 'pages/index/project.jade', {} );
 } );
 
 module.exports = router;

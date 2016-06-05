@@ -1,0 +1,10 @@
+include ../../partials/header.jade
+
+section(ng-controller="ProjectsController as controller")
+    div(ng-hide="projects")
+        | No project
+    div(ng-repeat="project in projects")
+        a(href="/project/{{project.name}}")
+            {{project.name}}
+
+include ../../partials/footer.jade
