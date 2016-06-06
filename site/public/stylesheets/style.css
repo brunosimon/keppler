@@ -1,3 +1,7 @@
 body {
-	background:#eee;
+	background:#efefef;
+    font-family:Helvetica;
+    font-size:14px;
 }
+
+nav.files-tree-nav .active > span {font-weight:bold;}

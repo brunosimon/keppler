@@ -1,43 +1,37 @@
 include ../../partials/header.jade
 
 script(type="text/ng-template",id="folder_template.html")
-    span(ng-click="folder_click(folder)")
-        | {{folder.name}}
+    span(ng-click="folder_click(_folder)",class="folder")
+        | {{_folder.name}}
     ul
-        li(ng-repeat="folder in folder.folders",ng-include="'folder_template.html'")
-        li(ng-repeat="file in folder.files",ng-click="file_click(file)")
-            | {{file.name}}
+        li(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
+        li(ng-repeat="_file in _folder.files",ng-class="_file.active ? 'active' : 'inactive'")
+            span(ng-click="file_click(_file)")
+                | {{_file.name}}
 
 section(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
     header.main-header
         h1
-            | Code Spectat
+            a(href="/")
+                | Code Spectat
     aside
         header.aside-header
             | {{project.name}}
-        nav.aside-nav
+        nav.files-tree-nav
             ul
-                li(ng-repeat="folder in project.folders",ng-include="'folder_template.html'")
+                li(ng-repeat="_folder in project.folders",ng-include="'folder_template.html'")
     section.file
-        section.historic
-            a.version(href="#")
+        header.file-header
+            | {{file.name}}
+        nav.versions-nav
+            a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)")
                 div.date
-                    | 14:23:14
+                    | {{_version.date}}
                 div.differences
-                    | Différences
-            a.version(href="#")
-                div.date
-                    | 14:24:01
-                div.differences
-                    | Différences
-            a.version(href="#")
-                div.date
-                    | 14:27:42
-                div.differences
-                    | Différences
+                    | {{_version.diff_percent}}
         section.code
             pre
-                | &lt;html&gt;
+                | {{version.content}}
 
 
 include ../../partials/footer.jade
