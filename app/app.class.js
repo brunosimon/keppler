@@ -53,21 +53,21 @@ class App
 		// Set up
 		this.arguments = process.argv.slice( 2 )
 
-		// Missing project slug
+		// Missing project name
 		if( this.arguments.length === 0 )
 		{
 			// Stop process
-			console.log( 'Missing arguments: first argument should be the projet slug'.red )
+			console.log( 'Missing arguments: first argument should be the projet name'.red )
 			process.exit()
 		}
 
-		// Wrong project slug
-		if( !this.arguments[ 0 ].match( /^[a-z_-][a-z0-9_-]+$/ ) )
-		{
-			// Stop process
-			console.log( 'Wrong arguments: projet slug'.red )
-			process.exit()
-		}
+		// // Wrong project name
+		// if( !this.arguments[ 0 ].match( /^[a-z_-][a-z0-9_-]+$/ ) )
+		// {
+		// 	// Stop process
+		// 	console.log( 'Wrong arguments: projet name'.red )
+		// 	process.exit()
+		// }
 	}
 
 	/**
@@ -83,7 +83,7 @@ class App
 		this.socket.on( 'connect', () =>
 		{
 			console.log( 'connected'.green )
-			this.socket.emit( 'start_project', { slug: this.arguments[ 0 ] } )
+			this.socket.emit( 'start_project', { name: this.arguments[ 0 ] } )
 		} )
 	}
 

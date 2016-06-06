@@ -22,10 +22,10 @@ class App
 	constructor( _options )
 	{
 		this.set_options( _options )
-		this.set_models()
 		this.set_express()
 		this.set_server()
 		this.set_socket()
+		this.set_models()
 	}
 
 	/**
@@ -34,7 +34,7 @@ class App
 	set_models()
 	{
 		// Set up
-		this.projects = new Projects()
+		this.projects = new Projects( { socket: this.sockets.main } )
 
 		// Tests
 		var project = this.projects.create_project( 'dummy' )
@@ -46,7 +46,7 @@ class App
 		project.update_file( './toto/tata/ipsum.txt', 'content 3' )
 		project.delete_folder( './toto/tutu', true )
 		project.delete_file( './toto/tata/ipsum.txt' )
-		// console.log( util.inspect( project, { depth: null, colors: true } ) )
+		// console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
 	}
 
 	/**
@@ -93,12 +93,12 @@ class App
 		// Start
 		this.server.listen( this.options.port, () =>
 		{
-		    // URL
-		    let url = 'http://' + ip.address() + ':' + this.options.port
+			// URL
+			let url = 'http://' + ip.address() + ':' + this.options.port
 
-		    console.log( colors.green( '---------------------------' ) )
-		    console.log( 'server'.green.bold + ' - ' + 'started'.cyan )
-		    console.log( 'server'.green.bold + ' - ' + url.cyan )
+			console.log( colors.green( '---------------------------' ) )
+			console.log( 'server'.green.bold + ' - ' + 'started'.cyan )
+			console.log( 'server'.green.bold + ' - ' + url.cyan )
 		} )
 	}
 
@@ -111,15 +111,6 @@ class App
 		this.sockets          = {}
 		this.sockets.main     = socket_io.listen( this.server )
 		this.sockets.app      = this.sockets.main.of( '/app' )
-		this.sockets.projects = this.sockets.main.of( '/projects' )
-
-		// Projects connection event
-		this.sockets.projects.on( 'connection', ( socket ) =>
-		{
-		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
-
-		    socket.emit( 'update_projects', this.projects.describe() )
-		} );
 
 		// App connection event
 		this.sockets.app.on( 'connection', ( socket ) =>
@@ -127,70 +118,52 @@ class App
 			// Set up
 			let project = null
 
-		    console.log( 'socket app'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
+			console.log( 'socket app'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
 
-		    // Start project
-		    socket.on( 'start_project', ( data ) =>
-		    {
-		    	// Create project
-				project = this.projects.create_project( data.slug )
+			// Start project
+			socket.on( 'start_project', ( data ) =>
+			{
+				// Create project
+				project = this.projects.create_project( data.name )
 
-				// Create socket with specific namespace
-				project.socket = this.sockets.main.of( '/project/' + project.name )
+				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+			} )
 
-				// Emit to projects socket
-		    	this.sockets.projects.emit( 'update_projects', this.projects.describe() )
+			socket.on( 'update_file', ( data ) =>
+			{
+				project.update_file( data.path, data.content )
 
-		    	console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
-		    } )
+				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+			} )
 
-		    socket.on( 'update_file', ( data ) =>
-		    {
-		    	project.update_file( data.path, data.content )
-		    	project.socket.emit( 'update_project', project )
+			socket.on( 'create_file', ( data ) =>
+			{
+				project.create_file( data.path, data.content )
 
-		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
-		    } )
+				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+			} )
 
-		    socket.on( 'create_file', ( data ) =>
-		    {
-	    		project.create_file( data.path, data.content )
-	    		project.socket.emit( 'update_project', project )
+			socket.on( 'delete_file', ( data ) =>
+			{
+				project.delete_file( data.path )
 
-	    		console.log( util.inspect( project, { depth: null, colors: true } ) )
-		    } )
+				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+			} )
 
-		    socket.on( 'delete_file', ( data ) =>
-		    {
-	    		project.delete_file( data.path )
-	    		project.socket.emit( 'update_project', project )
+			socket.on( 'create_folder', ( data ) =>
+			{
+				project.create_folder( data.path, data.content )
 
-	    		console.log( util.inspect( project, { depth: null, colors: true } ) )
-		    } )
+				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+			} )
 
-		    socket.on( 'create_folder', ( data ) =>
-		    {
-		    	project.create_folder( data.path, data.content )
-		    	project.socket.emit( 'update_project', project )
+			socket.on( 'delete_folder', ( data ) =>
+			{
+				project.delete_folder( data.path )
 
-		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
-		    } )
-
-		    socket.on( 'delete_folder', ( data ) =>
-		    {
-		    	project.delete_folder( data.path )
-		    	project.socket.emit( 'update_project', project )
-
-		    	console.log( util.inspect( project, { depth: null, colors: true } ) )
-		    } )
+				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+			} )
 		} )
-
-		// this.sockets.projects.on( 'connection', ( socket ) =>
-		// {
-		// 	console.log( 'socket site'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
-
-		// 	socket.emit( 'update_project', project )
-		// } )
 	}
 }
 

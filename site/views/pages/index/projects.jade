@@ -4,7 +4,7 @@ section(ng-controller="ProjectsController as controller")
     div(ng-hide="projects")
         | No project
     div(ng-repeat="project in projects")
-        a(href="/project/{{project.name}}")
-            {{project.name}}
+        a(href="/project/{{project.slug}}")
+            | {{project.name}}
 
 include ../../partials/footer.jade

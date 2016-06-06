@@ -1,14 +1,19 @@
 var express = require( 'express' ),
-	router  = express.Router();
+	router  = express.Router()
 
 router.get( '/', function( request, response )
 {
-    response.render( 'pages/index/projects.jade', {} );
-} );
+    response.render( 'pages/index/projects.jade', {} )
+} )
 
-router.get( /project\/[a-z]([a-z0-9_-])?/, function( request, response )
+router.get( /project\/(.+)/, function( request, response )
 {
-    response.render( 'pages/index/project.jade', {} );
-} );
+    response.render(
+        'pages/index/project.jade',
+        {
+            project_slug: request.params['0']
+        }
+    )
+} )
 
-module.exports = router;
+module.exports = router

@@ -8,63 +8,16 @@ script(type="text/ng-template",id="folder_template.html")
         li(ng-repeat="file in folder.files",ng-click="file_click(file)")
             | {{file.name}}
 
-section(ng-controller="ProjectController as controller")
+section(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
     header.main-header
         h1
             | Code Spectat
     aside
         header.aside-header
-            | {{ controller.project.name }}
+            | {{project.name}}
         nav.aside-nav
             ul
-                li(ng-repeat="folder in controller.project.folders",ng-include="'folder_template.html'")
-
-            //- ul
-            //-     li
-            //-         a(href="#")
-            //-             | folder-1
-            //-         ul
-            //-             li
-            //-                 a(href="#")
-            //-                     | folder-1-1
-            //-             li
-            //-                 a(href="#")
-            //-                     | folder-1-2
-            //-             li
-            //-                 a(href="#")
-            //-                     | file-1-1
-            //-             li
-            //-                 a(href="#")
-            //-                     | file-1-2
-            //-     li
-            //-         a(href="#")
-            //-             | folder-2
-            //-         ul
-            //-             li
-            //-                 a(href="#")
-            //-                     | folder-2-1
-            //-                 ul
-            //-                     li
-            //-                         a(href="#")
-            //-                             | folder-2-1-1
-            //-                     li
-            //-                         a(href="#")
-            //-                             | file-2-1-1
-            //-                     li
-            //-                         a(href="#")
-            //-                             | file-2-1-2
-            //-                     li
-            //-                         a(href="#")
-            //-                             | file-2-1-3
-            //-             li
-            //-                 a(href="#")
-            //-                     | file-2-1
-            //-             li
-            //-                 a(href="#")
-            //-                     | file-2-2
-            //-             li
-            //-                 a(href="#")
-            //-                     | file-2-3
+                li(ng-repeat="folder in project.folders",ng-include="'folder_template.html'")
     section.file
         section.historic
             a.version(href="#")
@@ -85,5 +38,6 @@ section(ng-controller="ProjectController as controller")
         section.code
             pre
                 | &lt;html&gt;
+
 
 include ../../partials/footer.jade

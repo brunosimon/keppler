@@ -10,7 +10,6 @@ angular_module.controller(
                 $scope.$apply( function()
                 {
                     $scope.projects = Object.keys( data.all ).length ? data.all : null;
-                    console.log($scope.projects);
                 } );
             } );
 

@@ -3,13 +3,15 @@
 // Dependencies
 let paths = require( '../utils/paths.class.js' ),
 	util  = require( 'util' ),
+	slug  = require( 'slug' ),
 	File  = require( './file.class.js' )
 
 class Project
 {
-	constructor( name )
+	constructor( options )
 	{
-		this.name    = name
+		this.name    = options.name
+		this.slug    = slug( this.name )
 		this.folders = {
 			'.':
 			{
@@ -18,6 +20,23 @@ class Project
 				folders: {}
 			}
 		}
+
+		this.set_socket( options.socket )
+	}
+
+	set_socket( socket )
+	{
+		// Set up
+		this.original_socket = socket
+		this.socket          = this.original_socket.of( '/project/' + this.slug )
+
+		// Connection event
+		this.socket.on( 'connection', ( socket ) =>
+		{
+		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
+
+		    this.socket.emit( 'update_project', this.describe() )
+		} );
 	}
 
 	create_file( _path, _content )
@@ -43,6 +62,9 @@ class Project
 		// Has content
 		if( _content )
 			file.create_version( _content )
+
+		// Emit
+		this.socket.emit( 'update_project', this.describe() )
 
 		return file
 	}
@@ -94,6 +116,9 @@ class Project
 
 		// Create version
 		file.create_version( _content )
+
+		// Emit
+    	this.socket.emit( 'update_project', this.describe() )
 	}
 
 	delete_file( _path )
@@ -112,8 +137,12 @@ class Project
 			// File found
 			if( file )
 			{
+				// Delete file
 				file.destructor()
 				delete folder.files[ parsed_path.base ]
+
+				// Emit
+				this.socket.emit( 'update_project', this.describe() )
 			}
 		}
 	}
@@ -143,6 +172,9 @@ class Project
 
 			folder = _folder
 		}
+
+		// Emit
+		this.socket.emit( 'update_project', this.describe() )
 
 		return folder
 	}
@@ -216,7 +248,19 @@ class Project
 
 		delete_folder( folder )
 
+		// Emit
+		this.socket.emit( 'update_project', this.describe() )
+
 		return true
+	}
+
+	describe()
+	{
+		let result = {}
+		result.name = this.name
+		result.folders = this.folders
+
+		return result
 	}
 }
 

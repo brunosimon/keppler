@@ -1,9 +1,7 @@
 angular_module.factory(
     'projects',
     [
-        '$timeout',
-        '$rootScope',
-        function( $timeout, $rootScope )
+        function()
         {
             update_callback = null;
 

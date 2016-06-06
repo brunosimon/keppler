@@ -5,16 +5,6 @@ angular_module.controller(
         'project',
         function( $scope, project )
         {
-            update_callback = null;
-
-            // Result
-            var result       = {};
-            result.data      = {};
-            result.on_update = function( callback )
-            {
-                update_callback = callback;
-            };
-
             $scope.folder_click = function( folder )
             {
                 console.log( folder );
@@ -25,6 +15,11 @@ angular_module.controller(
                 console.log( file );
             };
 
+            $scope.init = function( project_slug )
+            {
+                project.connect( project_slug );
+            };
+
             project.on_update( function( data )
             {
                 $scope.$apply( function()
@@ -33,7 +28,7 @@ angular_module.controller(
                 } );
             } );
 
-            this.project = project.data;
+            $scope.project = project.data;
         }
     ]
 );

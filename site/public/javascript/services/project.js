@@ -2,8 +2,7 @@ angular_module.factory(
     'project',
     [
         '$timeout',
-        '$rootScope',
-        function( $timeout, $rootScope )
+        function( $timeout )
         {
             update_callback = null;
 
@@ -13,23 +12,26 @@ angular_module.factory(
             {
                 update_callback = callback;
             };
-
-            var socket = io( 'http://192.168.1.4:3000/site' );
-
-            socket.on( 'connect', function()
+            result.connect = function( project_name )
             {
-                console.log('connected');
-            } );
+                var socket = io( 'http://192.168.1.4:3000/project/' + project_name );
 
-            socket.on( 'update_project', function( data )
-            {
-                result.data = data;
+                socket.on( 'connect', function()
+                {
+                    console.log('connected');
+                } );
 
-                if( typeof update_callback === 'function' )
-                    update_callback.apply( this, [ data ] );
-            } );
+                socket.on( 'update_project', function( data )
+                {
+                    result.data = data;
 
-            result.data = {"name":"pwet","folders":{".":{"name":".","files":{"test-1.txt":{"name":"test-1.txt","versions":[{"date":"2016-06-04T23:26:45.759Z","content":"dsfsdf\n\naaaa\n\ndsfsdf\n\nbbbbiuhsdfiuhsdfdsf\n\n\ndsfsdf\nsodifja\n","diff":false}]}},"folders":{"folder-2":{"name":"folder-2","files":{"hey.txt":{"name":"hey.txt","versions":[{"date":"2016-06-04T23:26:41.642Z","content":"qdsqsdsq\n","diff":false}]}},"folders":{}},"folder-1":{"name":"folder-1","files":{"test-4.txt":{"name":"test-4.txt","versions":[{"date":"2016-06-04T23:26:46.571Z","content":"sdnufoisdf\n","diff":false}]}},"folders":{}}}}}};
+                    if( typeof update_callback === 'function' )
+                        update_callback.apply( this, [ data ] );
+                } );
+
+            };
+
+            result.data = {"name":"","folders":{}};
 
             return result;
         }
