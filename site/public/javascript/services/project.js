@@ -99,6 +99,12 @@ angular_module.factory(
                     // Reformat versions
                     result.each_version( data, function( version )
                     {
+                        // Date
+                        version.moment_date   = moment( version.date );
+                        version.date_formated = version.moment_date.format( 'LTS' );
+                        version.time_from_now = version.moment_date.fromNow();
+
+                        // Differencies
                         var count    = 0,
                             modified = 0;
 
@@ -115,7 +121,7 @@ angular_module.factory(
                                 var _diff = version.diff[ _diff_key ];
                                 count += _diff.count;
 
-                                if( _diff.removed || _diff.added )
+                                if( _diff.added /*|| _diff.removed*/ )
                                     modified += _diff.count;
                             }
                             version.diff_ratio = modified / count;

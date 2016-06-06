@@ -2,17 +2,24 @@ angular_module.controller(
     'ProjectController',
     [
         '$scope',
+        '$interval',
         'project',
-        function( $scope, project )
+        function( $scope, $interval, project )
         {
+            // Every 5 seconds
+            $interval( function()
+            {
+                // Each version
+                project.each_version( function( version )
+                {
+                    // Date
+                    version.time_from_now = version.moment_date.fromNow();
+                } );
+            }, 5000 );
+
             $scope.folder_click = function( folder )
             {
-                project.each_folder( function( folder )
-                {
-                    folder.active = false;
-                } );
-
-                folder.active = true;
+                folder.active = !folder.active;
             };
 
             $scope.file_click = function( file )
