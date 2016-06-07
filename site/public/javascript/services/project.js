@@ -1,8 +1,9 @@
-angular_module.factory(
+application.factory(
     'project',
     [
+        'config',
         '$timeout',
-        function( $timeout )
+        function( config, $timeout )
         {
             var update_callback = null;
 
@@ -85,7 +86,7 @@ angular_module.factory(
             result.connect = function( project_name )
             {
                 // Connect to socket
-                var socket = io( 'http://192.168.1.4:3000/project/' + project_name );
+                var socket = io( config.domain + '/project/' + project_name );
 
                 // Connect event
                 socket.on( 'connect', function()

@@ -1,7 +1,8 @@
-angular_module.factory(
+application.factory(
     'projects',
     [
-        function()
+        'config',
+        function( config )
         {
             update_callback = null;
 
@@ -14,7 +15,7 @@ angular_module.factory(
             };
 
             // Socket
-            var socket = io( 'http://192.168.1.4:3000/projects' );
+            var socket = io( config.domain + '/projects' );
 
             socket.on( 'update_projects', function( data )
             {

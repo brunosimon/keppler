@@ -10,10 +10,6 @@ script(type="text/ng-template",id="folder_template.html")
                 | {{_file.name}}
 
 section(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
-    header.main-header
-        h1
-            a(href="/")
-                | Code Spectat
     aside
         header.aside-header
             | {{project.name}}

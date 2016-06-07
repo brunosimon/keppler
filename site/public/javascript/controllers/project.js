@@ -1,4 +1,4 @@
-angular_module.controller(
+application.controller(
     'ProjectController',
     [
         '$scope',

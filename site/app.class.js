@@ -22,6 +22,9 @@ class App
 	constructor( _options )
 	{
 		this.set_options( _options )
+
+		this.domain = 'http://' + ip.address() + ':' + this.options.port
+
 		this.set_express()
 		this.set_server()
 		this.set_socket()
@@ -81,6 +84,8 @@ class App
 		this.express.set( 'views', path.join( __dirname, 'views' ) )
 		this.express.use( express.static( path.join( __dirname, 'public' ) ) )
 
+		this.express.locals.domain = this.domain
+
 		// Controllers
 		this.express.use( '/', require( './controllers/index.js' ) )
 	}
@@ -97,11 +102,9 @@ class App
 		this.server.listen( this.options.port, () =>
 		{
 			// URL
-			let url = 'http://' + ip.address() + ':' + this.options.port
-
 			console.log( colors.green( '---------------------------' ) )
 			console.log( 'server'.green.bold + ' - ' + 'started'.cyan )
-			console.log( 'server'.green.bold + ' - ' + url.cyan )
+			console.log( 'server'.green.bold + ' - ' + this.domain.cyan )
 		} )
 	}
 

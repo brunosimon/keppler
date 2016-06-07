@@ -2,6 +2,10 @@ html(ng-app="application")
     head
         title
             | Code Spectat
+        script.
+            var config = {
+                domain : '#{domain}'
+            }
         script(src="/socket.io/socket.io.js")
         script(src="/vendors/moment.min.js")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js")
@@ -14,3 +18,7 @@ html(ng-app="application")
         script(src="/javascript/services/projects.js")
         link(rel="stylesheet", href="/stylesheets/style.css")
     body
+        header.main-header
+            h1
+                a(href=domain)
+                    | Code Spectat
