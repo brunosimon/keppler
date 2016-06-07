@@ -1,10 +1,12 @@
 include ../../partials/header.jade
 
-section(ng-controller="ProjectsController as controller")
-    div(ng-hide="projects")
-        | No project
-    div(ng-repeat="project in projects")
-        a(href="/project/{{project.slug}}")
+section.page-projects(ng-controller="ProjectsController as controller")
+    .projects(ng-show="projects")
+        .item.title
+            | Projects
+        a.item(href="/project/{{project.slug}}",ng-repeat="project in projects")
             | {{project.name}}
+    .no-project(ng-hide="projects")
+        | No project
 
 include ../../partials/footer.jade

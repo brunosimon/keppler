@@ -6,17 +6,27 @@ html(ng-app="application")
             var config = {
                 domain : '#{domain}'
             }
+        script(src="/vendors/highlight/highlight.pack.js")
+
         script(src="/socket.io/socket.io.js")
         script(src="/vendors/moment.min.js")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js")
-        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js")
-        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.js")
+        script(src="/vendors/angular/angular-highlightjs.min.js")
         script(src="/javascript/application/application.js")
         script(src="/javascript/controllers/project.js")
         script(src="/javascript/controllers/projects.js")
         script(src="/javascript/services/project.js")
         script(src="/javascript/services/projects.js")
-        link(rel="stylesheet", href="/stylesheets/style.css")
+
+        link(rel="stylesheet",href="/stylesheets/reset.min.css")
+        link(rel="stylesheet",href="/stylesheets/style.css")
+        //- link(rel="stylesheet",href="/vendors/highlight/styles/dracula.css")
+        //- link(rel="stylesheet",href="/vendors/highlight/styles/gruvbox-dark.css")
+        //- link(rel="stylesheet",href="/vendors/highlight/styles/monokai.css")
+        link(rel="stylesheet",href="/vendors/highlight/styles/monokai-sublime.css")
+        //- link(rel="stylesheet",href="/vendors/highlight/styles/obsidian.css")
+        //- link(rel="stylesheet",href="/vendors/highlight/styles/railscasts.css")
+        //- link(rel="stylesheet",href="/vendors/highlight/styles/tomorrow-night.css")
     body
         header.main-header
             h1

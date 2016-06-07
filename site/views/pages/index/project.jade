@@ -9,7 +9,7 @@ script(type="text/ng-template",id="folder_template.html")
             span(ng-click="file_click(_file)")
                 | {{_file.name}}
 
-section(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
+section.page-project(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
     aside
         header.aside-header
             | {{project.name}}
@@ -29,7 +29,7 @@ section(ng-controller="ProjectController as controller",ng-init="init('" + proje
                     | {{_version.diff_percent}}
         section.code
             pre
-                | {{version.content}}
+                code.html(hljs,hljs-source="version.content")
 
 
 include ../../partials/footer.jade
