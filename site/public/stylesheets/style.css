@@ -27,3 +27,20 @@ section.page-projects .projects .item:last-child:after {display:none;}
  * Page projet
  */
 section.page-project {position:fixed;top:60px;right:0;bottom:0;left:0;}
+section.page-project .aside {position:absolute;top:0;bottom:0;left:0;width:240px;}
+section.page-project section.file {position:absolute;top:0;right:0;bottom:0;left:240px;}
+section.page-project section.file .file-header {position:absolute;top:0;right:0;left:0;height:30px;line-height:30px;padding:0 0 0 10px;background:#00f;}
+section.page-project section.file .versions-nav {position:absolute;top:30px;bottom:0;left:0;width:140px;background:#f0f;}
+section.page-project section.file .code {position:absolute;top:30px;right:0;bottom:0;left:140px;background:#ff0;}
+section.page-project section.file .code pre code {position:absolute;top:0;right:0;bottom:0;left:0;}
+
+/**
+ * Files tree nav
+ */
+nav.files-tree-nav {}
+nav.files-tree-nav li {padding:0 8px 0 24px;line-height:24px;cursor:pointer;}
+nav.files-tree-nav .folder ul {display:none;}
+nav.files-tree-nav .folder.active > ul {display:block;}
+nav.files-tree-nav i {margin:0 6px 0 0;}
+nav.files-tree-nav span {color:#ccc;}
+nav.files-tree-nav .active span {color:#fff;}

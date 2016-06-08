@@ -1,21 +1,23 @@
 include ../../partials/header.jade
 
 script(type="text/ng-template",id="folder_template.html")
-    span(ng-click="folder_click(_folder)",class="folder")
+    span(ng-click="folder_click(_folder)")
+        i.fa(ng-class="_folder.active ? 'fa-folder-open' : 'fa-folder'")
         | {{_folder.name}}
     ul
-        li(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
-        li(ng-repeat="_file in _folder.files",ng-class="_file.active ? 'active' : 'inactive'")
+        li.folder(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
+        li.file(ng-repeat="_file in _folder.files",ng-class="_file.active ? 'active' : 'inactive'")
             span(ng-click="file_click(_file)")
+                i.fa.fa-file-text
                 | {{_file.name}}
 
 section.page-project(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
-    aside
+    aside.aside
         header.aside-header
             | {{project.name}}
         nav.files-tree-nav
             ul
-                li(ng-repeat="_folder in project.folders",ng-include="'folder_template.html'")
+                li.folder(ng-repeat="_folder in project.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
     section.file
         header.file-header
             | {{file.name}}
@@ -29,7 +31,7 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
                     | {{_version.diff_percent}}
         section.code
             pre
-                code.html(hljs,hljs-source="version.content")
+                code(hljs,hljs-source="version.content")
 
 
 include ../../partials/footer.jade
