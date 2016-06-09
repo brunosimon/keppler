@@ -2,6 +2,7 @@
 
 // Dependencies
 let paths = require( '../utils/paths.class.js' ),
+	ids   = require( '../utils/ids.class.js' ),
 	util  = require( 'util' ),
 	slug  = require( 'slug' ),
 	File  = require( './file.class.js' )
@@ -12,6 +13,7 @@ class Project
 	{
 		this.name    = options.name
 		this.slug    = slug( this.name )
+		this.files   = {}
 		this.folders = {
 			'.':
 			{
@@ -36,7 +38,7 @@ class Project
 		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
 
 		    this.socket.emit( 'update_project', this.describe() )
-		} );
+		} )
 	}
 
 	create_file( _path, _content )
@@ -56,15 +58,18 @@ class Project
 		let folder = this.get_folder( parsed_path.dir, true )
 
 		// Create
-		file = new File( parsed_path.base )
-		folder.files[ file.name ] = file
+		file = new File( {
+			name   : parsed_path.base,
+			path   : parsed_path.dir,
+			content: _content
+		} )
 
-		// Has content
-		if( _content )
-			file.create_version( _content )
+		// Save
+		folder.files[ file.name ] = file.id
+		this.files[ file.id ]     = file
 
 		// Emit
-		this.socket.emit( 'update_project', this.describe() )
+		this.socket.emit( 'update_file', file.describe() )
 
 		return file
 	}
@@ -87,17 +92,20 @@ class Project
 			return false
 
 		// Retrieve file
-		let file = folder.files[ parsed_path.base ]
+		let file_id = folder.files[ parsed_path.base ]
 
 		// File found
-		if( file )
+		if( file_id )
+		{
+			let file = this.files[ file_id ]
 			return file
+		}
 
 		// Force creation
 		if( _force_creation )
 		{
 			// Create folders
-			file = this.create_file( normalized_path )
+			let file = this.create_file( normalized_path )
 
 			return file
 		}
@@ -118,7 +126,9 @@ class Project
 		file.create_version( _content )
 
 		// Emit
-    	this.socket.emit( 'update_project', this.describe() )
+    	this.socket.emit( 'update_file', file.describe() )
+
+    	return file
 	}
 
 	delete_file( _path )
@@ -132,17 +142,21 @@ class Project
 		// Folder found
 		if( folder )
 		{
-			let file = folder.files[ parsed_path.base ]
+			let file_id = folder.files[ parsed_path.base ]
 
 			// File found
-			if( file )
+			if( file_id )
 			{
+				let file = this.files[ file_id ]
+
 				// Delete file
 				file.destructor()
-				delete folder.files[ parsed_path.base ]
+				delete folder.files[ file.name ]
+				delete this.files[ file.id ]
 
 				// Emit
-				this.socket.emit( 'update_project', this.describe() )
+				this.socket.emit( 'delete_file', file_id )
+				this.socket.emit( 'update_folders', this.describe_folders )
 			}
 		}
 	}
@@ -174,7 +188,7 @@ class Project
 		}
 
 		// Emit
-		this.socket.emit( 'update_project', this.describe() )
+		this.socket.emit( 'update_folders', this.describe_folders() )
 
 		return folder
 	}
@@ -230,37 +244,78 @@ class Project
 			return false
 
 		// Recursive callback
-		let delete_folder = function( folder )
+		let empty_folder = ( folder ) =>
 			{
+				// Each folder
 				for( let _folder_name in folder.folders )
 				{
-					delete_folder( folder.folders[ _folder_name ] )
+					empty_folder( folder.folders[ _folder_name ] )
+
+					// Delete folder
+					delete folder.folders[ _folder_name ]
 				}
 
+				// Each file
 				for( let _file_name in folder.files  )
 				{
-					let file = folder.files[ _file_name ]
+					// Set up
+					let file_id = folder.files[ _file_name ],
+						file    = this.files[ file_id ]
 
-					file.destructor()
-					delete folder.files[ _file_name ]
+					// File found
+					if( file )
+					{
+						// Delete file
+						this.delete_file( file.path.full )
+					}
 				}
 			}
 
-		delete_folder( folder )
+		empty_folder( folder )
+
+		// Delete folder
+		let parsed_path   = paths.parse( normalized_path ),
+			parent_folder = this.get_folder( parsed_path.dir )
+
+		if( parent_folder )
+			delete parent_folder.folders[ folder.name ]
 
 		// Emit
-		this.socket.emit( 'update_project', this.describe() )
+		this.socket.emit( 'update_folders', this.describe_folders() )
 
 		return true
 	}
 
 	describe()
 	{
+		// Set up
 		let result = {}
-		result.name = this.name
-		result.folders = this.folders
+		result.name    = this.name
+		result.folders = this.describe_folders()
+		result.files   = this.describe_files()
 
 		return result
+	}
+
+	describe_files()
+	{
+		// Set up
+		let result = {}
+
+		// Each file
+		for( let _file_id in this.files )
+		{
+			let _file = this.files[ _file_id ]
+
+			result[ _file_id ] = _file.describe()
+		}
+
+		return result
+	}
+
+	describe_folders()
+	{
+		return this.folders
 	}
 }
 

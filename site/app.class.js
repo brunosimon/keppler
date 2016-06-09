@@ -41,8 +41,8 @@ class App
 
 		// Tests
 		var project = this.projects.create_project( 'dummy' )
-		project.create_folder( './toto' )
-		project.get_folder( './toto//tutu/tete', true )
+		// project.create_folder( './toto' )
+		// project.get_folder( './toto//tutu/tete', true )
 		project.create_file( './coucou/coco.txt', '1234' )
 		project.create_file( './test-1.txt', 'content 1' )
 		project.update_file( './test-1.txt', 'content 2' )
@@ -50,9 +50,10 @@ class App
 		project.update_file( './toto/tata/lorem.txt', '123456789' )
 		project.update_file( './toto/tata/lorem.txt', '1aze' )
 		project.update_file( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
-		project.delete_folder( './toto/tutu', true )
+		project.delete_folder( './toto/tata', true )
 		// project.delete_file( './toto/tata/ipsum.txt' )
-		// console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+		console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+		console.log( util.inspect( project.files, { depth: null, colors: true } ) )
 	}
 
 	/**

@@ -94,9 +94,30 @@ application.factory(
                     console.log('connected');
                 } );
 
+                socket.on( 'update_file', function( data )
+                {
+                    console.log('update_file');
+                    console.log(data);
+                } );
+
+                socket.on( 'delete_file', function( data )
+                {
+                    console.log('delete_file');
+                    console.log(data);
+                } );
+
+                socket.on( 'update_folders', function( data )
+                {
+                    console.log('update_folders');
+                    console.log(data);
+                } );
+
                 // Update project event
                 socket.on( 'update_project', function( data )
                 {
+                    console.log('update_folders');
+                    console.log(data);
+
                     // Reformat versions
                     result.each_version( data, function( version )
                     {
@@ -140,7 +161,7 @@ application.factory(
                 } );
             };
 
-            result.data = {"name":"","folders":{}};
+            result.data = {'name':'',folders:{},files:{}};
 
             return result;
         }
