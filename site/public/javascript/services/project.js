@@ -7,6 +7,42 @@ application.factory(
         {
             var update_callback = null;
 
+            function update_folders( folder )
+            {
+                function recursive_folder_report( new_folder, old_folder )
+                {
+                    if( typeof old_folder !== 'undefined' && typeof old_folder.active !== 'undefined' )
+                        new_folder.active = old_folder.active;
+
+                    for( var _folder_key in new_folder.folders )
+                    {
+                        var _new_folder = new_folder.folders[ _folder_key ],
+                            _old_folder = undefined;
+
+                        if( old_folder )
+                            _old_folder = old_folder.folders[ _folder_key ];
+
+                        _new_folder = recursive_folder_report( _new_folder, _old_folder );
+                    }
+
+                    return new_folder;
+                }
+
+                folder = recursive_folder_report( folder, result.data );
+
+                result.data.folders = folder.folders;
+            }
+
+            function update_files( files )
+            {
+
+            }
+
+            function delete_file( id )
+            {
+                delete result.data.files[ id ];
+            }
+
             // Result
             var result  = {};
             result.data = null;
@@ -104,56 +140,63 @@ application.factory(
                 {
                     console.log('delete_file');
                     console.log(data);
+
+                    delete_file( data );
                 } );
 
                 socket.on( 'update_folders', function( data )
                 {
                     console.log('update_folders');
                     console.log(data);
+
+                    update_folders( { folders: data } );
                 } );
 
                 // Update project event
                 socket.on( 'update_project', function( data )
                 {
-                    console.log('update_folders');
+                    console.log('update_project');
                     console.log(data);
 
-                    // Reformat versions
-                    result.each_version( data, function( version )
-                    {
-                        // Date
-                        version.moment_date   = moment( version.date );
-                        version.date_formated = version.moment_date.format( 'LTS' );
-                        version.time_from_now = version.moment_date.fromNow();
+                    update_folders( data );
+                    update_files( data.files );
 
-                        // Differencies
-                        var count    = 0,
-                            modified = 0;
+                    // // Reformat versions
+                    // result.each_version( data, function( version )
+                    // {
+                    //     // Date
+                    //     version.moment_date   = moment( version.date );
+                    //     version.date_formated = version.moment_date.format( 'LTS' );
+                    //     version.time_from_now = version.moment_date.fromNow();
 
-                        if( !version.diff )
-                        {
-                            version.diff_ratio = 1;
-                            count    = 1;
-                            modified = 1;
-                        }
-                        else
-                        {
-                            for( var _diff_key in version.diff )
-                            {
-                                var _diff = version.diff[ _diff_key ];
-                                count += _diff.count;
+                    //     // Differencies
+                    //     var count    = 0,
+                    //         modified = 0;
 
-                                if( _diff.added /*|| _diff.removed*/ )
-                                    modified += _diff.count;
-                            }
-                            version.diff_ratio = modified / count;
-                        }
+                    //     if( !version.diff )
+                    //     {
+                    //         version.diff_ratio = 1;
+                    //         count    = 1;
+                    //         modified = 1;
+                    //     }
+                    //     else
+                    //     {
+                    //         for( var _diff_key in version.diff )
+                    //         {
+                    //             var _diff = version.diff[ _diff_key ];
+                    //             count += _diff.count;
 
-                        version.diff_percent = Math.round( version.diff_ratio * 100 ) + '%';
-                    } );
+                    //             if( _diff.added /*|| _diff.removed*/ )
+                    //                 modified += _diff.count;
+                    //         }
+                    //         version.diff_ratio = modified / count;
+                    //     }
 
-                    // Save in results
-                    result.data = data;
+                    //     version.diff_percent = Math.round( version.diff_ratio * 100 ) + '%';
+                    // } );
+
+                    // // Save in results
+                    // result.data = data;
 
                     // Apply callback
                     if( typeof update_callback === 'function' )
@@ -161,7 +204,11 @@ application.factory(
                 } );
             };
 
-            result.data = {'name':'',folders:{},files:{}};
+            result.data = {
+                name   : '',
+                folders: {},
+                files  : {}
+            };
 
             return result;
         }

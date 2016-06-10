@@ -47,7 +47,7 @@ application.controller(
             {
                 $scope.$apply( function()
                 {
-                    $scope.project = data;
+                    $scope.project = project.data;
                 } );
             } );
 

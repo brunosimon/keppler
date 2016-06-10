@@ -37,6 +37,7 @@ class Project
 		{
 		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
 
+		    console.log(this.describe());
 		    this.socket.emit( 'update_project', this.describe() )
 		} )
 	}
@@ -70,6 +71,7 @@ class Project
 
 		// Emit
 		this.socket.emit( 'update_file', file.describe() )
+		this.socket.emit( 'update_folders', this.describe_folders() )
 
 		return file
 	}
@@ -156,7 +158,7 @@ class Project
 
 				// Emit
 				this.socket.emit( 'delete_file', file_id )
-				this.socket.emit( 'update_folders', this.describe_folders )
+				this.socket.emit( 'update_folders', this.describe_folders() )
 			}
 		}
 	}

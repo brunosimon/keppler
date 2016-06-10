@@ -6,10 +6,10 @@ script(type="text/ng-template",id="folder_template.html")
         | {{_folder.name}}
     ul
         li.folder(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
-        li.file(ng-repeat="_file in _folder.files",ng-class="_file.active ? 'active' : 'inactive'")
+        li.file(ng-repeat="(_key,_file) in _folder.files",ng-class="_file.active ? 'active' : 'inactive'")
             span(ng-click="file_click(_file)")
                 i.fa.fa-file-text
-                | {{_file.name}}
+                | {{_key}}
 
 section.page-project(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
     aside.aside
