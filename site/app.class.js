@@ -41,18 +41,14 @@ class App
 
 		// Tests
 		var project = this.projects.create_project( 'dummy' )
-		project.create_folder( './toto' )
-		project.get_folder( './toto//tutu/tete', true )
-		project.create_file( './coucou/coco.txt', '1234' )
-		project.create_file( './test-1.txt', 'content 1' )
-		project.update_file( './test-1.txt', 'content 2' )
-		project.update_file( './test-1.txt', 'content 31298' )
-		project.update_file( './toto/tata/lorem.txt', '123456789' )
-		project.update_file( './toto/tata/lorem.txt', '1aze' )
-		project.update_file( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
-		project.delete_folder( './toto/tata', true )
-		project.delete_file( './toto/tata/ipsum.txt' )
-		console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+		project.files.create( './coucou/coco.txt', '1234' )
+		project.files.create( './test-1.txt', 'content 1' )
+		project.files.update( './test-1.txt', 'content 2' )
+		project.files.update( './test-1.txt', 'content 31298' )
+		project.files.update( './toto/tata/lorem.txt', '123456789' )
+		project.files.update( './toto/tata/lorem.txt', '1aze' )
+		project.files.update( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
+		project.files.delete( './toto/tata/ipsum.txt' )
 		console.log( util.inspect( project.files, { depth: null, colors: true } ) )
 	}
 
@@ -115,9 +111,9 @@ class App
 	set_socket()
 	{
 		// Set up
-		this.sockets          = {}
-		this.sockets.main     = socket_io.listen( this.server )
-		this.sockets.app      = this.sockets.main.of( '/app' )
+		this.sockets      = {}
+		this.sockets.main = socket_io.listen( this.server )
+		this.sockets.app  = this.sockets.main.of( '/app' )
 
 		// App connection event
 		this.sockets.app.on( 'connection', ( socket ) =>
@@ -133,42 +129,28 @@ class App
 				// Create project
 				project = this.projects.create_project( data.name )
 
-				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
 			} )
 
 			socket.on( 'update_file', ( data ) =>
 			{
-				project.update_file( data.path, data.content )
+				project.files.file( data.path, data.content )
 
-				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
 			} )
 
 			socket.on( 'create_file', ( data ) =>
 			{
-				project.create_file( data.path, data.content )
+				project.files.create( data.path, data.content )
 
-				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
 			} )
 
 			socket.on( 'delete_file', ( data ) =>
 			{
-				project.delete_file( data.path )
+				project.files.delete( data.path )
 
-				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
-			} )
-
-			socket.on( 'create_folder', ( data ) =>
-			{
-				project.create_folder( data.path, data.content )
-
-				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
-			} )
-
-			socket.on( 'delete_folder', ( data ) =>
-			{
-				project.delete_folder( data.path )
-
-				console.log( util.inspect( project.folders, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
 			} )
 		} )
 	}
