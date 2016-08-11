@@ -37,31 +37,33 @@ class App
 	 */
 	set_dummy()
 	{
-		// Default project
-		let project = this.projects.create_project( 'dummy' )
+		// // Default project
+		// let project = this.projects.create_project( 'dummy' )
 
-		// Same name projects
+		// // Same name projects
 		// let project_2 = this.projects.create_project( 'dummy' )
 		// let project_3 = this.projects.create_project( 'dummy' )
 		// let project_4 = this.projects.create_project( 'dummy' )
 		// let project_5 = this.projects.create_project( 'dummy' )
 
-		// Some file
-		project.files.create( './coucou/coco.txt', '1234' )
-		project.files.create( './test-1.txt', 'content 1' )
-		project.files.update( './test-1.txt', 'content 2' )
-		project.files.update( './test-1.txt', 'content 31298' )
-		project.files.update( './toto/tata/lorem.txt', '123456789' )
-		project.files.update( './toto/tata/lorem.txt', '1aze' )
-		project.files.update( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
-		project.files.delete( './toto/tata/ipsum.txt' )
+		// // Some file
+		// project.files.create( './coucou/coco.txt', '1234' )
+		// project.files.create( './test-1.txt', 'content 1' )
+		// project.files.update( './test-1.txt', 'content 2' )
+		// project.files.update( './test-1.txt', 'content 31298' )
+		// project.files.update( './toto/tata/lorem.txt', '123456789' )
+		// project.files.update( './toto/tata/lorem.txt', '1aze' )
+		// project.files.update( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
+		// project.files.delete( './toto/tata/ipsum.txt' )
 
-		// Incrementing
-		let counting = 0
-		setInterval( function()
-		{
-			project.files.update( './coucou/coco.txt', 'test: ' + counting++ )
-		}, 2000 )
+		// // Adding file versions
+		// let counting = 0
+		// setInterval( function()
+		// {
+		// 	project.files.update( './coucou/coco.txt', 'test: ' + counting++ )
+		// }, 2000 )
+
+
 
 		// Log
 		// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
@@ -150,20 +152,20 @@ class App
 			// Start project
 			socket.on( 'start_project', ( data ) =>
 			{
-				// Create project
 				project = this.projects.create_project( data.name )
 
 				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
+			// Update file
 			socket.on( 'update_file', ( data ) =>
 			{
-				console.log(data);
 				project.files.update( data.path, data.content )
 
 				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
+			// Create file
 			socket.on( 'create_file', ( data ) =>
 			{
 				project.files.create( data.path, data.content )
@@ -171,12 +173,21 @@ class App
 				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
+			// Delete file
 			socket.on( 'delete_file', ( data ) =>
 			{
 				project.files.delete( data.path )
 
 				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
+
+			// Disconnect
+			socket.on( 'disconnect', () =>
+			{
+				console.log( 'socket app'.green.bold + ' - ' + 'disconnect'.cyan + ' - ' + socket.id.cyan )
+
+				this.projects.delete_project( project.slug )
+			} );
 		} )
 	}
 }

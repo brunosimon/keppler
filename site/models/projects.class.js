@@ -63,6 +63,23 @@ class Projects
 		return project
 	}
 
+	delete_project( _slug )
+	{
+		// Set up
+		let project = this.all[ _slug ]
+
+		// Project found
+		if( typeof project !== 'undefined' )
+		{
+			// Delete
+			delete this.all[ _slug ]
+			project.destructor();
+
+			// Emit
+	    	this.socket.emit( 'update_projects', this.describe() )
+		}
+	}
+
 	get_project_by_slug( _slug )
 	{
 		// Find project

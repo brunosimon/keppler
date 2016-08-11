@@ -44,6 +44,11 @@ class Project
 
 		return result
 	}
+
+	destructor()
+	{
+		this.socket.emit( 'destruct' )
+	}
 }
 
 module.exports = Project

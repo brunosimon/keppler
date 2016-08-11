@@ -96,6 +96,12 @@ application.factory(
                     if( typeof update_callback === 'function' )
                         update_callback.apply( this, [ data ] );
                 } );
+
+                // Destruct event
+                socket.on( 'destruct', function( data )
+                {
+                    alert( 'destruct' );
+                } );
             };
 
             return result;
