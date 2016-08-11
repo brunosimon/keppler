@@ -29,7 +29,8 @@ class Files
 		file = new File( {
 			name   : parsed_path.base,
 			path   : parsed_path.dir,
-			content: _content
+			content: _content,
+			socket : this.socket
 		} )
 
 		// Save
@@ -70,7 +71,7 @@ class Files
 		return false
 	}
 
-	update( _path, _content )
+	create_version( _path, _content )
 	{
 		// Set up
 		let normalized_path = paths.normalize( _path )
@@ -80,9 +81,6 @@ class Files
 
 		// Create version
 		file.create_version( _content )
-
-		// Emit
-		this.socket.emit( 'update_file', file.describe() )
 
     	return file
 	}

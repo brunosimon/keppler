@@ -35,12 +35,6 @@ application.factory(
                 {
                     console.log('create_file');
                     console.log(data);
-                } );
-
-                socket.on( 'update_file', function( data )
-                {
-                    // console.log('update_file');
-                    // console.log(data);
 
                     var existing_file = result.files[ data.path.full ];
 
@@ -49,9 +43,9 @@ application.factory(
                     {
                         existing_file = Object.assign( {}, data );
                         existing_file.notif = 0;
-                        result.files[ _file_key ] = existing_file;
+                        result.files[ data.path.full ] = existing_file;
 
-                        result.tree.add_file( _file_key, existing_file )
+                        result.tree.add_file( data.path.full, existing_file )
                     }
 
                     existing_file.notif++;
@@ -59,6 +53,26 @@ application.factory(
                     // Apply callback
                     if( typeof update_callback === 'function' )
                         update_callback.apply( this, [ data ] );
+                } );
+
+                socket.on( 'create_version', function( data )
+                {
+                    console.log('create_version');
+                    console.log(data);
+
+                    var existing_file = result.files[ data.file ];
+
+                    // Doesn't exist yet
+                    if( typeof existing_file !== 'undefined' )
+                    {
+                        existing_file.versions.push( data.version );
+
+                        existing_file.notif++;
+
+                        // Apply callback
+                        if( typeof update_callback === 'function' )
+                            update_callback.apply( this, [ data ] );
+                    }
                 } );
 
                 socket.on( 'delete_file', function( data )

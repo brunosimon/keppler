@@ -17,6 +17,7 @@ class File
 		this.path.full      = this.path.directory + '/' + this.name
 		this.path.parts     = this.path.full.split( paths.separator )
 		this.versions       = []
+		this.socket         = _options.socket
 
 		// Create first version
 		if( typeof _options.content !== 'undefined' )
@@ -32,6 +33,9 @@ class File
 		version.date    = new Date()
 		version.content = content
 		version.diff    = last_version ? diff.diffChars( last_version.content, version.content ) : false
+
+		// Emit
+		this.socket.emit( 'create_version', { file: this.path.full, version: version } )
 
 		// Save
 		this.versions.push( version )

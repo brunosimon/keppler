@@ -49,18 +49,18 @@ class App
 		// // Some file
 		// project.files.create( './coucou/coco.txt', '1234' )
 		// project.files.create( './test-1.txt', 'content 1' )
-		// project.files.update( './test-1.txt', 'content 2' )
-		// project.files.update( './test-1.txt', 'content 31298' )
-		// project.files.update( './toto/tata/lorem.txt', '123456789' )
-		// project.files.update( './toto/tata/lorem.txt', '1aze' )
-		// project.files.update( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
-		// project.files.delete( './toto/tata/ipsum.txt' )
+		// project.files.create_version( './test-1.txt', 'content 2' )
+		// project.files.create_version( './test-1.txt', 'content 31298' )
+		// project.files.create_version( './toto/tata/lorem.txt', '123456789' )
+		// project.files.create_version( './toto/tata/lorem.txt', '1aze' )
+		// project.files.create_version( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
+		// project.files.create_version( './toto/tata/ipsum.txt' )
 
 		// // Adding file versions
 		// let counting = 0
 		// setInterval( function()
 		// {
-		// 	project.files.update( './coucou/coco.txt', 'test: ' + counting++ )
+		// 	project.files.create_version( './coucou/coco.txt', 'test: ' + counting++ )
 		// }, 2000 )
 
 
@@ -160,7 +160,7 @@ class App
 			// Update file
 			socket.on( 'update_file', ( data ) =>
 			{
-				project.files.update( data.path, data.content )
+				project.files.create_version( data.path, data.content )
 
 				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
