@@ -8,12 +8,16 @@ class Project
 {
 	constructor( options )
 	{
-		this.name  = options.name
-		this.slug  = slug( this.name )
-
+		this.set_name( options.name )
 		this.set_socket( options.socket )
 
 		this.files = new Files( { socket: this.socket } )
+	}
+
+	set_name( _name )
+	{
+		this.name = _name
+		this.slug = slug( this.name )
 	}
 
 	set_socket( socket )

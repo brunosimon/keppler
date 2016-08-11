@@ -23,13 +23,35 @@ class Projects
 		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
 
 		    this.socket.emit( 'update_projects', this.describe() )
-		} );
+		} )
 	}
 
 	create_project( _name )
 	{
 		// Create project
-		let project = new Project( { name: _name, socket: this.original_socket } )
+		let project           = new Project( { name: _name, socket: this.original_socket } ),
+			same_name_project = this.all[ project.slug ]
+
+		// Try to found same name project
+		while( typeof same_name_project !== 'undefined' )
+		{
+			// Found new number
+			let last_number = same_name_project.name.match(/\d+$/),
+				new_number  = 2
+
+			if( last_number && last_number.length )
+			{
+				last_number = ~~last_number[ 0 ]
+
+				new_number = last_number + 1
+			}
+
+			// Update project name
+			project.set_name( _name + ' ' + new_number )
+
+			// Try to found
+			same_name_project = this.all[ project.slug ]
+		}
 
 		// Save
 		this.all[ project.slug ] = project

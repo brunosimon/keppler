@@ -29,18 +29,24 @@ class App
 		this.set_server()
 		this.set_socket()
 		this.set_models()
+		this.set_dummy()
 	}
 
 	/**
-	 * Set models
+	 * Set Dummy
 	 */
-	set_models()
+	set_dummy()
 	{
-		// Set up
-		this.projects = new Projects( { socket: this.sockets.main } )
+		// Default project
+		let project = this.projects.create_project( 'dummy' )
 
-		// Tests
-		var project = this.projects.create_project( 'dummy' )
+		// Same name projects
+		// let project_2 = this.projects.create_project( 'dummy' )
+		// let project_3 = this.projects.create_project( 'dummy' )
+		// let project_4 = this.projects.create_project( 'dummy' )
+		// let project_5 = this.projects.create_project( 'dummy' )
+
+		// Some file
 		project.files.create( './coucou/coco.txt', '1234' )
 		project.files.create( './test-1.txt', 'content 1' )
 		project.files.update( './test-1.txt', 'content 2' )
@@ -50,13 +56,24 @@ class App
 		project.files.update( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
 		project.files.delete( './toto/tata/ipsum.txt' )
 
-		var counting = 0
+		// Incrementing
+		let counting = 0
 		setInterval( function()
 		{
 			project.files.update( './coucou/coco.txt', 'test: ' + counting++ )
 		}, 2000 )
 
-		console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+		// Log
+		// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+	}
+
+	/**
+	 * Set models
+	 */
+	set_models()
+	{
+		// Set up
+		this.projects = new Projects( { socket: this.sockets.main } )
 	}
 
 	/**
