@@ -1,14 +1,15 @@
 'use strict'
 
 // Dependencies
-let paths = require( '../utils/paths.class.js' ),
-	File  = require( './file.class.js' )
+let paths         = require( '../utils/paths.class.js' ),
+	File          = require( './file.class.js' )
 
 class Files
 {
-	constructor( options )
+	constructor( _options )
 	{
-		this.items = {}
+		this.items  = {}
+		this.socket = _options.socket
 	}
 
 	create( _path, _content )
@@ -33,6 +34,9 @@ class Files
 
 		// Save
 		this.items[ normalized_path ] = file
+
+		// Emit
+		this.socket.emit( 'create_file', file.describe() )
 
 		return file
 	}
@@ -77,6 +81,9 @@ class Files
 		// Create version
 		file.create_version( _content )
 
+		// Emit
+		this.socket.emit( 'update_file', file.describe() )
+
     	return file
 	}
 
@@ -94,6 +101,9 @@ class Files
 			// Delete file
 			file.destructor()
 			delete this.items[ normalized_path ]
+
+			// Emit
+			this.socket.emit( 'delete_file', file.describe() )
 
 			return true
 		}

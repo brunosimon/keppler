@@ -10,9 +10,10 @@ class Project
 	{
 		this.name  = options.name
 		this.slug  = slug( this.name )
-		this.files = new Files()
 
 		this.set_socket( options.socket )
+
+		this.files = new Files( { socket: this.socket } )
 	}
 
 	set_socket( socket )
@@ -26,7 +27,6 @@ class Project
 		{
 		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
 
-		    console.log(this.describe());
 		    this.socket.emit( 'update_project', this.describe() )
 		} )
 	}

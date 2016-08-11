@@ -9,28 +9,30 @@ application.controller(
             // Every 5 seconds
             $interval( function()
             {
-                // Each version
-                project.each_version( function( version )
-                {
-                    // Date
-                    version.time_from_now = version.moment_date.fromNow();
-                } );
+                // // Each version
+                // project.each_version( function( version )
+                // {
+                //     // Date
+                //     version.time_from_now = version.moment_date.fromNow();
+                // } );
             }, 5000 );
 
             $scope.folder_click = function( folder )
             {
-                folder.active = !folder.active;
+                console.log('folder click');
+                // folder.active = !folder.active;
             };
 
             $scope.file_click = function( file )
             {
-                project.each_file( function( file )
-                {
-                    file.active = false;
-                } );
+                console.log('file click');
+                // project.each_file( function( file )
+                // {
+                //     file.active = false;
+                // } );
 
-                file.active = true;
-                $scope.file = file;
+                // file.active = true;
+                // $scope.file = file;
             };
 
             $scope.version_click = function( version )
@@ -47,7 +49,7 @@ application.controller(
             {
                 $scope.$apply( function()
                 {
-                    $scope.project = project.data;
+                    $scope.project = project;
                 } );
             } );
 

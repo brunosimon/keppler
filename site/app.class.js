@@ -49,7 +49,14 @@ class App
 		project.files.update( './toto/tata/lorem.txt', '1aze' )
 		project.files.update( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
 		project.files.delete( './toto/tata/ipsum.txt' )
-		console.log( util.inspect( project.files, { depth: null, colors: true } ) )
+
+		var counting = 0
+		setInterval( function()
+		{
+			project.files.update( './coucou/coco.txt', 'test: ' + counting++ )
+		}, 2000 )
+
+		console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 	}
 
 	/**
@@ -129,28 +136,29 @@ class App
 				// Create project
 				project = this.projects.create_project( data.name )
 
-				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			socket.on( 'update_file', ( data ) =>
 			{
-				project.files.file( data.path, data.content )
+				console.log(data);
+				project.files.update( data.path, data.content )
 
-				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			socket.on( 'create_file', ( data ) =>
 			{
 				project.files.create( data.path, data.content )
 
-				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			socket.on( 'delete_file', ( data ) =>
 			{
 				project.files.delete( data.path )
 
-				console.log( util.inspect( project.files, { depth: null, colors: true } ) )
+				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 		} )
 	}

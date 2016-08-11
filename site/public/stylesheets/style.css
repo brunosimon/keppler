@@ -38,9 +38,17 @@ section.page-project section.file .code pre code {position:absolute;top:0;right:
  * Files tree nav
  */
 nav.files-tree-nav {}
-nav.files-tree-nav li {padding:0 8px 0 24px;line-height:24px;cursor:pointer;}
-nav.files-tree-nav .folder ul {display:none;}
-nav.files-tree-nav .folder.active > ul {display:block;}
+nav.files-tree-nav li {line-height:24px;cursor:pointer;}
+// nav.files-tree-nav .folder ul {display:none;}
+// nav.files-tree-nav .folder.active > ul {display:block;}
 nav.files-tree-nav i {margin:0 6px 0 0;}
-nav.files-tree-nav span {color:#ccc;}
-nav.files-tree-nav .active span {color:#fff;}
+nav.files-tree-nav li > span {display:block;color:#ccc;}
+// nav.files-tree-nav .active span {color:#fff;}
+
+
+nav.files-tree-nav li > span {padding-left:16px;}
+nav.files-tree-nav li li > span {padding-left:32px;}
+nav.files-tree-nav li li li > span {padding-left:48px;}
+nav.files-tree-nav li li li li > span {padding-left:64px;}
+nav.files-tree-nav li li li li li > span {padding-left:80px;}
+nav.files-tree-nav li li li li li li > span {padding-left:86px;}
