@@ -25,14 +25,12 @@ application.controller(
 
             $scope.file_click = function( file )
             {
-                console.log('file click');
-                // project.each_file( function( file )
-                // {
-                //     file.active = false;
-                // } );
+                file = file.data;
+                file.notif = 0;
 
                 // file.active = true;
-                // $scope.file = file;
+                $scope.file    = file;
+                $scope.version = file.versions[ file.versions.length - 1 ];
             };
 
             $scope.version_click = function( version )

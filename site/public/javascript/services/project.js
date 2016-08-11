@@ -33,22 +33,22 @@ application.factory(
 
                 socket.on( 'create_file', function( data )
                 {
-                    console.log('create_file');
-                    console.log(data);
+                    // console.log('create_file');
+                    // console.log(data);
 
-                    var existing_file = result.files[ data.path.full ];
+                    var file = result.files[ data.path.full ];
 
                     // Doesn't exist yet
-                    if( typeof existing_file === 'undefined' )
+                    if( typeof file === 'undefined' )
                     {
-                        existing_file = Object.assign( {}, data );
-                        existing_file.notif = 0;
-                        result.files[ data.path.full ] = existing_file;
+                        file = Object.assign( {}, data );
+                        file.notif = 0;
+                        result.files[ data.path.full ] = file;
 
-                        result.tree.add_file( data.path.full, existing_file )
+                        result.tree.add_file( data.path.full, file )
                     }
 
-                    existing_file.notif++;
+                    file.notif++;
 
                     // Apply callback
                     if( typeof update_callback === 'function' )
@@ -57,17 +57,17 @@ application.factory(
 
                 socket.on( 'create_version', function( data )
                 {
-                    console.log('create_version');
-                    console.log(data);
+                    // console.log('create_version');
+                    // console.log(data);
 
-                    var existing_file = result.files[ data.file ];
+                    var file = result.files[ data.file ];
 
                     // Doesn't exist yet
-                    if( typeof existing_file !== 'undefined' )
+                    if( typeof file !== 'undefined' )
                     {
-                        existing_file.versions.push( data.version );
+                        file.versions.push( data.version );
 
-                        existing_file.notif++;
+                        file.notif++;
 
                         // Apply callback
                         if( typeof update_callback === 'function' )
@@ -77,8 +77,22 @@ application.factory(
 
                 socket.on( 'delete_file', function( data )
                 {
-                    console.log('delete_file');
-                    console.log(data);
+                    // console.log('delete_file');
+                    // console.log(data);
+
+                    var file = result.files[ data.path.full ];
+
+                    // Doesn't exist yet
+                    if( typeof file !== 'undefined' )
+                    {
+                        result.tree.remove_file( file.path.full )
+
+                        delete result.files[ data.path.full ]
+
+                        // Apply callback
+                        if( typeof update_callback === 'function' )
+                            update_callback.apply( this, [ data ] );
+                    }
                 } );
 
                 // Update project event
