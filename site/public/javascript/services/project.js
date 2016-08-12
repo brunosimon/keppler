@@ -75,9 +75,6 @@ application.factory(
 
                 socket.on( 'create_file', function( data )
                 {
-                    // console.log('create_file');
-                    // console.log(data);
-
                     var file = result.files[ data.path.full ];
 
                     // Doesn't exist yet
@@ -105,9 +102,6 @@ application.factory(
 
                 socket.on( 'create_version', function( data )
                 {
-                    // console.log('create_version');
-                    // console.log(data);
-
                     var file = result.files[ data.file ];
 
                     // Doesn't exist yet
@@ -125,9 +119,6 @@ application.factory(
 
                 socket.on( 'delete_file', function( data )
                 {
-                    // console.log('delete_file');
-                    // console.log(data);
-
                     var file = result.files[ data.path.full ];
 
                     // Doesn't exist yet
@@ -146,8 +137,7 @@ application.factory(
                 // Update project event
                 socket.on( 'update_project', function( data )
                 {
-                    // console.log('update_project');
-                    // console.log(data);
+                    result.name  = data.name;
 
                     // Duplicate files
                     for( var _file_key in data.files )

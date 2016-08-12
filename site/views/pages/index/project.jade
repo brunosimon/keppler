@@ -6,7 +6,7 @@ script(type="text/ng-template",id="folder_template.html")
         | {{_folder.name}}
     ul
         li.folder(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
-        li.file(ng-repeat="(_key,_file) in _folder.files",ng-class="_file.active ? 'active' : 'inactive'")
+        li.file(ng-repeat="(_key,_file) in _folder.files",ng-class="_file.data.active ? 'active' : 'inactive'")
             span(ng-click="file_click(_file)")
                 i.fa.fa-file-text
                 | {{_file.name}}
@@ -16,25 +16,34 @@ script(type="text/ng-template",id="folder_template.html")
 section.page-project(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
     aside.aside
         header.aside-header
-            | {{project.name}}
+            div.name
+                | {{project.name}}
+            div.always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'")
+                .switch
+                | always last version
         nav.files-tree-nav
             ul
                 li.folder(ng-repeat="_folder in project.tree.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
-    section.file
-        header.file-header
-            | {{file.name}}
-        nav.versions-nav
-            a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)")
-                div.date
-                    | {{_version.date_formated}}
-                    sup.time-from-now
-                        | ({{_version.time_from_now}})
-                div.differences
-                    | {{_version.diff_percent}}
-                br
-        section.code
-            pre
-                code(hljs,hljs-source="version.content")
+    section.main
+        section.no-file(ng-if="!file")
+            | No file
+        section.file(ng-if="file")
+            header.file-header
+                span.path
+                    | {{file.path.directory}}/
+                span.name
+                    | {{file.name}}
+            nav.versions-nav
+                a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)",ng-class="_version.active ? 'active' : 'inactive'")
+                    div.date
+                        | {{_version.date_formated}}
+                    div.time-from-now
+                        | {{_version.time_from_now}}
+                    div.differences
+                        | {{_version.diff_percent}}
+            section.code
+                pre
+                    code(hljs,hljs-source="version.content")
 
 
 include ../../partials/footer.jade

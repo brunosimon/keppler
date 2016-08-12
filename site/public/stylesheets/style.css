@@ -28,10 +28,18 @@ section.page-projects .projects .item:last-child:after {display:none;}
  */
 section.page-project {position:fixed;top:60px;right:0;bottom:0;left:0;}
 section.page-project .aside {position:absolute;top:0;bottom:0;left:0;width:240px;}
-section.page-project section.file {position:absolute;top:0;right:0;bottom:0;left:240px;}
-section.page-project section.file .file-header {position:absolute;top:0;right:0;left:0;height:30px;line-height:30px;padding:0 0 0 10px;background:#00f;}
-section.page-project section.file .versions-nav {position:absolute;top:30px;bottom:0;left:0;width:140px;background:#555;}
-section.page-project section.file .code {position:absolute;top:30px;right:0;bottom:0;left:140px;background:#ff0;}
+section.page-project .aside .aside-header {padding:10px;background:#3b3f4e;}
+section.page-project .aside .aside-header .always-last-version-toggle {cursor:pointer;}
+section.page-project .aside .aside-header .always-last-version-toggle .switch {display:inline-block;width:12px;height:12px;border:1px solid #f1f5ff;}
+section.page-project .aside .aside-header .always-last-version-toggle.active .switch {background:#f1f5ff;}
+section.page-project section.main {position:absolute;top:0;right:0;bottom:0;left:240px;}
+section.page-project section.no-file {position:absolute;top:0;right:0;bottom:0;left:0;}
+section.page-project section.file {position:absolute;top:0;right:0;bottom:0;left:0;}
+section.page-project section.file .file-header {position:absolute;top:0;right:0;left:0;height:30px;line-height:30px;padding:0 0 0 10px;background:#777;}
+section.page-project section.file .versions-nav {position:absolute;top:30px;bottom:0;left:0;width:160px;background:#555;overflow-y:scroll;}
+section.page-project section.file .versions-nav .version {display:block;padding:10px;}
+section.page-project section.file .versions-nav .version.active {background:#666;}
+section.page-project section.file .code {position:absolute;top:30px;right:0;bottom:0;left:160px;background:#ff0;}
 section.page-project section.file .code pre code {position:absolute;top:0;right:0;bottom:0;left:0;}
 
 /**
@@ -43,7 +51,7 @@ nav.files-tree-nav li {line-height:24px;cursor:pointer;}
 // nav.files-tree-nav .folder.active > ul {display:block;}
 nav.files-tree-nav i {margin:0 6px 0 0;}
 nav.files-tree-nav li > span {display:block;color:#ccc;}
-// nav.files-tree-nav .active span {color:#fff;}
+nav.files-tree-nav li.active {background:rgba(255,255,255,0.1);}
 
 
 nav.files-tree-nav li > span {padding-left:16px;}
