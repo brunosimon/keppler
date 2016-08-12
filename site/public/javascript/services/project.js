@@ -5,6 +5,48 @@ application.factory(
         '$timeout',
         function( config, $timeout )
         {
+            // Reformat functions
+            function reformat_version( _version )
+            {
+                // Active
+                _version.active = false;
+
+                // Date
+                _version.moment_date   = moment( _version.date );
+                _version.date_formated = _version.moment_date.format( 'LTS' );
+                _version.time_from_now = _version.moment_date.fromNow();
+
+                // Differences
+                var count    = 0,
+                    modified = 0;
+
+                if( !_version.diff )
+                {
+                    _version.diff_ratio = 1;
+                    count    = 1;
+                    modified = 1;
+                }
+                else
+                {
+                    for( var _diff_key in _version.diff )
+                    {
+                        var _diff = _version.diff[ _diff_key ];
+                        count += _diff.count;
+                        if( _diff.added /*|| _diff.removed*/ )
+                            modified += _diff.count;
+                    }
+                    _version.diff_ratio = modified / count;
+                }
+                _version.diff_percent = Math.round( _version.diff_ratio * 100 ) + '%';
+
+                return _version;
+            }
+
+            function reformat_file()
+            {
+
+            }
+
             // Result
             var result   = {};
             result.name  = '';
@@ -42,7 +84,13 @@ application.factory(
                     if( typeof file === 'undefined' )
                     {
                         file = Object.assign( {}, data );
+
                         file.notif = 0;
+                        for( var _version of file.versions )
+                        {
+                            _version = reformat_version( _version );
+                        }
+
                         result.files[ data.path.full ] = file;
 
                         result.tree.add_file( data.path.full, file )
@@ -65,8 +113,8 @@ application.factory(
                     // Doesn't exist yet
                     if( typeof file !== 'undefined' )
                     {
+                        data.version = reformat_version( data.version );
                         file.versions.push( data.version );
-
                         file.notif++;
 
                         // Apply callback
@@ -104,20 +152,27 @@ application.factory(
                     // Duplicate files
                     for( var _file_key in data.files )
                     {
-                        var data_file     = data.files[ _file_key ],
-                            existing_file = result.files[ _file_key ];
+                        var data_file = data.files[ _file_key ],
+                            file      = result.files[ _file_key ];
 
                         // Doesn't exist yet
-                        if( typeof existing_file === 'undefined' )
+                        if( typeof file === 'undefined' )
                         {
-                            existing_file = Object.assign( {}, data_file );
-                            existing_file.notif = 0;
-                            result.files[ _file_key ] = existing_file;
+                            file = Object.assign( {}, data_file );
 
-                            result.tree.add_file( _file_key, existing_file )
+                            // Format data
+                            file.notif = 0;
+                            for( var _version of file.versions )
+                            {
+                                _version = reformat_version( _version );
+                            }
+
+                            result.files[ _file_key ] = file;
+
+                            result.tree.add_file( _file_key, file )
                         }
 
-                        existing_file.notif++;
+                        file.notif++;
                     }
 
                     // Apply callback

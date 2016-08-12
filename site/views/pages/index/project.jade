@@ -26,11 +26,12 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
         nav.versions-nav
             a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)")
                 div.date
-                    | {{_version.date}}
+                    | {{_version.date_formated}}
                     sup.time-from-now
                         | ({{_version.time_from_now}})
                 div.differences
                     | {{_version.diff_percent}}
+                br
         section.code
             pre
                 code(hljs,hljs-source="version.content")
