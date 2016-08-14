@@ -43,6 +43,7 @@ application.controller(
 
                 file        = file.data;
                 file.notif  = 0;
+                file.new    = false;
                 file.active = true;
                 $scope.file = file;
 

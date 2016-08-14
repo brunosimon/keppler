@@ -10,8 +10,10 @@ script(type="text/ng-template",id="folder_template.html")
             span(ng-click="file_click(_file)")
                 i.fa.fa-file-text
                 | {{_file.name}}
-                span.notif
-                    |  ({{_file.data.notif}})
+                span.notif(ng-if="_file.data.notif")
+                    |  [{{_file.data.notif}}]
+                span.new(ng-if="_file.data.new")
+                    |  [new]
 
 section.page-project(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
     aside.aside

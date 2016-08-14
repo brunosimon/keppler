@@ -83,6 +83,7 @@ application.factory(
                         file = Object.assign( {}, data );
 
                         file.notif = 0;
+                        file.new   = true;
                         for( var _version of file.versions )
                         {
                             _version = reformat_version( _version );
@@ -92,8 +93,6 @@ application.factory(
 
                         result.tree.add_file( data.path.full, file )
                     }
-
-                    file.notif++;
 
                     // Apply callback
                     if( typeof update_callback === 'function' )
@@ -152,6 +151,7 @@ application.factory(
 
                             // Format data
                             file.notif = 0;
+                            file.new   = true;
                             for( var _version of file.versions )
                             {
                                 _version = reformat_version( _version );
@@ -161,8 +161,6 @@ application.factory(
 
                             result.tree.add_file( _file_key, file )
                         }
-
-                        file.notif++;
                     }
 
                     // Apply callback
