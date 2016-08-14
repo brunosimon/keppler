@@ -43,7 +43,12 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
                         | {{_version.diff_percent}}
             section.code
                 pre
+                   code.lines
+                        - var line_index = 1
+                        while line_index < 999
+                            .line= line_index++
                     code(hljs,hljs-source="version.content")
+                        | {{ version.content }}
 
 
 include ../../partials/footer.jade

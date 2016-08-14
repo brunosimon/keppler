@@ -9,7 +9,8 @@ let express   = require( 'express' ),
 	ip        = require( 'ip' ),
 	util      = require( 'util' ),
 	path      = require( 'path' ),
-	Projects  = require( './models/projects.class.js' )
+	Projects  = require( './models/projects.class.js' ),
+	fs        = require( 'fs' )
 
 /**
  * App class
@@ -47,20 +48,21 @@ class App
 		// let project_5 = this.projects.create_project( 'dummy' )
 
 		// Some file
-		project.files.create( './coucou/coco.txt', '1234' )
-		project.files.create( './test-1.txt', 'content 1' )
-		project.files.create( './toto/tata/ipsum.txt' )
-		project.files.create_version( './test-1.txt', 'content 2' )
-		project.files.create_version( './test-1.txt', 'content 31298' )
-		project.files.create_version( './toto/tata/lorem.txt', '123456789' )
-		project.files.create_version( './toto/tata/lorem.txt', '1aze' )
-		project.files.create_version( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
+		project.files.create_version( './folder-1/test-4.css', fs.readFileSync( '../test-folder/folder-1/test-4.css', 'utf8' ) )
+		project.files.create_version( './folder-2/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3.js', 'utf8' ) )
+		project.files.create_version( './test-1.html', fs.readFileSync( '../test-folder/test-1.html', 'utf8' ) )
+		project.files.create_version( './test-2.php', fs.readFileSync( '../test-folder/test-2.php', 'utf8' ) )
+		project.files.create_version( './big-one.txt', 'content 4\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline' )
+
+		// project.files.create_version( './toto/tata/lorem.txt', '123456789' )
+		// project.files.create_version( './toto/tata/lorem.txt', '1aze' )
+		// project.files.create_version( './toto/tata/ipsum.txt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia asperiores iure, animi voluptatibus ut officiis. Molestias, quod perferendis hic totam doloremque, porro aperiam enim tenetur, maxime inventore consequuntur nisi in?' )
 
 		// Adding file versions
 		let counting = 0
 		setInterval( function()
 		{
-			project.files.create_version( './coucou/coco.txt', 'test: ' + counting++ )
+			project.files.create_version( './multi-version.txt', 'test: ' + counting++ )
 		}, 2000 )
 
 		// Creating and deleting file
@@ -68,9 +70,9 @@ class App
 		setInterval( function()
 		{
 			if( toggle )
-				project.files.create( './toto/toggle.txt', 'content' )
+				project.files.create( './toggle.txt', 'content' )
 			else
-				project.files.delete( './toto/toggle.txt', 'content' )
+				project.files.delete( './toggle.txt', 'content' )
 
 			toggle = !toggle
 

@@ -1,7 +1,7 @@
 /**
  * Global
  */
-body {background:#24262e;font-size:14px;font-family:Helvetica,Arial;color:#f1f5ff;}
+body {background:#24262e;font-size:14px;font-family:Helvetica,Arial;color:#f1f5ff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 pre {font-family:monospace;line-height:initial;}
 a {text-decoration:none;}
 
@@ -36,11 +36,16 @@ section.page-project section.main {position:absolute;top:0;right:0;bottom:0;left
 section.page-project section.no-file {position:absolute;top:0;right:0;bottom:0;left:0;}
 section.page-project section.file {position:absolute;top:0;right:0;bottom:0;left:0;}
 section.page-project section.file .file-header {position:absolute;top:0;right:0;left:0;height:30px;line-height:30px;padding:0 0 0 10px;background:#777;}
-section.page-project section.file .versions-nav {position:absolute;top:30px;bottom:0;left:0;width:160px;background:#555;overflow-y:scroll;}
+section.page-project section.file .versions-nav {position:absolute;top:30px;bottom:0;left:0;width:160px;background:#555;overflow:auto;}
 section.page-project section.file .versions-nav .version {display:block;padding:10px;}
 section.page-project section.file .versions-nav .version.active {background:#666;}
-section.page-project section.file .code {position:absolute;top:30px;right:0;bottom:0;left:160px;background:#ff0;}
-section.page-project section.file .code pre code {position:absolute;top:0;right:0;bottom:0;left:0;}
+section.page-project section.file .code {position:absolute;top:30px;right:0;bottom:0;left:160px;overflow:auto;background:#282a36;}
+section.page-project section.file .code pre {position:relative;overflow:hidden;}
+section.page-project section.file .code pre code.lines {position:absolute;top:0;left:0;width:38px;padding:0.5em;line-height:16px;opacity:0.2;}
+section.page-project section.file .code pre code.hljs {margin-left:38px;}
+// section.page-project section.file .code pre code {position:absolute;top:0;left:20px;}
+
+.hljs-line-numbers {text-align:right;border-right:1px solid #ccc;color:#999;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 
 /**
  * Files tree nav

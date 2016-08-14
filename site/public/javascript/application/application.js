@@ -1,4 +1,9 @@
-var application = angular.module( 'application', [ 'hljs' ] );
+var application = angular.module(
+    'application',
+    [
+        'hljs'
+    ]
+);
 
 application.constant( 'config', config );
 application.config( function( hljsServiceProvider )
