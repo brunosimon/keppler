@@ -2,14 +2,16 @@ include ../../partials/header.jade
 
 script(type="text/ng-template",id="folder_template.html")
     span(ng-click="folder_click(_folder)")
-        i.fa(ng-class="_folder.active ? 'fa-folder-open' : 'fa-folder'")
-        | {{_folder.name}}
+        span.name
+            i.folder
+            | {{_folder.name}}
     ul
         li.folder(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
         li.file(ng-repeat="(_key,_file) in _folder.files",ng-class="_file.data.active ? 'active' : 'inactive'")
             span(ng-click="file_click(_file)")
-                i.fa.fa-file-text
-                | {{_file.name}}
+                span.name
+                    i(ng-class="_file.data.icon")
+                    | {{_file.name}}
                 span.notif(ng-if="_file.data.notif")
                     |  [{{_file.data.notif}}]
                 span.new(ng-if="_file.data.new")
@@ -23,9 +25,10 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
             div.always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'")
                 .switch
                 | always last version
-        nav.files-tree-nav
-            ul
-                li.folder(ng-repeat="_folder in project.tree.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
+        .aside-tree
+            nav.files-tree-nav
+                ul
+                    li.folder(ng-repeat="_folder in project.tree.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
     section.main
         section.no-file(ng-if="!file")
             | No file

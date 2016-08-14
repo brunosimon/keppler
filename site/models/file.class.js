@@ -15,9 +15,14 @@ class File
 		this.path           = {}
 		this.path.directory = _options.path
 		this.path.full      = this.path.directory + '/' + this.name
-		this.path.parts     = this.path.full.split( paths.separator )
 		this.versions       = []
 		this.socket         = _options.socket
+
+		let name_parts = this.name.split( '.' )
+		if( name_parts.length > 1 )
+			this.extension = name_parts[ name_parts.length - 1 ]
+		else
+			this.extension = ''
 
 		// Create first version
 		if( typeof _options.content !== 'undefined' )
@@ -53,10 +58,11 @@ class File
 	{
 		// Set up
 		let result = {}
-		result.id       = this.id
-		result.name     = this.name
-		result.path     = this.path
-		result.versions = this.versions
+		result.id        = this.id
+		result.name      = this.name
+		result.path      = this.path
+		result.versions  = this.versions
+		result.extension = this.extension
 
 		return result
 	}

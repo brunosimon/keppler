@@ -5,7 +5,7 @@ application.factory(
         '$timeout',
         function( config, $timeout )
         {
-            // Reformat functions
+            // Reformat version function
             function reformat_version( _version )
             {
                 // Active
@@ -42,9 +42,62 @@ application.factory(
                 return _version;
             }
 
-            function reformat_file()
+            // Reformat file function
+            function reformat_file( _file )
             {
+                // Notif
+                _file.notif = 0;
 
+                // New
+                _file.new = true;
+
+                // Each version
+                for( var _version of _file.versions )
+                {
+                    // Reformat version
+                    _version = reformat_version( _version );
+                }
+
+                // Icon
+                var icon           = 'random',
+                    possible_icons = {
+                        'js'       : [ 'js' ],
+                        'html'     : [ 'html', 'htm' ],
+                        'sass'     : [ 'sass', 'scss' ],
+                        'less'     : [ 'less' ],
+                        'css'      : [ 'css' ],
+                        'php'      : [ 'php' ],
+                        'json'     : [ 'json' ],
+                        'jade'     : [ 'jade' ],
+                        'md'       : [ 'md' ],
+                        'sql'      : [ 'sql' ],
+                        'apache'   : [ 'htaccess', 'htpasswd' ],
+                        'yml'      : [ 'yml' ],
+                        'svg'      : [ 'svg' ],
+                        'font'     : [ 'eot', 'ttf', 'woff', 'woff2' ],
+                        'image'    : [ 'jpeg', 'jpg', 'tiff', 'gif', 'bmp', 'png', 'webp' ],
+                        'video'    : [ 'mpeg', 'mpg', 'mp4', 'amv', 'wmv', 'mov', 'avi', 'ogv', 'mkv', 'webm' ],
+                        'audio'    : [ 'mp3', 'wav', 'ogg', 'raw' ],
+                        'zip'      : [ 'zip', 'rar', '7z', 'gz' ],
+                        'txt'      : [ 'txt' ],
+                        'coffee'   : [ 'coffee' ],
+                        'git'      : [ 'gitignore', 'gitkeep' ],
+                        'xml'      : [ 'xml' ],
+                        'twig'     : [ 'twig' ],
+                        'c'        : [ 'c', 'h' ],
+                    };
+
+                for( var _possible_icon_key in possible_icons )
+                {
+                    var _possible_icon_values = possible_icons[ _possible_icon_key ];
+                    if( _possible_icon_values.indexOf( _file.extension ) !== -1 )
+                    {
+                        icon = _possible_icon_key;
+                    }
+                }
+                _file.icon = icon;
+
+                return _file;
             }
 
             // Result
@@ -81,13 +134,7 @@ application.factory(
                     if( typeof file === 'undefined' )
                     {
                         file = Object.assign( {}, data );
-
-                        file.notif = 0;
-                        file.new   = true;
-                        for( var _version of file.versions )
-                        {
-                            _version = reformat_version( _version );
-                        }
+                        file = reformat_file( file );
 
                         result.files[ data.path.full ] = file;
 
@@ -148,14 +195,7 @@ application.factory(
                         if( typeof file === 'undefined' )
                         {
                             file = Object.assign( {}, data_file );
-
-                            // Format data
-                            file.notif = 0;
-                            file.new   = true;
-                            for( var _version of file.versions )
-                            {
-                                _version = reformat_version( _version );
-                            }
+                            file = reformat_file( file );
 
                             result.files[ _file_key ] = file;
 

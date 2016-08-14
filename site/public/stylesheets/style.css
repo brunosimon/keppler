@@ -2,7 +2,6 @@
  * Global
  */
 body {background:#24262e;font-size:14px;font-family:Helvetica,Arial;color:#f1f5ff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-pre {font-family:monospace;line-height:initial;}
 a {text-decoration:none;}
 
 /**
@@ -32,6 +31,7 @@ section.page-project .aside .aside-header {padding:10px;background:#3b3f4e;}
 section.page-project .aside .aside-header .always-last-version-toggle {cursor:pointer;}
 section.page-project .aside .aside-header .always-last-version-toggle .switch {display:inline-block;width:12px;height:12px;border:1px solid #f1f5ff;}
 section.page-project .aside .aside-header .always-last-version-toggle.active .switch {background:#f1f5ff;}
+section.page-project .aside .aside-tree {position:absolute;top:48px;left:0;bottom:0;width:100%;overflow:auto;}
 section.page-project section.main {position:absolute;top:0;right:0;bottom:0;left:240px;}
 section.page-project section.no-file {position:absolute;top:0;right:0;bottom:0;left:0;}
 section.page-project section.file {position:absolute;top:0;right:0;bottom:0;left:0;}
@@ -41,7 +41,8 @@ section.page-project section.file .versions-nav .version {display:block;padding:
 section.page-project section.file .versions-nav .version.active {background:#666;}
 section.page-project section.file .code {position:absolute;top:30px;right:0;bottom:0;left:160px;overflow:auto;background:#282a36;}
 section.page-project section.file .code pre {position:relative;overflow:hidden;}
-section.page-project section.file .code pre code.lines {position:absolute;top:0;left:0;width:38px;padding:0.5em;line-height:16px;opacity:0.2;}
+section.page-project section.file .code pre code {line-height:20px;font-family:monospace;}
+section.page-project section.file .code pre code.lines {position:absolute;top:0;left:0;width:38px;padding:0.5em;opacity:0.2;}
 section.page-project section.file .code pre code.hljs {margin-left:38px;}
 // section.page-project section.file .code pre code {position:absolute;top:0;left:20px;}
 
@@ -50,14 +51,10 @@ section.page-project section.file .code pre code.hljs {margin-left:38px;}
 /**
  * Files tree nav
  */
-nav.files-tree-nav {}
+nav.files-tree-nav {position:absolute;top:0;left:0;width:100%;}
 nav.files-tree-nav li {line-height:24px;cursor:pointer;}
-// nav.files-tree-nav .folder ul {display:none;}
-// nav.files-tree-nav .folder.active > ul {display:block;}
-nav.files-tree-nav i {margin:0 6px 0 0;}
 nav.files-tree-nav li > span {display:block;color:#ccc;}
 nav.files-tree-nav li.active {background:rgba(255,255,255,0.1);}
-
 
 nav.files-tree-nav li > span {padding-left:16px;}
 nav.files-tree-nav li li > span {padding-left:32px;}
@@ -65,3 +62,34 @@ nav.files-tree-nav li li li > span {padding-left:48px;}
 nav.files-tree-nav li li li li > span {padding-left:64px;}
 nav.files-tree-nav li li li li li > span {padding-left:80px;}
 nav.files-tree-nav li li li li li li > span {padding-left:86px;}
+
+nav.files-tree-nav .name {position:relative;display:inline-block;padding-left:20px;}
+
+nav.files-tree-nav i               {position:absolute;top:25%;left:0;display:block;width:12px;height:50%;background:center center no-repeat;}
+nav.files-tree-nav i.folder        {background-image:url(../svg/folder.svg);}
+nav.files-tree-nav i.folder-active {background-image:url(../svg/folder-active.svg);}
+nav.files-tree-nav i.js            {background-image:url(../svg/js.svg);}
+nav.files-tree-nav i.html          {background-image:url(../svg/html.svg);}
+nav.files-tree-nav i.sass          {background-image:url(../svg/sass.svg);}
+nav.files-tree-nav i.less          {background-image:url(../svg/less.svg);}
+nav.files-tree-nav i.css           {background-image:url(../svg/css.svg);}
+nav.files-tree-nav i.php           {background-image:url(../svg/php.svg);}
+nav.files-tree-nav i.json          {background-image:url(../svg/json.svg);}
+nav.files-tree-nav i.jade          {background-image:url(../svg/jade.svg);}
+nav.files-tree-nav i.md            {background-image:url(../svg/md.svg);}
+nav.files-tree-nav i.sql           {background-image:url(../svg/sql.svg);}
+nav.files-tree-nav i.apache        {background-image:url(../svg/apache.svg);}
+nav.files-tree-nav i.yml           {background-image:url(../svg/yml.svg);}
+nav.files-tree-nav i.svg           {background-image:url(../svg/svg.svg);}
+nav.files-tree-nav i.font          {background-image:url(../svg/font.svg);}
+nav.files-tree-nav i.image         {background-image:url(../svg/image.svg);}
+nav.files-tree-nav i.video         {background-image:url(../svg/video.svg);}
+nav.files-tree-nav i.audio         {background-image:url(../svg/audio.svg);}
+nav.files-tree-nav i.zip           {background-image:url(../svg/zip.svg);}
+nav.files-tree-nav i.txt           {background-image:url(../svg/txt.svg);}
+nav.files-tree-nav i.coffee        {background-image:url(../svg/coffee.svg);}
+nav.files-tree-nav i.git           {background-image:url(../svg/git.svg);}
+nav.files-tree-nav i.xml           {background-image:url(../svg/xml.svg);}
+nav.files-tree-nav i.twig          {background-image:url(../svg/twig.svg);}
+nav.files-tree-nav i.c             {background-image:url(../svg/c.svg);}
+nav.files-tree-nav i.random        {background-image:url(../svg/random.svg);}
