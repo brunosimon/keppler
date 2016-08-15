@@ -101,11 +101,12 @@ application.factory(
             }
 
             // Result
-            var result       = {};
-            result.name      = '';
-            result.files     = {};
-            result.tree      = new Tree( { auto_wash: false } );
-            result.on_update = null;
+            var result            = {};
+            result.name           = '';
+            result.files          = {};
+            result.tree           = new Tree( { auto_wash: false } );
+            result.on_update      = null;
+            result.on_new_version = null;
 
             // Connect
             result.connect = function( project_name )
@@ -153,6 +154,9 @@ application.factory(
                         // Apply callback
                         if( typeof result.on_update === 'function' )
                             result.on_update.apply( this, [ data ] );
+
+                        if( typeof result.on_new_version === 'function' )
+                            result.on_new_version.apply( this, [ data ] );
                     }
                 } );
 

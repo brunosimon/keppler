@@ -76,6 +76,26 @@ application.controller(
                 } );
             };
 
+            project.on_new_version = function( data )
+            {
+                // Should open last version
+                if( $scope.always_last_version )
+                {
+                    // Same file
+                    if( $scope.file && $scope.file.path.full === data.file )
+                    {
+                        $scope.$apply( function()
+                        {
+                            if( $scope.version )
+                                $scope.version.active = false;
+
+                            $scope.version = data.version;
+                            $scope.version.active = true;
+                        } );
+                    }
+                }
+            };
+
             $scope.project             = project;
             $scope.file                = null;
             $scope.always_last_version = true;
