@@ -29,7 +29,12 @@ application.controller(
                 $scope.always_last_version = !$scope.always_last_version;
             };
 
-            $scope.mark_all_as_read = function()
+            $scope.show_differences_toggle_click = function()
+            {
+                $scope.show_differences = !$scope.show_differences;
+            };
+
+            $scope.mark_all_as_read_click = function()
             {
                 // Each file
                 for( var _file_key in project.files )
@@ -74,6 +79,8 @@ application.controller(
 
                 version.active = true;
                 $scope.version = version;
+
+                $scope.file.notif = 0;
             };
 
             $scope.init = function( project_slug )
@@ -103,6 +110,8 @@ application.controller(
 
                             $scope.version = data.version;
                             $scope.version.active = true;
+
+                            $scope.file.notif = 0;
                         } );
                     }
                 }
@@ -111,6 +120,7 @@ application.controller(
             $scope.project             = project;
             $scope.file                = null;
             $scope.always_last_version = true;
+            $scope.show_differences    = true;
             $scope.version             = null;
         }
     ]
