@@ -103,8 +103,11 @@ class Projects
 			let _project = this.all[ _slug ]
 
 			result.all[ _slug ] = {
-				slug: _project.slug,
-				name: _project.name
+				slug            : _project.slug,
+				name            : _project.name,
+				files_count     : _project.files.count,
+				date            : _project.date,
+				last_update_date: _project.files.last_version_date,
 			}
 		}
 

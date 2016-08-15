@@ -48,11 +48,11 @@ class App
 		// let project_5 = this.projects.create_project( 'dummy' )
 
 		// Some file
-		project.files.create_version( './folder-1/test-4.css', fs.readFileSync( '../test-folder/folder-1/test-4.css', 'utf8' ) )
-		project.files.create_version( './folder-2/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3.js', 'utf8' ) )
-		project.files.create_version( './test-1.html', fs.readFileSync( '../test-folder/test-1.html', 'utf8' ) )
-		project.files.create_version( './test-2.php', fs.readFileSync( '../test-folder/test-2.php', 'utf8' ) )
-		project.files.create_version( './big-one.txt', 'content 4\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline' )
+		project.files.create_version( './folder-test/test-4.css', fs.readFileSync( '../test-folder/folder-1/test-4.css', 'utf8' ) )
+		project.files.create_version( './folder-test/depth-test/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3.js', 'utf8' ) )
+		project.files.create_version( './folder-test/test-1.html', fs.readFileSync( '../test-folder/test-1.html', 'utf8' ) )
+		project.files.create_version( './folder-test/test-2.php', fs.readFileSync( '../test-folder/test-2.php', 'utf8' ) )
+		project.files.create_version( './folder-test/big-one.txt', 'content 4\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline' )
 
 		project.files.create_version( './icons/test.js', 'Test icon' )
 		project.files.create_version( './icons/test.html', 'Test icon' )
@@ -116,7 +116,7 @@ class App
 		let counting = 0
 		setInterval( function()
 		{
-			project.files.create_version( './multi-version.txt', 'test: ' + counting++ )
+			project.files.create_version( './folder-test/multi-version.txt', 'test: ' + counting++ )
 		}, 2000 )
 
 		// Creating and deleting file
@@ -124,16 +124,16 @@ class App
 		setInterval( function()
 		{
 			if( toggle )
-				project.files.create( './toggle.txt', 'content' )
+				project.files.create( './folder-test/toggle.txt', 'content' )
 			else
-				project.files.delete( './toggle.txt', 'content' )
+				project.files.delete( './folder-test/toggle.txt', 'content' )
 
 			toggle = !toggle
 
 		}, 3000 )
 
-		// Log
-		console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+		// // Log
+		// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 	}
 
 	/**

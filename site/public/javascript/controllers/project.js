@@ -69,12 +69,12 @@ application.controller(
                 project.connect( project_slug );
             };
 
-            project.on_update( function( data )
+            project.on_update = function( data )
             {
                 $scope.$apply( function()
                 {
                 } );
-            } );
+            };
 
             $scope.project             = project;
             $scope.file                = null;

@@ -17,7 +17,7 @@ section.page-projects {padding-top:100px;}
 section.page-projects .no-project {text-align:center;padding:180px 0;}
 section.page-projects .projects {width:400px;margin:0 auto;background:#202124;box-shadow:0px 5px 10px rgba(0,0,0,0.1);border:1px solid #32374d;}
 section.page-projects .projects .title {height:40px;line-height:40px;text-align:center;}
-section.page-projects .projects .item {position:relative;padding:0 10px;display:block;height:40px;line-height:40px;}
+section.page-projects .projects .item {position:relative;padding:0 10px;display:block;line-height:32px;}
 section.page-projects .projects .item:after {content:'';display:block;position:absolute;bottom:0;left:0;right:0;height:1px;background:#32374d;opacity:0.4;}
 section.page-projects .projects a.item:hover {background:#32374d;}
 section.page-projects .projects .item:last-child:after {display:none;}

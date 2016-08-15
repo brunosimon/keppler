@@ -5,7 +5,18 @@ section.page-projects(ng-controller="ProjectsController as controller")
         .item.title
             | Projects
         a.item(href="/project/{{project.slug}}",ng-repeat="project in projects")
-            | {{project.name}}
+            .name
+                | {{project.name}}
+            .file-count
+                | Files: {{project.files_count}}
+            .creation
+                | Creation: {{project.date_formated}}
+                .time-from-now
+                    | {{project.time_from_now}}
+            .last-update-date
+                | Last update: {{project.last_update_date_formated}}
+                .time-from-now
+                    | {{project.last_update_time_from_now}}
     .no-project(ng-hide="projects")
         | No project
 

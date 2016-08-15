@@ -101,18 +101,11 @@ application.factory(
             }
 
             // Result
-            var result   = {};
-            result.name  = '';
-            result.files = {};
-            result.tree  = new Tree( { auto_wash: false } );
-
-            // Callback
-            var update_callback = null;
-
-            result.on_update = function( callback )
-            {
-                update_callback = callback;
-            };
+            var result       = {};
+            result.name      = '';
+            result.files     = {};
+            result.tree      = new Tree( { auto_wash: false } );
+            result.on_update = null;
 
             // Connect
             result.connect = function( project_name )
@@ -142,8 +135,8 @@ application.factory(
                     }
 
                     // Apply callback
-                    if( typeof update_callback === 'function' )
-                        update_callback.apply( this, [ data ] );
+                    if( typeof result.on_update === 'function' )
+                        result.on_update.apply( this, [ data ] );
                 } );
 
                 socket.on( 'create_version', function( data )
@@ -158,8 +151,8 @@ application.factory(
                         file.notif++;
 
                         // Apply callback
-                        if( typeof update_callback === 'function' )
-                            update_callback.apply( this, [ data ] );
+                        if( typeof result.on_update === 'function' )
+                            result.on_update.apply( this, [ data ] );
                     }
                 } );
 
@@ -175,8 +168,8 @@ application.factory(
                         delete result.files[ data.path.full ]
 
                         // Apply callback
-                        if( typeof update_callback === 'function' )
-                            update_callback.apply( this, [ data ] );
+                        if( typeof result.on_update === 'function' )
+                            result.on_update.apply( this, [ data ] );
                     }
                 } );
 
@@ -186,9 +179,9 @@ application.factory(
                     result.name  = data.name;
 
                     // Duplicate files
-                    for( var _file_key in data.files )
+                    for( var _file_key in data.files.items )
                     {
-                        var data_file = data.files[ _file_key ],
+                        var data_file = data.files.items[ _file_key ],
                             file      = result.files[ _file_key ];
 
                         // Doesn't exist yet
@@ -204,8 +197,8 @@ application.factory(
                     }
 
                     // Apply callback
-                    if( typeof update_callback === 'function' )
-                        update_callback.apply( this, [ data ] );
+                    if( typeof result.on_update === 'function' )
+                        result.on_update.apply( this, [ data ] );
                 } );
 
                 // Destruct event

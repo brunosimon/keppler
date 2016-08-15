@@ -12,6 +12,7 @@ class Project
 		this.set_socket( options.socket )
 
 		this.files = new Files( { socket: this.socket } )
+		this.date  = new Date()
 	}
 
 	set_name( _name )
@@ -41,6 +42,7 @@ class Project
 		let result = {}
 		result.name  = this.name
 		result.files = this.files.describe()
+		result.date  = this.date
 
 		return result
 	}

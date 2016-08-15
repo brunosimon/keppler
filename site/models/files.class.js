@@ -8,8 +8,10 @@ class Files
 {
 	constructor( _options )
 	{
-		this.items  = {}
-		this.socket = _options.socket
+		this.items             = {}
+		this.count             = 0
+		this.socket            = _options.socket
+		this.last_version_date = new Date()
 	}
 
 	create( _path, _content )
@@ -35,6 +37,8 @@ class Files
 
 		// Save
 		this.items[ normalized_path ] = file
+		this.count++
+		this.last_version_date = new Date()
 
 		// Emit
 		this.socket.emit( 'create_file', file.describe() )
@@ -82,6 +86,9 @@ class Files
 		// Create version
 		file.create_version( _content )
 
+		// Save
+		this.last_version_date = new Date()
+
     	return file
 	}
 
@@ -99,6 +106,10 @@ class Files
 			// Delete file
 			file.destructor()
 			delete this.items[ normalized_path ]
+			this.count--
+
+			// Save
+			this.last_version_date = new Date()
 
 			// Emit
 			this.socket.emit( 'delete_file', file.describe() )
@@ -112,14 +123,16 @@ class Files
 	describe()
 	{
 		// Set up
-		let result = {}
+		let result   = {}
+		result.count = this.count
+		result.items = {}
 
 		// Each file
 		for( let _file_path in this.items )
 		{
 			let _file = this.items[ _file_path ]
 
-			result[ _file_path ] = _file.describe()
+			result.items[ _file_path ] = _file.describe()
 		}
 
 		return result
