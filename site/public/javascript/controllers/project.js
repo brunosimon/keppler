@@ -29,6 +29,18 @@ application.controller(
                 $scope.always_last_version = !$scope.always_last_version;
             };
 
+            $scope.mark_all_as_read = function()
+            {
+                // Each file
+                for( var _file_key in project.files )
+                {
+                    var _file = project.files[ _file_key ];
+
+                    _file.notif = 0
+                    _file.new   = false
+                }
+            };
+
             $scope.folder_click = function( folder )
             {
                 // console.log('folder click');

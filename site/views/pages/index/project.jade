@@ -25,6 +25,8 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
             div.always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'")
                 .switch
                 | always last version
+            div.mark-all-as-read(ng-click="mark_all_as_read()")
+                | Mark all as read
         .aside-tree
             nav.files-tree-nav
                 ul
@@ -54,6 +56,10 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
                             .line= line_index++
                     code(hljs,hljs-source="version.content")
                         | {{ version.content }}
+                    code.differences(ng-if="version.diff")
+                        span(ng-repeat="_difference in version.diff",ng-class="{removed: _difference.removed, added: _difference.added}")
+                            span.value
+                                | {{ _difference.value }}
 
 
 include ../../partials/footer.jade

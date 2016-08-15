@@ -50,6 +50,10 @@ class App
 		// Some file
 		project.files.create_version( './folder-test/test-4.css', fs.readFileSync( '../test-folder/folder-1/test-4.css', 'utf8' ) )
 		project.files.create_version( './folder-test/depth-test/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3.js', 'utf8' ) )
+		project.files.create_version( './folder-test/depth-test/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3-diff-1.js', 'utf8' ) )
+		project.files.create_version( './folder-test/depth-test/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3-diff-2.js', 'utf8' ) )
+		project.files.create_version( './folder-test/depth-test/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3-diff-3.js', 'utf8' ) )
+		project.files.create_version( './folder-test/depth-test/test-3.js', fs.readFileSync( '../test-folder/folder-2/test-3-diff-4.js', 'utf8' ) )
 		project.files.create_version( './folder-test/test-1.html', fs.readFileSync( '../test-folder/test-1.html', 'utf8' ) )
 		project.files.create_version( './folder-test/test-2.php', fs.readFileSync( '../test-folder/test-2.php', 'utf8' ) )
 		project.files.create_version( './folder-test/big-one.txt', 'content 4\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline\nline' )

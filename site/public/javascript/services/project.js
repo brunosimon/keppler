@@ -117,7 +117,7 @@ application.factory(
                 // Connect event
                 socket.on( 'connect', function()
                 {
-                    console.log('connected');
+
                 } );
 
                 socket.on( 'create_file', function( data )

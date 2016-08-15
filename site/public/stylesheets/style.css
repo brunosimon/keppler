@@ -3,6 +3,7 @@
  */
 body {background:#24262e;font-size:14px;font-family:Helvetica,Arial;color:#f1f5ff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 a {text-decoration:none;}
+* {padding:0;margin:0;box-sizing:border-box;}
 
 /**
  * Main header
@@ -44,7 +45,11 @@ section.page-project section.file .code pre {position:relative;overflow:hidden;}
 section.page-project section.file .code pre code {line-height:20px;font-family:monospace;}
 section.page-project section.file .code pre code.lines {position:absolute;top:0;left:0;width:38px;padding:0.5em;opacity:0.2;}
 section.page-project section.file .code pre code.hljs {margin-left:38px;}
-// section.page-project section.file .code pre code {position:absolute;top:0;left:20px;}
+section.page-project section.file .code pre code.differences {position:absolute;top:0;left:38px;padding:0.5em;}
+section.page-project section.file .code pre code.differences .value {opacity:0.4;}
+section.page-project section.file .code pre code.differences span.removed {display:none;border:1px solid red;}
+section.page-project section.file .code pre code.differences span.removed .value {display:none;}
+section.page-project section.file .code pre code.differences span.added {border:1px solid #b0ea23;background:rgba(176, 234, 35, 0.1);}
 
 .hljs-line-numbers {text-align:right;border-right:1px solid #ccc;color:#999;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 

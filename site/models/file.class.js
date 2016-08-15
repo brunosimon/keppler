@@ -37,7 +37,17 @@ class File
 
 		version.date    = new Date()
 		version.content = content
-		version.diff    = last_version ? diff.diffChars( last_version.content, version.content ) : false
+
+		if( !last_version )
+			version.diff = false
+		else
+			version.diff = diff.diffLines(
+				last_version.content,
+				version.content,
+				{
+					// ignoreWhitespace: true
+				}
+			)
 
 		// Emit
 		this.socket.emit( 'create_version', { file: this.path.full, version: version } )
