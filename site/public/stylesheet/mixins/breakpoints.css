@@ -1,0 +1,20 @@
+$breakpoint-xxsmall: 480px;
+$breakpoint-xsmall:  600px;
+$breakpoint-small:   840px;
+$breakpoint-medium:  960px;
+$breakpoint-large:   1280px;
+$breakpoint-xlarge:  1440px;
+$breakpoint-xxlarge: 1600px;
+
+@define-mixin max-width $value
+{
+    @media only screen and (max-width:$value){
+        @mixin-content;
+    }
+}
+@define-mixin max-height $value
+{
+    @media only screen and (max-height:$value){
+        @mixin-content;
+    }
+}

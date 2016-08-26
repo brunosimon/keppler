@@ -1,0 +1,10 @@
+body
+{
+
+}
+::-moz-selection {background:#888; }
+::selection {background:#888; }
+.clearfix
+{
+    overflow:auto;zoom:1;
+}
