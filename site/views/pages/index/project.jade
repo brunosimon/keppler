@@ -28,7 +28,7 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                 .disk.index-2
                 .disk.index-1
                 .disk.index-0
-            .title
+            a.title(href="/")
                 | Keppler
 
 
@@ -59,14 +59,21 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                     li.folder(ng-repeat="_folder in project.tree.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
 
         footer.aside-footer
-            .always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'")
-                .switch
-                | Always last version
-            .show-differences-toggle(ng-click="show_differences_toggle_click()",ng-class="show_differences ? 'active' : 'inactive'")
-                .switch
-                | Show differences
-            .mark-all-as-read(ng-click="mark_all_as_read_click()")
-                | Mark all as read
+            .button-container
+                a.button.switch.always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'",href="#")
+                    .switch-icon
+                        .bar
+                        .disk
+                    | Always last version
+            .button-container
+                a.button.switch.show-differences-toggle(ng-click="show_differences_toggle_click()",ng-class="show_differences ? 'active' : 'inactive'",href="#")
+                    .switch-icon
+                        .bar
+                        .disk
+                    | Show differences
+            .button-container
+                a.button.default.mark-all-as-read(ng-click="mark_all_as_read_click()",href="#")
+                    | Mark all as read
 
     section.main
         section.no-file(ng-if="!file")
@@ -74,18 +81,28 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                 | Choose a file
         section.file(ng-if="file")
             header.file-header
-                span.path
-                    | {{file.path.directory}}/
-                span.name
-                    | {{file.name}}
+                .content
+                    span.path
+                        | {{file.path.directory}}/
+                    span.name
+                        | {{file.name}}
             nav.versions-nav
                 a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)",ng-class="_version.active ? 'active' : 'inactive'")
-                    .date
-                        | {{_version.date_formated}}
-                    .time-from-now
-                        | {{_version.time_from_now}}
-                    .differences
-                        | {{_version.diff_percent}}
+                    .background
+                    .content
+                        .label
+                            | created at
+                        .date
+                            | {{_version.date_formated}}
+                        .time-from-now
+                            | {{_version.time_from_now}}
+                        .differences
+                            .label
+                                | changes
+                            .bar
+                                .fill(style="width:{{_version.diff_percent}};")
+                            .percent(style="width:{{_version.diff_percent}};")
+                                | {{_version.diff_percent}}
             section.code
                 pre
                    code.lines

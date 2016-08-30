@@ -52,6 +52,7 @@ body.project
                 font-family 'Stellar'
                 text-transform uppercase
                 letter-spacing 2px
+                text-decoration none
 
     aside.aside
         position fixed
@@ -227,6 +228,63 @@ body.project
             border-top 1px solid #515771
             background rgba(0,0,0,0.2)
 
+            .button-container
+                margin-bottom 5px
+            .button
+                &.switch
+                    display inline-block
+                    padding 5px 10px 5px 0
+                    text-decoration none
+
+                    .switch-icon
+                        display inline-block
+                        position relative
+                        top 2px
+                        width 22px
+                        height 12px
+                        margin 0 10px 0 0
+
+                        .bar
+                            position absolute
+                            top 2px
+                            left 0
+                            width 100%
+                            height 8px
+                            background #404a78
+                            border-radius 4px
+                            transition background 0.15s
+                            will-change background
+
+                        .disk
+                            position absolute
+                            top 0
+                            left 0
+                            background #4f547d
+                            width 12px
+                            height 12px
+                            border-radius 6px
+                            box-shadow 0px 2px 2px rgba(0,0,0,0.2)
+                            transition transform 0.15s
+                            will-change transform
+
+                    &.active
+                        .switch-icon
+                            .bar
+                                background #5965a0
+
+                            .disk
+                                transform translateX(10px)
+
+                &.default
+                    display inline-block
+                    padding 5px 10px
+                    background rgba(128,147,232,0.2)
+                    text-decoration none
+                    transition background 0.15s
+                    will-change background
+                    &:hover
+                        background rgba(128,147,232,0.30)
+
 
     section.main
         position fixed
@@ -268,4 +326,163 @@ body.project
                 left 200px
                 right 0
                 height 30px
+                line-height 30px
                 background #4d5b8d
+                text-align center
+
+                .content
+                    display inline-block
+
+                    .path
+                        display inline-block
+                        margin-right 3px
+                        opacity 0.5
+
+                    .name
+                        display inline-block
+                        font-weight bold
+
+            nav.versions-nav
+                position absolute
+                top 0
+                left 0
+                width 200px
+                bottom 0
+                background #4d5b8d
+                overflow-y scroll
+
+                a.version
+                    display block
+                    position relative
+                    width 200px
+                    height 55px
+
+                    .background
+                        display block
+                        position absolute
+                        top 5px
+                        right 5px
+                        bottom 0px
+                        left 5px
+                        background #404a73
+                        transition background 0.15s
+                        will-change background
+
+                    .content
+                        position absolute
+                        top 10px
+                        right 13px
+                        bottom 10px
+                        left 10px
+                        text-align right
+
+                        .date
+                            font-weight bold
+
+                        .time-from-now
+                            font-size 10px
+                            opacity 0.5
+
+                        .differences
+                            position absolute
+                            top 0
+                            left 0
+                            text-align left
+
+                            .label
+                                margin-bottom 4px
+
+                            .bar
+                                display block
+                                position relative
+                                width 75px
+                                height 2px
+                                margin-bottom 3px
+                                background rgba(189,202,255,0.25)
+                                transition background 0.15s
+                                will-change background
+
+                                .fill
+                                    position absolute
+                                    top 0
+                                    left 0
+                                    height 100%
+                                    background #17f861
+
+                            .percent
+                                font-size 10px
+                                color #17f861
+                                white-space nowrap
+                                text-align right
+                                font-smoothing(auto)
+                                +retina()
+                                    font-smoothing(antialiased)
+
+                    &:hover
+                        .background
+                            background #616d9f
+                        .content
+                            .differences
+                                .bar
+                                    background rgba(189,202,255,0.30)
+                    &.active
+                        .background
+                            background #7481b5
+                        .content
+                            .differences
+                                .bar
+                                    background rgba(189,202,255,0.5)
+
+            section.code
+                position absolute
+                top 30px
+                right 0
+                bottom 0
+                left 200px
+                overflow-y scroll
+
+                pre
+                    position relative
+                    overflow hidden
+
+                    code
+                        line-height 20px
+                        font-family monospace
+
+                        &.lines
+                            position absolute
+                            top 0
+                            left 0
+                            width 38px
+                            padding 0.5em
+                            opacity 0.2
+
+                        &.hljs
+                            margin-left 38px
+                            background none
+
+                        &.differences
+                            position absolute
+                            top 0
+                            left 38px
+                            padding 0.5em
+                            pointer-events none
+
+                            .value
+                                visibility hidden
+
+                            &.inactive
+                                display none
+
+                            span
+                                &.removed
+                                    display none
+                                    border 1px solid red
+
+                                    .value
+                                        display none
+
+                                &.added
+                                    border 1px solid #b0ea23
+                                    background rgba(176, 234, 35, 0.1)
+
