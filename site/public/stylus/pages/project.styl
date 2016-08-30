@@ -1,0 +1,112 @@
+body.project
+    background #31344a
+    color #ffffff
+
+    .label
+        font-size 10px
+        margin-bottom 2px
+
+    header
+        position relative
+        height 80px
+        overflow hidden
+
+        .logo
+            position absolute
+            top 40px
+            left -35px
+
+            .disks
+                .disk
+                    position absolute
+                    border-radius 50%
+                    background #fff
+                    transform translateX(-50%) translateY(-50%)
+
+                    &.index-0
+                        width 70px
+                        height 70px
+                        background #fff
+                    &.index-1
+                        width 140px
+                        height 140px
+                        background #666b99
+                    &.index-2
+                        width 210px
+                        height 210px
+                        background #555980
+                    &.index-3
+                        width 280px
+                        height 280px
+                        background #474a6b
+                    &.index-4
+                        width 350px
+                        height 350px
+                        background #3b3e59
+            .title
+                position absolute
+                top 0
+                left 80px
+                line-height 4px
+                font-size 28px
+                font-family 'Stellar'
+                text-transform uppercase
+                letter-spacing 2px
+
+    aside.aside
+        position fixed
+        top 80px
+        left 0
+        bottom 0
+        width 240px
+
+        header.aside-header
+            position relative
+            width 100%
+            height 115px
+            padding 12px 20px 0 20px
+            border-top 1px solid #515771
+            border-bottom 1px solid #515771
+            background rgba(0,0,0,0.2)
+
+            .name
+                position absolute
+                top 15px
+                left 20px
+                font-weight bold
+
+            .details
+                text-align right
+
+                .detail
+                    margin-bottom 6px
+
+                    .value
+                        font-weight bold
+
+
+        .aside-tree
+            position absolute
+            top 115px
+            left 0
+            width 100%
+            bottom 110px
+            overflow-y scroll
+
+        footer.aside-footer
+            position absolute
+            bottom 0
+            left 0
+            width 100%
+            height 110px
+            padding 15px 20px 0 20px
+            border-top 1px solid #515771
+            background rgba(0,0,0,0.2)
+
+
+    section.main
+        position fixed
+        top 80px
+        left 240px
+        right 0
+        bottom 0

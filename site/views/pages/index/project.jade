@@ -18,23 +18,56 @@ script(type="text/ng-template",id="folder_template.html")
                 span.new(ng-if="_file.data.new")
                     |  [new]
 
-section.page-project(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
+div(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
+
+    header
+        .logo
+            .disks
+                .disk.index-4
+                .disk.index-3
+                .disk.index-2
+                .disk.index-1
+                .disk.index-0
+            .title
+                | Keppler
+
+
     aside.aside
         header.aside-header
-            div.name
+            .name
                 | {{project.name}}
-            div.always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'")
-                .switch
-                | Always last version
-            div.show-differences-toggle(ng-click="show_differences_toggle_click()",ng-class="show_differences ? 'active' : 'inactive'")
-                .switch
-                | Show differences
-            div.mark-all-as-read(ng-click="mark_all_as_read_click()")
-                | Mark all as read
+            .details
+                .detail
+                    .label
+                        | created at
+                    .value
+                        | 11:20:13 PM
+                .detail
+                    .label
+                        | last update
+                    .value
+                        | 11:20:13 PM
+                .detail
+                    .label
+                        | files
+                    .value
+                        | 32
+
         .aside-tree
             nav.files-tree-nav
                 ul
                     li.folder(ng-repeat="_folder in project.tree.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
+
+        footer.aside-footer
+            .always-last-version-toggle(ng-click="always_last_version_toggle_click()",ng-class="always_last_version ? 'active' : 'inactive'")
+                .switch
+                | Always last version
+            .show-differences-toggle(ng-click="show_differences_toggle_click()",ng-class="show_differences ? 'active' : 'inactive'")
+                .switch
+                | Show differences
+            .mark-all-as-read(ng-click="mark_all_as_read_click()")
+                | Mark all as read
+
     section.main
         section.no-file(ng-if="!file")
             | No file
@@ -46,11 +79,11 @@ section.page-project(ng-controller="ProjectController as controller",ng-init="in
                     | {{file.name}}
             nav.versions-nav
                 a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)",ng-class="_version.active ? 'active' : 'inactive'")
-                    div.date
+                    .date
                         | {{_version.date_formated}}
-                    div.time-from-now
+                    .time-from-now
                         | {{_version.time_from_now}}
-                    div.differences
+                    .differences
                         | {{_version.diff_percent}}
             section.code
                 pre
