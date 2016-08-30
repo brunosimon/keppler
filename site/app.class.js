@@ -159,7 +159,7 @@ class App
 			_options = {}
 
 		if( typeof _options.port === 'undefined' )
-			_options.port = 3000
+			_options.port = 1571
 
 		// Save
 		this.options = _options

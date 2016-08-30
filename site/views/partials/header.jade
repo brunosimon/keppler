@@ -1,7 +1,7 @@
 html(ng-app="application")
     head
         title
-            | Code Spectat
+            | Keppler
         script.
             var config = {
                 domain : '#{domain}'
@@ -20,8 +20,7 @@ html(ng-app="application")
         script(src="/javascript/services/projects.js")
         script(src="/javascript/models/tree.js")
 
-        link(rel="stylesheet",href="/stylesheets/reset.min.css")
-        link(rel="stylesheet",href="/stylesheets/style.css")
+        link(rel="stylesheet",href="/stylesheet/style.css")
         link(rel="stylesheet",href="/vendors/highlight/styles/dracula.css")
         //- link(rel="stylesheet",href="/vendors/highlight/styles/atom-one-dark.css")
         //- link(rel="stylesheet",href="/vendors/highlight/styles/gruvbox-dark.css")
@@ -32,8 +31,4 @@ html(ng-app="application")
         //- link(rel="stylesheet",href="/vendors/highlight/styles/tomorrow-night.css")
 
         link(rel="stylesheet",href="/vendors/font-awesome/css/font-awesome.min.css")
-    body
-        header.main-header
-            h1
-                a(href=domain)
-                    | Code Spectat
+    body(class=page_class)

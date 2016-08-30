@@ -1,23 +1,96 @@
+- var page_class = 'projects'
 include ../../partials/header.jade
 
-section.page-projects(ng-controller="ProjectsController as controller")
-    .projects(ng-show="projects")
-        .item.title
+.gradient-backgroud
+section.landing
+    .logo
+        .disks
+            .disk.index-0
+            .disk.index-1
+            .disk.index-2
+            .disk.index-3
+            .disk.index-4
+        .title
+            span.letter.index-0= 'K'
+            span.letter.index-1= 'E'
+            span.letter.index-2= 'P'
+            span.letter.index-3= 'P'
+            span.letter.index-4= 'L'
+            span.letter.index-5= 'E'
+            span.letter.index-6= 'R'
+    .punch-line
+        .text
+            | An efficient way to share your code while presenting
+        .links
+            a.link(href="http://github.com/brunosimon/keppler",target="_blank")
+                | github
+            a.link(href="http://bruno-simon.com",target="_blank")
+                | bruno simon
+section.projects(ng-controller="ProjectsController as controller")
+    .container
+        .head
             | Projects
-        a.item(href="/project/{{project.slug}}",ng-repeat="project in projects")
-            .name
-                | {{project.name}}
-            .file-count
-                | Files: {{project.files_count}}
-            .creation
-                | Creation: {{project.date_formated}}
-                .time-from-now
-                    | {{project.time_from_now}}
-            .last-update-date
-                | Last update: {{project.last_update_date_formated}}
-                .time-from-now
-                    | {{project.last_update_time_from_now}}
-    .no-project(ng-hide="projects")
-        | No project
+        .content
+            span.no-project(ng-hide="projects")
+                .title
+                    | No project
+            a.project(href="/project/{{project.slug}}",ng-repeat="project in projects")
+                .title
+                    | {{project.name}}
+                .details
+                    .detail
+                        .label
+                            | created at
+                        .value
+                            | {{project.date_formated}}
+                    .detail
+                        .label
+                            | last update
+                        .value
+                            | {{project.last_update_date_formated}}
+                    .detail
+                        .label
+                            | files
+                        .value
+                            | {{project.files_count}}
+section.text
+    .title
+        | What is keppler
+    .description
+        p
+            | Keppler lets you share your code simply during a presentation.
+            br
+            | The tool displays the hierarchy of files and their history. It indicates the arrival of new versions of a file and displays which parts have changed.
+        p
+            | Viewers can easily browse files and history while following the presentation.
+        p
+            | Keppler is easy to install and works with NodeJS.
+
+section.text
+    .title
+        | Instructions
+    .description
+        p
+            | Requirements:
+        ul
+            li
+                | - NodeJS installed
+            li
+                | - Spectators connected to the same wifi
+        p
+            | Install Keppler globally
+        pre
+            code
+                span.line.opacity-20
+                | npm install -g keppler
+        p
+            | Go to the project folder and start Keppler
+        pre
+            code
+                span.line.opacity-20
+                | cd ./my-awesome-project
+                br
+                span.line.opacity-20
+                | keppler "My project"
 
 include ../../partials/footer.jade

@@ -2,17 +2,10 @@ var gulp            = require( 'gulp' ),
     concat          = require( 'gulp-concat' ),
     uglify          = require( 'gulp-uglify' ),
     watch           = require( 'gulp-watch' ),
-    minify_css      = require( 'gulp-minify-css' ),
-    autoprefixer    = require( 'gulp-autoprefixer' ),
-    postcss         = require( 'gulp-postcss' ),
-    precss          = require( 'precss' ),
-    postcss_import  = require( 'postcss-import' ),
-    cssnano         = require( 'cssnano' ),
-    sourcemaps      = require( 'gulp-sourcemaps' ),
-    spritesmith     = require( 'gulp.spritesmith' ),
-    merge           = require( 'merge-stream' ),
+    gulp_sourcemaps = require( 'gulp-sourcemaps' ),
     plumber         = require( 'gulp-plumber' ),
     gulp_rename     = require( 'gulp-rename' ),
+    gulp_stylus     = require( 'gulp-stylus' ),
     browser_sync    = require( 'browser-sync' ).create();
 
 var path = '../';
@@ -44,66 +37,43 @@ var path = '../';
 
 gulp.task( 'stylesheet', function()
 {
-    var requires = [
-        autoprefixer,
-        precss,
-        postcss_import,
-        cssnano,
-    ];
-
-    // Post CSS
-    return gulp.src( path + 'stylesheet/main.css' )
-        .pipe( sourcemaps.init() )
-        .pipe( plumber( function( error )
-        {
-            console.log( error );
-            this.emit( 'end' );
+    return gulp.src( path + 'stylus/style.styl' )
+        .pipe( gulp_sourcemaps.init() )
+        .pipe( plumber() )
+        .pipe( gulp_stylus( {
+            compress: true,
         } ) )
-        .pipe( postcss( requires ) )
-        .pipe( gulp_rename( {
-            // dirname: "main/text/ciao",
-            // basename: "aloha",
-            // prefix: "bonjour-",
-            suffix: ".min",
-            // extname: ".md"
-        } ) )
-        .pipe( sourcemaps.write( '.' ) )
-        .pipe( gulp.dest( path + 'stylesheet/' ) )
+        .pipe( gulp_sourcemaps.write( '.' ) )
+        .pipe( gulp.dest( path + 'stylesheet' ) )
         .pipe( browser_sync.stream( { match: '**/*.css' } ) );
-});
 
-/**
- * SPRITES
- */
-gulp.task( 'sprites', function()
-{
-    var sprite_data = gulp.src( path + 'images/sprites/**/*.{png,jpg}' )
-        .pipe( plumber() )
-        .pipe( spritesmith( {
 
-            // Options
-            padding : 4,
+    // var requires = [
+    //     autoprefixer,
+    //     precss,
+    //     postcss_import,
+    //     cssnano,
+    // ];
 
-            // Default
-            imgName : 'sprites.png',
-            cssName : '_sprites.scss',
-            imgPath : path + 'images/sprites.png',
-
-            // Retina
-            retinaSrcFilter: [path + 'images/sprites/*-2x.png'],
-            retinaImgName: 'sprites-2x.png',
-            retinaImgPath: path + 'images/sprites-2x.png'
-        } ) );
-
-    var img_stream = sprite_data.img
-        .pipe( plumber() )
-        .pipe( gulp.dest( path + 'images/' ) );
-
-    var css_stream = sprite_data.css
-        .pipe( plumber() )
-        .pipe( gulp.dest( path + 'sass/base/' ) );
-
-    return merge( img_stream, css_stream );
+    // // Post CSS
+    // return gulp.src( path + 'stylesheet/main.css' )
+    //     .pipe( gulp_sourcemaps.init() )
+    //     .pipe( plumber( function( error )
+    //     {
+    //         console.log( error );
+    //         this.emit( 'end' );
+    //     } ) )
+    //     .pipe( postcss( requires ) )
+    //     .pipe( gulp_rename( {
+    //         // dirname: "main/text/ciao",
+    //         // basename: "aloha",
+    //         // prefix: "bonjour-",
+    //         suffix: '.min',
+    //         // extname: ".md"
+    //     } ) )
+    //     .pipe( gulp_sourcemaps.write( '.' ) )
+    //     .pipe( gulp.dest( path + 'stylesheet/' ) )
+    //     .pipe( browser_sync.stream( { match: '**/*.css' } ) );
 });
 
 /**
@@ -111,10 +81,11 @@ gulp.task( 'sprites', function()
  */
 gulp.task( 'browser_sync', function()
 {
+    console.log('ok');
     browser_sync.init( {
         proxy:
         {
-            target: 'http://localhost:3000',
+            target: 'http://localhost:1571',
             ws    : true
         }
     } );
@@ -125,7 +96,6 @@ gulp.task( 'browser_sync', function()
  */
 gulp.task( 'watch', function()
 {
-    console.log('ok');
     // // JS
     // watch(
     //     [
@@ -140,9 +110,7 @@ gulp.task( 'watch', function()
     // Stylesheet
     watch(
         [
-            path + 'stylesheet/**',
-            '!' + path + 'stylesheet/main.min.css',
-            '!' + path + 'stylesheet/main.min.css.map'
+            path + 'stylus/**',
         ],
         function()
         {
