@@ -13,10 +13,10 @@ script(type="text/ng-template",id="folder_template.html")
                 span.name
                     i(ng-class="_file.data.icon")
                     | {{_file.name}}
-                span.notif(ng-if="_file.data.notif")
-                    |  [{{_file.data.notif}}]
-                span.new(ng-if="_file.data.new")
-                    |  [new]
+                span.notif.new-file(ng-if="_file.data.new")
+                    |  new
+                span.notif.new-version(ng-if="_file.data.notif")
+                    |  {{_file.data.notif}}
 
 div(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
 
@@ -70,7 +70,8 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
 
     section.main
         section.no-file(ng-if="!file")
-            | No file
+            .text
+                | Choose a file
         section.file(ng-if="file")
             header.file-header
                 span.path
