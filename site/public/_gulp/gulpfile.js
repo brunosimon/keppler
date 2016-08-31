@@ -6,6 +6,7 @@ var gulp            = require( 'gulp' ),
     plumber         = require( 'gulp-plumber' ),
     gulp_rename     = require( 'gulp-rename' ),
     gulp_stylus     = require( 'gulp-stylus' ),
+    nib             = require( 'nib' ),
     browser_sync    = require( 'browser-sync' ).create();
 
 var path = '../';
@@ -41,6 +42,7 @@ gulp.task( 'stylesheet', function()
         .pipe( gulp_sourcemaps.init() )
         .pipe( plumber() )
         .pipe( gulp_stylus( {
+            use     : nib(),
             compress: true,
         } ) )
         .pipe( gulp_sourcemaps.write( '.' ) )

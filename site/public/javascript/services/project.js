@@ -111,7 +111,7 @@ application.factory(
             var result            = {};
             result.name           = '';
             result.files          = {};
-            result.tree           = new Tree( { auto_wash: false } );
+            result.tree           = new FileTree( { auto_wash: false } );
             result.on_update      = null;
             result.on_new_version = null;
 
