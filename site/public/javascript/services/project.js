@@ -16,6 +16,12 @@ application.factory(
                 _version.date_formated = _version.moment_date.format( 'LTS' );
                 _version.time_from_now = _version.moment_date.fromNow();
 
+                // Lines
+                _version.lines = [];
+                var length = _version.content.split(/\r\n|\r|\n/).length;
+                for( var i = 1; i < length + 1; i++ )
+                    _version.lines.push( i );
+
                 // Differences
                 var count    = 0,
                     modified = 0;
@@ -65,6 +71,7 @@ application.factory(
                         'html'     : [ 'html', 'htm' ],
                         'sass'     : [ 'sass', 'scss' ],
                         'less'     : [ 'less' ],
+                        'stylus'   : [ 'stylus', 'styl' ],
                         'css'      : [ 'css' ],
                         'php'      : [ 'php' ],
                         'json'     : [ 'json' ],
