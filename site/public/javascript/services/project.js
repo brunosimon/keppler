@@ -16,6 +16,14 @@ application.factory(
                 _version.date_formated = _version.moment_date.format( 'LTS' );
                 _version.time_from_now = _version.moment_date.fromNow();
 
+                // Project last update date
+                if( _version.moment_date.isAfter( result.last_update_moment_date ) )
+                {
+                    result.last_update_moment_date   = _version.moment_date;
+                    result.last_update_date_formated = _version.date_formated;
+                    result.last_update_time_from_now = _version.time_from_now;
+                }
+
                 // Lines
                 _version.lines = [];
                 var length = _version.content.split(/\r\n|\r|\n/).length;
@@ -111,7 +119,9 @@ application.factory(
             var result            = {};
             result.name           = '';
             result.files          = {};
+            result.files_count    = 0;
             result.tree           = new FileTree( { auto_wash: false } );
+            result.date_formated  = '';
             result.on_update      = null;
             result.on_new_version = null;
 
@@ -140,6 +150,8 @@ application.factory(
                         result.files[ data.path.full ] = file;
 
                         result.tree.add_file( data.path.full, file )
+
+                        result.files_count++;
                     }
 
                     // Apply callback
@@ -176,6 +188,8 @@ application.factory(
                     {
                         result.tree.remove_file( file.path.full )
 
+                        result.files_count--;
+
                         delete result.files[ data.path.full ]
 
                         // Apply callback
@@ -187,7 +201,18 @@ application.factory(
                 // Update project event
                 socket.on( 'update_project', function( data )
                 {
-                    result.name  = data.name;
+                    result.name        = data.name;
+                    result.files_count = data.files.count;
+
+                    // Date
+                    result.moment_date   = moment( data.date );
+                    result.date_formated = result.moment_date.format( 'LTS' );
+                    result.time_from_now = result.moment_date.fromNow();
+
+                    // Last update date
+                    result.last_update_moment_date   = moment( data.last_update_date );
+                    result.last_update_date_formated = result.last_update_moment_date.format( 'LTS' );
+                    result.last_update_time_from_now = result.last_update_moment_date.fromNow();
 
                     // Duplicate files
                     for( var _file_key in data.files.items )

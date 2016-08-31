@@ -41,17 +41,17 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                     .label
                         | created at
                     .value
-                        | 11:20:13 PM
+                        | {{project.date_formated}}
                 .detail
                     .label
                         | last update
                     .value
-                        | 11:20:13 PM
+                        | {{project.last_update_date_formated}}
                 .detail
                     .label
                         | files
                     .value
-                        | 32
+                        | {{project.files_count}}
 
         .aside-tree
             nav.files-tree-nav
