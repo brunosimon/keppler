@@ -67,6 +67,7 @@ class App
 		project.files.create_version( './icons/test.php', 'Test icon' )
 		project.files.create_version( './icons/test.json', 'Test icon' )
 		project.files.create_version( './icons/test.jade', 'Test icon' )
+		project.files.create_version( './icons/test.pug', 'Test icon' )
 		project.files.create_version( './icons/test.md', 'Test icon' )
 		project.files.create_version( './icons/test.sql', 'Test icon' )
 		project.files.create_version( './icons/test.htaccess', 'Test icon' )
@@ -174,7 +175,7 @@ class App
 		// Set up
 		this.express = express()
 		this.express.use( helmet() )
-		this.express.set( 'view engine', 'jade' )
+		this.express.set( 'view engine', 'pug' )
 		this.express.set( 'views', path.join( __dirname, 'views' ) )
 		this.express.use( express.static( path.join( __dirname, 'public' ) ) )
 

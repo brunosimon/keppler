@@ -3,13 +3,13 @@ var express = require( 'express' ),
 
 router.get( '/', function( request, response )
 {
-    response.render( 'pages/index/projects.jade', {} )
+    response.render( 'pages/index/projects.pug', {} )
 } )
 
 router.get( /project\/(.+)/, function( request, response )
 {
     response.render(
-        'pages/index/project.jade',
+        'pages/index/project.pug',
         {
             project_slug: request.params['0']
         }

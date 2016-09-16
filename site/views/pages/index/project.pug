@@ -1,5 +1,5 @@
 - var page_class = 'project'
-include ../../partials/header.jade
+include ../../partials/header.pug
 
 script(type="text/ng-template",id="folder_template.html")
     span(ng-click="folder_click(_folder)")
@@ -105,7 +105,7 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                                 | {{_version.diff_percent}}
             section.code
                 pre
-                   code.lines
+                    code.lines
                         - var line_index = 1
                         while line_index < 999
                             .line= line_index++
@@ -117,4 +117,4 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                                 | {{ _difference.value }}
 
 
-include ../../partials/footer.jade
+include ../../partials/footer.pug

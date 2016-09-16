@@ -69,6 +69,7 @@ application.factory(
                         'php'      : [ 'php' ],
                         'json'     : [ 'json' ],
                         'jade'     : [ 'jade' ],
+                        'pug'      : [ 'pug' ],
                         'md'       : [ 'md' ],
                         'sql'      : [ 'sql' ],
                         'apache'   : [ 'htaccess', 'htpasswd' ],
