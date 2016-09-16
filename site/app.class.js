@@ -229,7 +229,7 @@ class App
 			{
 				project = this.projects.create_project( data.name )
 
-				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			// Update file
@@ -237,7 +237,7 @@ class App
 			{
 				project.files.create_version( data.path, data.content )
 
-				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			// Create file
@@ -245,7 +245,7 @@ class App
 			{
 				project.files.create( data.path, data.content )
 
-				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			// Delete file
@@ -253,15 +253,15 @@ class App
 			{
 				project.files.delete( data.path )
 
-				console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
 			} )
 
 			// Disconnect
 			socket.on( 'disconnect', () =>
 			{
-				console.log( 'socket app'.green.bold + ' - ' + 'disconnect'.cyan + ' - ' + socket.id.cyan )
-
 				this.projects.delete_project( project.slug )
+
+				console.log( 'socket app'.green.bold + ' - ' + 'disconnect'.cyan + ' - ' + socket.id.cyan )
 			} );
 		} )
 	}

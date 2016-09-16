@@ -38,7 +38,7 @@ class App
 			_options.domain = ip.address()
 
 		if( typeof _options.port === 'undefined' )
-			_options.port = 3000
+			_options.port = 1571
 
 		// Save
 		this.options = _options

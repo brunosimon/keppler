@@ -2,6 +2,7 @@
 
 // Depedencies
 let diff  = require( 'diff' ),
+	util  = require( 'util' ),
 	paths = require( '../utils/paths.class.js' ),
 	ids   = require( '../utils/ids.class.js' )
 
@@ -39,8 +40,11 @@ class File
 		version.content = content
 
 		if( !last_version )
+		{
 			version.diff = false
+		}
 		else
+		{
 			version.diff = diff.diffLines(
 				last_version.content,
 				version.content,
@@ -48,6 +52,11 @@ class File
 					// ignoreWhitespace: true
 				}
 			)
+
+			// No changed
+			if( version.diff.length === 1 )
+				return false
+		}
 
 		// Emit
 		this.socket.emit( 'create_version', { file: this.path.full, version: version } )

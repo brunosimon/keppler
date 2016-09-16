@@ -36,7 +36,6 @@ The project URL appears. Share it with the viewers on the same wifi.
 
 ### Todo
 
-- [ ] Prevent new version if no change
 - [ ] Ignore too big files
 - [ ] Ignore non txt files
 - [ ] NPM package
