@@ -41,17 +41,17 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                     .label
                         | created at
                     .value
-                        | 11:20:13 PM
+                        | {{project.date_formated}}
                 .detail
                     .label
                         | last update
                     .value
-                        | 11:20:13 PM
+                        | {{project.last_update_date_formated}}
                 .detail
                     .label
                         | files
                     .value
-                        | 32
+                        | {{project.files_count}}
 
         .aside-tree
             nav.files-tree-nav
@@ -80,12 +80,6 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
             .text
                 | Choose a file
         section.file(ng-if="file")
-            header.file-header
-                .content
-                    span.path
-                        | {{file.path.directory}}/
-                    span.name
-                        | {{file.name}}
             nav.versions-nav
                 a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)",ng-class="_version.active ? 'active' : 'inactive'")
                     .background
@@ -103,18 +97,24 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                                 .fill(style="width:{{_version.diff_percent}};")
                             .percent(style="width:{{_version.diff_percent}};")
                                 | {{_version.diff_percent}}
+            header.file-header
+                .content
+                    span.path
+                        | {{file.path.directory}}/
+                    span.name
+                        | {{file.name}}
             section.code
-                pre
-                    code.lines
-                        - var line_index = 1
-                        while line_index < 999
-                            .line= line_index++
-                    code(hljs,hljs-source="version.content")
-                        | {{ version.content }}
-                    code.differences(ng-if="version.diff",ng-class="show_differences ? 'active' : 'inactive'")
-                        span(ng-repeat="_difference in version.diff",ng-class="{removed: _difference.removed, added: _difference.added}")
-                            span.value
-                                | {{ _difference.value }}
-
+                .lines
+                    pre
+                        code
+                            .line(ng-repeat="_line in version.lines")
+                                | {{ _line }}
+                .current(hljs,hljs-source="version.content")
+                .differences
+                    pre
+                        code(ng-if="version.diff",ng-class="show_differences ? 'active' : 'inactive'")
+                            span(ng-repeat="_difference in version.diff",ng-class="{removed: _difference.removed, added: _difference.added}")
+                                span.value
+                                    | {{ _difference.value }}
 
 include ../../partials/footer.pug

@@ -13,9 +13,9 @@ application.factory(
                 _project.time_from_now = _project.moment_date.fromNow();
 
                 // Last update date
-                _project.moment_date               = moment( _project.last_update_date );
-                _project.last_update_date_formated = _project.moment_date.format( 'LTS' );
-                _project.last_update_time_from_now = _project.moment_date.fromNow();
+                _project.last_update_moment_date   = moment( _project.last_update_date );
+                _project.last_update_date_formated = _project.last_update_moment_date.format( 'LTS' );
+                _project.last_update_time_from_now = _project.last_update_moment_date.fromNow();
 
                 return _project;
             }
@@ -31,6 +31,8 @@ application.factory(
             socket.on( 'update_projects', function( data )
             {
                 result.data = data;
+
+                console.log(data);
 
                 for( var _project_key in result.data.all )
                 {

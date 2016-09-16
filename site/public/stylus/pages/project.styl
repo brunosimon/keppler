@@ -68,7 +68,7 @@ body.project
             padding 12px 20px 0 20px
             border-top 1px solid #515771
             border-bottom 1px solid #515771
-            background rgba(0,0,0,0.2)
+            background #2c2f42
 
             .name
                 position absolute
@@ -90,9 +90,10 @@ body.project
             position absolute
             top 115px
             left 0
-            width 100%
-            bottom 110px
+            bottom 95px
+            width calc(100% + 15px)
             overflow-y scroll
+            overflow-x scroll
 
             nav.files-tree-nav
                 position absolute
@@ -104,6 +105,7 @@ body.project
                     line-height 24px
                     font-size 12px
                     cursor pointer
+                    white-space nowrap
 
                     .name
                         position relative
@@ -132,24 +134,25 @@ body.project
                             line-height 13px
 
                     > span
-                        display block
-                        padding-left 16px * 1
+                        display inline-block
+                        padding-right 20px
+                        padding-left 15px * 1
                     li > span
-                        padding-left 16px * 2
+                        padding-left 15px * 2
                     li li > span
-                        padding-left 16px * 3
+                        padding-left 15px * 3
                     li li li > span
-                        padding-left 16px * 4
+                        padding-left 15px * 4
                     li li li li > span
-                        padding-left 16px * 5
+                        padding-left 15px * 5
                     li li li li li > span
-                        padding-left 16px * 6
+                        padding-left 15px * 6
                     li li li li li li > span
-                        padding-left 16px * 7
+                        padding-left 15px * 7
                     li li li li li li li > span
-                        padding-left 16px * 8
+                        padding-left 15px * 8
                     li li li li li li li li > span
-                        padding-left 16px * 9
+                        padding-left 15px * 9
 
                     &.active
                         background #4d5b8d
@@ -175,6 +178,8 @@ body.project
                         background-image url('../svg/sass.svg')
                     &.less
                         background-image url('../svg/less.svg')
+                    &.stylus
+                        background-image url('../svg/stylus.svg')
                     &.css
                         background-image url('../svg/css.svg')
                     &.php
@@ -226,12 +231,12 @@ body.project
             left 0
             width 100%
             height 110px
-            padding 15px 20px 0 20px
+            padding 10px 20px 0 20px
             border-top 1px solid #515771
-            background rgba(0,0,0,0.2)
+            background #2c2f42
 
             .button-container
-                margin-bottom 5px
+
             .button
                 &.switch
                     display inline-block
@@ -279,6 +284,7 @@ body.project
 
                 &.default
                     display inline-block
+                    margin 10px 0
                     padding 5px 10px
                     background rgba(128,147,232,0.2)
                     text-decoration none
@@ -294,6 +300,7 @@ body.project
         left 240px
         right 0
         bottom 0
+        background #31344a
 
         section.no-file
             position absolute
@@ -348,10 +355,12 @@ body.project
                 position absolute
                 top 0
                 left 0
-                width 200px
                 bottom 0
+                width 215px
+                padding-bottom 5px
                 background #4d5b8d
                 overflow-y scroll
+                overflow-x hidden
 
                 a.version
                     display block
@@ -438,37 +447,46 @@ body.project
             section.code
                 position absolute
                 top 30px
-                right 0
-                bottom 0
+                right -15px
+                bottom -15px
                 left 200px
+                background #31344a
                 overflow-y scroll
+                overflow-x scroll
 
                 pre
                     position relative
-                    overflow hidden
 
                     code
                         line-height 20px
                         font-family monospace
 
-                        &.lines
-                            position absolute
-                            top 0
-                            left 0
-                            width 38px
-                            padding 0.5em
-                            opacity 0.2
+                .lines
+                    position absolute
+                    top 0
+                    left 0
+                    width 38px
+                    padding 0.5em
+                    opacity 0.2
 
-                        &.hljs
+                .current
+                    pre
+                        code
+                            display inline-block
+                            margin-right 15px
+                            margin-bottom 15px
                             margin-left 38px
                             background none
 
-                        &.differences
-                            position absolute
-                            top 0
-                            left 38px
-                            padding 0.5em
-                            pointer-events none
+                .differences
+                    position absolute
+                    top 0
+                    left 38px
+                    padding 0.5em
+                    pointer-events none
+
+                    pre
+                        code
 
                             .value
                                 visibility hidden
