@@ -19,7 +19,7 @@ class App
 	constructor( _options )
 	{
 		this.set_options( _options )
-		this.set_args()
+		this.set_arguments()
 		this.set_watcher()
 		this.set_socket()
 	}
@@ -45,10 +45,10 @@ class App
 	}
 
 	/**
-	 * Set args
+	 * Set arguments
 	 * Test missing arg
 	 */
-	set_args()
+	set_arguments()
 	{
 		// Set up
 		this.arguments = process.argv.slice( 2 )

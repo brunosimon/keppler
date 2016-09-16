@@ -6,13 +6,28 @@ let slug   = require( 'slug' ),
 
 class Project
 {
-	constructor( options )
+	constructor( _options )
 	{
-		this.set_name( options.name )
-		this.set_socket( options.socket )
+		this.set_options( _options )
+		this.set_name( _options.name )
+		this.set_socket( _options.socket )
 
 		this.files = new Files( { socket: this.socket } )
 		this.date  = new Date()
+	}
+
+	/**
+	 * Set options
+	 */
+	set_options( _options )
+	{
+		if( typeof _options.debug === 'undefined' )
+		{
+			_options.debug = false
+		}
+
+		// Save
+		this.options = _options
 	}
 
 	set_name( _name )
@@ -30,9 +45,12 @@ class Project
 		// Connection event
 		this.socket.on( 'connection', ( socket ) =>
 		{
-		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
-
 		    this.socket.emit( 'update_project', this.describe() )
+
+		    if( this.options.debug )
+		    {
+		    	console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
+		    }
 		} )
 	}
 

@@ -4,11 +4,26 @@ let Project = require( './project.class.js' )
 
 class Projects
 {
-	constructor( options )
+	constructor( _options )
 	{
 		this.all = {}
 
-		this.set_socket( options.socket )
+		this.set_options( _options )
+		this.set_socket( _options.socket )
+	}
+
+	/**
+	 * Set options
+	 */
+	set_options( _options )
+	{
+		if( typeof _options.debug === 'undefined' )
+		{
+			_options.debug = false
+		}
+
+		// Save
+		this.options = _options
 	}
 
 	set_socket( socket )
@@ -20,16 +35,19 @@ class Projects
 		// Connection event
 		this.socket.on( 'connection', ( socket ) =>
 		{
-		    console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
-
 		    this.socket.emit( 'update_projects', this.describe() )
+
+		    if( this.options.debug )
+		    {
+		    	console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
+		    }
 		} )
 	}
 
 	create_project( _name )
 	{
 		// Create project
-		let project           = new Project( { name: _name, socket: this.original_socket } ),
+		let project           = new Project( { name: _name, socket: this.original_socket, debug: this.options.debug } ),
 			same_name_project = this.all[ project.slug ]
 
 		// Try to found same name project

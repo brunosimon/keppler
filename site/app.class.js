@@ -22,10 +22,8 @@ class App
 	 */
 	constructor( _options )
 	{
+		this.set_arguments()
 		this.set_options( _options )
-
-		this.domain = 'http://' + ip.address() + ':' + this.options.port
-
 		this.set_express()
 		this.set_server()
 		this.set_socket()
@@ -34,10 +32,60 @@ class App
 	}
 
 	/**
+	 * Set options
+	 */
+	set_options( _options )
+	{
+		// No option
+		if( typeof _options !== 'object' )
+		{
+			_options = {}
+		}
+
+		if( typeof _options.port === 'undefined' )
+		{
+			_options.port = 1571
+		}
+
+		if( typeof _options.debug === 'undefined' )
+		{
+			if( this.arguments.length )
+			{
+				_options.debug = this.arguments[ 0 ] === 'true' ? true : false
+			}
+			else
+			{
+				_options.debug = false
+			}
+		}
+
+		if( typeof _options.domain === 'undefined' )
+		{
+			_options.domain = `http://${ip.address()}:${_options.port}`
+		}
+
+		// Save
+		this.options = _options
+	}
+
+	/**
+	 * Set arguments
+	 * Test missing arg
+	 */
+	set_arguments()
+	{
+		// Set up
+		this.arguments = process.argv.slice( 2 )
+	}
+
+	/**
 	 * Set Dummy
 	 */
 	set_dummy()
 	{
+		if( !this.options.debug )
+			return;
+
 		// Default project
 		let project = this.projects.create_project( 'dummy' )
 
@@ -150,23 +198,7 @@ class App
 	set_models()
 	{
 		// Set up
-		this.projects = new Projects( { socket: this.sockets.main } )
-	}
-
-	/**
-	 * Set options
-	 */
-	set_options( _options )
-	{
-		// No option
-		if( typeof _options !== 'object' )
-			_options = {}
-
-		if( typeof _options.port === 'undefined' )
-			_options.port = 1571
-
-		// Save
-		this.options = _options
+		this.projects = new Projects( { socket: this.sockets.main, debug: this.options.debug } )
 	}
 
 	/**
@@ -182,7 +214,7 @@ class App
 		this.express.set( 'views', path.join( __dirname, 'views' ) )
 		this.express.use( express.static( path.join( __dirname, 'public' ) ) )
 
-		this.express.locals.domain = this.domain
+		this.express.locals.domain = this.options.domain
 
 		// Controllers
 		this.express.use( '/', require( './controllers/index.js' ) )
@@ -202,7 +234,7 @@ class App
 			// URL
 			console.log( colors.green( '---------------------------' ) )
 			console.log( 'server'.green.bold + ' - ' + 'started'.cyan )
-			console.log( 'server'.green.bold + ' - ' + this.domain.cyan )
+			console.log( 'server'.green.bold + ' - ' + this.options.domain.cyan )
 		} )
 	}
 
@@ -222,14 +254,20 @@ class App
 			// Set up
 			let project = null
 
-			console.log( 'socket app'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
+			if( this.options.debug )
+			{
+				console.log( 'socket app'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
+			}
 
 			// Start project
 			socket.on( 'start_project', ( data ) =>
 			{
 				project = this.projects.create_project( data.name )
 
-				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				if( this.options.debug )
+				{
+					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				}
 			} )
 
 			// Update file
@@ -237,7 +275,10 @@ class App
 			{
 				project.files.create_version( data.path, data.content )
 
-				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				if( this.options.debug )
+				{
+					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				}
 			} )
 
 			// Create file
@@ -245,7 +286,10 @@ class App
 			{
 				project.files.create( data.path, data.content )
 
-				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				if( this.options.debug )
+				{
+					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				}
 			} )
 
 			// Delete file
@@ -253,7 +297,10 @@ class App
 			{
 				project.files.delete( data.path )
 
-				// console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				if( this.options.debug )
+				{
+					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
+				}
 			} )
 
 			// Disconnect
@@ -261,7 +308,10 @@ class App
 			{
 				this.projects.delete_project( project.slug )
 
-				console.log( 'socket app'.green.bold + ' - ' + 'disconnect'.cyan + ' - ' + socket.id.cyan )
+				if( this.options.debug )
+				{
+					console.log( 'socket app'.green.bold + ' - ' + 'disconnect'.cyan + ' - ' + socket.id.cyan )
+				}
 			} );
 		} )
 	}
