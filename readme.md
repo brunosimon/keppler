@@ -10,7 +10,7 @@ Start keppler inside your project folder, share the URL with the viewers and sta
 
 Keppler is easy to install and works with NodeJS.
 
-![Project screen](resources/screenshots/screen-project-1.png)
+![Project screen](https://github.com/brunosimon/keppler/raw/master/resources/screenshots/screen-project-1.png)
 
 ### Instructions
 
@@ -32,27 +32,23 @@ cd ./my-awesome-project
 keppler "My project"
 ```
 
-The project URL appears. Share it with the viewers on the same wifi.
-
-### Todo
-
-- [ ] NPM package
+Share the URL that should appear with the viewers.
 
 ### Futur features
 
 - Log project URL and open in default browser
 - 404
-- Retractable sidebar
-- Open multiple files
+- Config file
+- Copy file to clipboard
+- Download file
 - Keyboard navigation
 - In app notifications
 - Navigator notifications
-- Config file
+- Toggle folder
+- Retractable sidebar
+- File searching/filtering
+- Tooltips
+- Open multiple files
 - Unit testing
 - Tablet compatible
-- File searching/filtering
-- Toggle folder
-- Tooltips
-- Copy file to clipboard
-- Download file
 - Angular 2

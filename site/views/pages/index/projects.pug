@@ -59,7 +59,7 @@ section.text
         | What is keppler
     .description
         p
-            | Keppler lets you share your code simply during a presentation.
+            | Keppler lets you share your code during a presentation.
             br
             | Start keppler inside your project folder, share the URL with the viewers and start coding. When you save or change any files, viewers receive them, can browse through the files tree and discover changes you've made.
         p
@@ -73,17 +73,21 @@ section.text
             | Requirements:
         ul
             li
-                | - NodeJS installed
+                | - 
+                a(href='https://nodejs.org/en/',target="_blank")="NodeJS"
+                |  installed
             li
-                | - Spectators connected to the same wifi
+                | - Keppler installed globally
+            li
+                | - Viewer connected to the same wifi
         p
-            | Install Keppler globally
+            | Install Keppler globally:
         pre
             code
                 span.line.opacity-20
                 | npm install -g keppler
         p
-            | Go to the project folder and start Keppler
+            | Start Keppler inside the project folder:
         pre
             code
                 span.line.opacity-20
