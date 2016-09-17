@@ -68,8 +68,15 @@ application.controller(
                 if( $scope.version )
                     $scope.version.active = false;
 
-                $scope.version = file.versions[ file.versions.length - 1 ];
-                $scope.version.active = true
+                if( file.versions.length )
+                {
+                    $scope.version        = file.versions[ file.versions.length - 1 ];
+                    $scope.version.active = true
+                }
+                else
+                {
+                    $scope.version = null;
+                }
             };
 
             $scope.version_click = function( version )

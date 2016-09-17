@@ -6,7 +6,8 @@ let chokidar         = require( 'chokidar' ),
 	colors           = require( 'colors' ),
 	ip               = require( 'ip' ),
 	socket_io_client = require( 'socket.io-client' ),
-	fs               = require( 'fs' )
+	fs               = require( 'fs' ),
+	mime             = require( 'mime' )
 
 /**
  * Watcher class
@@ -87,13 +88,34 @@ class Watcher
 		this.watcher.on( 'add', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd(), '.' )
+			let relative_path = _path.replace( process.cwd(), '.' ),
+				mime_type     = mime.lookup( relative_path ),
+				file          = {}
 
-			// Read
-			fs.readFile( _path, ( error, data ) =>
+			file.path     = relative_path;
+			file.can_read = true;
+
+			// Test mime type
+			if( mime_type.match(/^(audio)|(video)|(image)/) )
 			{
-				// Send
-				this.socket.emit( 'create_file', { path: relative_path, content: data.toString() } )
+				file.can_read = false;
+			}
+
+			// Retrieve stats
+			fs.stat( _path, ( error, stats ) =>
+			{
+				if( stats.size > 999999 )
+					file.can_read = false
+
+				// Read
+				fs.readFile( _path, ( error, data ) =>
+				{
+					if( file.can_read )
+						file.content = data.toString()
+
+					// Send
+					this.socket.emit( 'create_file', file )
+				} )
 			} )
 
 			// Debug
@@ -107,13 +129,34 @@ class Watcher
 		this.watcher.on( 'change', ( _path ) =>
 		{
 			// Set up
-			let relative_path = _path.replace( process.cwd(), '.' )
+			let relative_path = _path.replace( process.cwd(), '.' ),
+				mime_type     = mime.lookup( relative_path ),
+				file          = {}
 
-			// Read
-			fs.readFile( _path, ( error, data ) =>
+			file.path     = relative_path;
+			file.can_read = true;
+
+			// Test mime type
+			if( mime_type.match(/^(audio)|(video)|(image)/) )
 			{
-				// Send
-				this.socket.emit( 'update_file', { path: relative_path, content: data.toString() } )
+				file.can_read = false;
+			}
+
+			// Retrieve stats
+			fs.stat( _path, ( error, stats ) =>
+			{
+				if( stats.size > 999999 )
+					file.can_read = false
+
+				// Read
+				fs.readFile( _path, ( error, data ) =>
+				{
+					if( file.can_read )
+						file.content = data.toString()
+
+					// Send
+					this.socket.emit( 'update_file', file )
+				} )
 			} )
 
 			// Debug

@@ -46,6 +46,26 @@ class Files
 		return file
 	}
 
+	create_version( _path, _content )
+	{
+		// Set up
+		let normalized_path = paths.normalize( _path )
+
+		// Retrieve file
+		let file = this.get( normalized_path, true )
+
+		if( _content )
+		{
+			// Create version
+			file.create_version( _content )
+		}
+
+		// Save
+		this.last_version_date = new Date()
+
+    	return file
+	}
+
 	get( _path, _force_creation )
 	{
 		// Params
@@ -73,23 +93,6 @@ class Files
 
 		// Not found
 		return false
-	}
-
-	create_version( _path, _content )
-	{
-		// Set up
-		let normalized_path = paths.normalize( _path )
-
-		// Retrieve file
-		let file = this.get( normalized_path, true )
-
-		// Create version
-		file.create_version( _content )
-
-		// Save
-		this.last_version_date = new Date()
-
-    	return file
 	}
 
 	delete( _path )

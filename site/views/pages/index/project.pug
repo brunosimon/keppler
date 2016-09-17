@@ -31,7 +31,6 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
             a.title(href="/")
                 | Keppler
 
-
     aside.aside
         header.aside-header
             .name
@@ -76,10 +75,19 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                     | Mark all as read
 
     section.main
-        section.no-file(ng-if="!file")
+        section.no-file.big-centered-text(ng-if="!file")
             .text
                 | Choose a file
-        section.file(ng-if="file")
+        section.no-content.big-centered-text(ng-if="file && (!file.versions || file.versions.length === 0)")
+            .text
+                | Content not available
+        section.file(ng-if="file && file.versions && file.versions.length > 0",ng-class="!file.versions || file.versions.length === 0 ? 'no-content' : ''")
+            header.file-header
+                .content
+                    span.path
+                        | {{file.path.directory}}/
+                    span.name
+                        | {{file.name}}
             nav.versions-nav
                 a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)",ng-class="_version.active ? 'active' : 'inactive'")
                     .background
@@ -97,12 +105,6 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                                 .fill(style="width:{{_version.diff_percent}};")
                             .percent(style="width:{{_version.diff_percent}};")
                                 | {{_version.diff_percent}}
-            header.file-header
-                .content
-                    span.path
-                        | {{file.path.directory}}/
-                    span.name
-                        | {{file.name}}
             section.code
                 .lines
                     pre
@@ -116,5 +118,6 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                             span(ng-repeat="_difference in version.diff",ng-class="{removed: _difference.removed, added: _difference.added}")
                                 span.value
                                     | {{ _difference.value }}
+
 
 include ../../partials/footer.pug
