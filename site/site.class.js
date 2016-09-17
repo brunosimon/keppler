@@ -13,16 +13,15 @@ let express   = require( 'express' ),
 	fs        = require( 'fs' )
 
 /**
- * App class
+ * Site class
  */
-class App
+class Site
 {
 	/**
 	 * Constructor
 	 */
 	constructor( _options )
 	{
-		this.set_arguments()
 		this.set_options( _options )
 		this.set_express()
 		this.set_server()
@@ -38,44 +37,20 @@ class App
 	{
 		// No option
 		if( typeof _options !== 'object' )
-		{
 			_options = {}
-		}
+
+		// Defaults
+		if( typeof _options.debug === 'undefined' )
+			_options.debug = false
 
 		if( typeof _options.port === 'undefined' )
-		{
 			_options.port = 1571
-		}
-
-		if( typeof _options.debug === 'undefined' )
-		{
-			if( this.arguments.length )
-			{
-				_options.debug = this.arguments[ 0 ] === 'true' ? true : false
-			}
-			else
-			{
-				_options.debug = false
-			}
-		}
 
 		if( typeof _options.domain === 'undefined' )
-		{
 			_options.domain = `http://${ip.address()}:${_options.port}`
-		}
 
 		// Save
 		this.options = _options
-	}
-
-	/**
-	 * Set arguments
-	 * Test missing arg
-	 */
-	set_arguments()
-	{
-		// Set up
-		this.arguments = process.argv.slice( 2 )
 	}
 
 	/**
@@ -84,7 +59,7 @@ class App
 	set_dummy()
 	{
 		if( !this.options.debug )
-			return;
+			return
 
 		// Default project
 		let project = this.projects.create_project( 'dummy' )
@@ -228,6 +203,24 @@ class App
 		// Set up
 		this.server = http.createServer( this.express )
 
+		// Error event
+		this.server.on( 'error', ( error ) =>
+		{
+			// Server already running
+			if( error.code === 'EADDRINUSE' )
+			{
+				// Debug
+				if( this.options.debug )
+				{
+					console.log( 'server already running'.green.bold )
+				}
+
+				return
+			}
+
+			console.log( error.message )
+		} )
+
 		// Start
 		this.server.listen( this.options.port, () =>
 		{
@@ -254,6 +247,7 @@ class App
 			// Set up
 			let project = null
 
+			// Debug
 			if( this.options.debug )
 			{
 				console.log( 'socket app'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
@@ -264,6 +258,7 @@ class App
 			{
 				project = this.projects.create_project( data.name )
 
+				// Debug
 				if( this.options.debug )
 				{
 					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
@@ -275,6 +270,7 @@ class App
 			{
 				project.files.create_version( data.path, data.content )
 
+				// Debug
 				if( this.options.debug )
 				{
 					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
@@ -286,6 +282,7 @@ class App
 			{
 				project.files.create( data.path, data.content )
 
+				// Debug
 				if( this.options.debug )
 				{
 					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
@@ -297,6 +294,7 @@ class App
 			{
 				project.files.delete( data.path )
 
+				// Debug
 				if( this.options.debug )
 				{
 					console.log( util.inspect( project.files.describe(), { depth: null, colors: true } ) )
@@ -308,13 +306,14 @@ class App
 			{
 				this.projects.delete_project( project.slug )
 
+				// Debug
 				if( this.options.debug )
 				{
 					console.log( 'socket app'.green.bold + ' - ' + 'disconnect'.cyan + ' - ' + socket.id.cyan )
 				}
-			} );
+			} )
 		} )
 	}
 }
 
-module.exports = App
+module.exports = Site

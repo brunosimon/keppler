@@ -1,4 +1,4 @@
 'use strict'
 
-let App = require( './app.class.js' ),
-	app = new App()
+let Site = require( './site.class.js' ),
+	site = new Site()

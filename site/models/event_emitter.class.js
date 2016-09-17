@@ -16,7 +16,7 @@ class Event_Emitter
      */
     on( names, callback )
     {
-        let that = this;
+        let that = this
 
         // Errors
         if( typeof names === 'undefined' || names === '' )

@@ -9,9 +9,9 @@ let chokidar         = require( 'chokidar' ),
 	fs               = require( 'fs' )
 
 /**
- * App class
+ * Watcher class
  */
-class App
+class Watcher
 {
 	/**
 	 * Constructor
@@ -19,7 +19,6 @@ class App
 	constructor( _options )
 	{
 		this.set_options( _options )
-		this.set_arguments()
 		this.set_watcher()
 		this.set_socket()
 	}
@@ -34,40 +33,17 @@ class App
 			_options = {}
 
 		// Defaults
-		if( typeof _options.domain === 'undefined' )
-			_options.domain = ip.address()
+		if( typeof _options.debug === 'undefined' )
+			_options.debug = false
 
 		if( typeof _options.port === 'undefined' )
 			_options.port = 1571
 
+		if( typeof _options.domain === 'undefined' )
+			_options.domain = `http://${ip.address()}:${_options.port}`
+
 		// Save
 		this.options = _options
-	}
-
-	/**
-	 * Set arguments
-	 * Test missing arg
-	 */
-	set_arguments()
-	{
-		// Set up
-		this.arguments = process.argv.slice( 2 )
-
-		// Missing project name
-		if( this.arguments.length === 0 )
-		{
-			// Stop process
-			console.log( 'Missing arguments: first argument should be the projet name'.red )
-			process.exit()
-		}
-
-		// // Wrong project name
-		// if( !this.arguments[ 0 ].match( /^[a-z_-][a-z0-9_-]+$/ ) )
-		// {
-		// 	// Stop process
-		// 	console.log( 'Wrong arguments: projet name'.red )
-		// 	process.exit()
-		// }
 	}
 
 	/**
@@ -77,13 +53,18 @@ class App
 	set_socket()
 	{
 		// Set up
-		this.socket = socket_io_client( `http://${this.options.domain}:${this.options.port}/app` )
+		this.socket = socket_io_client( `${this.options.domain}/app` )
 
 		// Connect event
 		this.socket.on( 'connect', () =>
 		{
-			console.log( 'connected'.green )
-			this.socket.emit( 'start_project', { name: this.arguments[ 0 ] } )
+			this.socket.emit( 'start_project', { name: this.options.name } )
+
+			// Debug
+			if( this.options.debug )
+			{
+				console.log( 'connected'.green.bold )
+			}
 		} )
 	}
 
@@ -108,14 +89,18 @@ class App
 			// Set up
 			let relative_path = _path.replace( process.cwd(), '.' )
 
-			console.log( 'add:'.green.bold, relative_path )
-
 			// Read
 			fs.readFile( _path, ( error, data ) =>
 			{
 				// Send
 				this.socket.emit( 'create_file', { path: relative_path, content: data.toString() } )
 			} )
+
+			// Debug
+			if( this.options.debug )
+			{
+				console.log( 'add:'.green.bold, relative_path )
+			}
 		} )
 
 		// Change event
@@ -124,14 +109,18 @@ class App
 			// Set up
 			let relative_path = _path.replace( process.cwd(), '.' )
 
-			console.log( 'change:'.green.bold, relative_path )
-
 			// Read
 			fs.readFile( _path, ( error, data ) =>
 			{
 				// Send
 				this.socket.emit( 'update_file', { path: relative_path, content: data.toString() } )
 			} )
+
+			// Debug
+			if( this.options.debug )
+			{
+				console.log( 'change:'.green.bold, relative_path )
+			}
 		} )
 
 		// Unlink event
@@ -140,10 +129,14 @@ class App
 			// Set up
 			let relative_path = _path.replace( process.cwd(), '.' )
 
-			console.log( 'unlink:'.green.bold, relative_path )
-
 			// Send
 			this.socket.emit( 'delete_file', { path: relative_path } )
+
+			// Debug
+			if( this.options.debug )
+			{
+				console.log( 'unlink:'.green.bold, relative_path )
+			}
 		} )
 
 		// AddDir event
@@ -152,10 +145,14 @@ class App
 			// Set up
 			let relative_path = _path.replace( process.cwd(), '.' )
 
-			console.log( 'addDir:'.green.bold, relative_path )
-
 			// Send
 			this.socket.emit( 'create_folder', { path: relative_path } )
+
+			// Debug
+			if( this.options.debug )
+			{
+				console.log( 'addDir:'.green.bold, relative_path )
+			}
 		} )
 
 		// UnlinkDir event
@@ -164,12 +161,16 @@ class App
 			// Set up
 			let relative_path = _path.replace( process.cwd(), '.' )
 
-			console.log( 'unlinkDir:'.green.bold, relative_path )
-
 			// Send
 			this.socket.emit( 'delete_folder', { path: relative_path } )
+
+			// Debug
+			if( this.options.debug )
+			{
+				console.log( 'unlinkDir:'.green.bold, relative_path )
+			}
 		} )
 	}
 }
 
-module.exports = App
+module.exports = Watcher

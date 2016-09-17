@@ -42,6 +42,7 @@ The project URL appears. Share it with the viewers on the same wifi.
 
 ### Futur features
 
+- Log project URL and open in default browser
 - 404
 - Retractable sidebar
 - Open multiple files

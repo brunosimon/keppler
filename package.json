@@ -1,0 +1,34 @@
+{
+  "name": "keppler",
+  "version": "0.0.1",
+  "description": "",
+  "bin": {
+    "keppler": "bin/index.js"
+  },
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunosimon/keppler"
+  },
+  "author": "Bruno Simon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brunosimon/keppler/issues"
+  },
+  "homepage": "https://github.com/brunosimon/keppler",
+  "dependencies": {
+    "chokidar": "^1.5.1",
+    "socket.io-client": "^1.4.6",
+    "colors": "^1.1.2",
+    "diff": "^2.2.3",
+    "express": "^4.13.4",
+    "helmet": "^2.1.0",
+    "ip": "^1.1.3",
+    "pug": "^2.0.0-beta4",
+    "slug": "^0.9.1",
+    "socket.io": "^1.4.6"
+  }
+}

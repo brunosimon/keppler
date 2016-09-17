@@ -47,6 +47,7 @@ class Project
 		{
 		    this.socket.emit( 'update_project', this.describe() )
 
+		    // Debug
 		    if( this.options.debug )
 		    {
 		    	console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )

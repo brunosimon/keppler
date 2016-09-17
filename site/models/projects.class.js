@@ -91,7 +91,7 @@ class Projects
 		{
 			// Delete
 			delete this.all[ _slug ]
-			project.destructor();
+			project.destructor()
 
 			// Emit
 	    	this.socket.emit( 'update_projects', this.describe() )
