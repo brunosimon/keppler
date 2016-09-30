@@ -47,6 +47,7 @@ Share the URL that should appear with the viewers.
 - Toggle folder
 - Retractable sidebar
 - File searching/filtering
+- Project history
 - Tooltips
 - Open multiple files
 - Unit testing
