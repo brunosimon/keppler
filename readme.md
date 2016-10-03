@@ -34,13 +34,16 @@ keppler "My project"
 
 Share the URL that should appear with the viewers.
 
+### TODO
+- [ ] Lastest version on top
+- [ ] Copy file to clipboard button
+- [ ] Download file button
+
 ### Futur features
 
 - Log project URL and open in default browser
 - 404
 - Config file
-- Copy file to clipboard
-- Download file
 - Keyboard navigation
 - In app notifications
 - Navigator notifications
@@ -53,3 +56,5 @@ Share the URL that should appear with the viewers.
 - Unit testing
 - Tablet compatible
 - Angular 2
+- Font-size control
+- Theme control
