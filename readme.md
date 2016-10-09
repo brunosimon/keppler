@@ -38,7 +38,7 @@ Share the URL that should appear with the viewers.
 - [ ] Log project URL and open in default browser
 - [ ] Fix debug in packaged version
 - [x] Lastest version on top
-- [ ] Copy file to clipboard button
+- [x] Copy file to clipboard button
 - [ ] Download file button
 - [ ] Font size buttons
 
