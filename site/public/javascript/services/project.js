@@ -72,6 +72,9 @@ application.factory(
                     _version = reformat_version( _version );
                 }
 
+                // Reverse version
+                _file.versions.reverse();
+
                 // Icon
                 var icon           = 'random',
                     possible_icons = {
@@ -168,7 +171,7 @@ application.factory(
                     if( typeof file !== 'undefined' )
                     {
                         data.version = reformat_version( data.version );
-                        file.versions.push( data.version );
+                        file.versions.unshift( data.version );
                         file.notif++;
 
                         // Apply callback

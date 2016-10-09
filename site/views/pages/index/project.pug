@@ -20,17 +20,6 @@ script(type="text/ng-template",id="folder_template.html")
 
 div(ng-controller="ProjectController as controller",ng-init="init('" + project_slug + "')")
 
-    header
-        .logo
-            .disks
-                .disk.index-4
-                .disk.index-3
-                .disk.index-2
-                .disk.index-1
-                .disk.index-0
-            a.title(href="/")
-                | Keppler
-
     aside.aside
         header.aside-header
             .name
@@ -73,6 +62,17 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
             .button-container
                 a.button.default.mark-all-as-read(ng-click="mark_all_as_read_click()",href="#")
                     | Mark all as read
+
+    header
+        .logo
+            .disks
+                .disk.index-4
+                .disk.index-3
+                .disk.index-2
+                .disk.index-1
+                .disk.index-0
+            a.title(href="/")
+                | Keppler
 
     section.main
         section.no-file.big-centered-text(ng-if="!file")

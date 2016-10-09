@@ -35,14 +35,15 @@ keppler "My project"
 Share the URL that should appear with the viewers.
 
 ### TODO
-- [ ] Lastest version on top
+- [ ] Log project URL and open in default browser
+- [ ] Fix debug in packaged version
+- [x] Lastest version on top
 - [ ] Copy file to clipboard button
 - [ ] Download file button
 - [ ] Font size buttons
 
 ### Futur features
 
-- Log project URL and open in default browser
 - 404
 - Config file
 - Keyboard navigation
