@@ -17,7 +17,7 @@ Keppler is easy to install and works with NodeJS.
 **Requirements**
 * [NodeJS](https://nodejs.org/en/) installed
 * Keppler installed globally
-* Viewer connected to the same wifi
+* Viewer connected to the same network
 
 **Install Keppler globally**
 
