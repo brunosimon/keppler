@@ -1,7 +1,8 @@
 var application = angular.module(
     'application',
     [
-        'hljs'
+        'hljs',
+        'angular-clipboard'
     ]
 );
 

@@ -4,7 +4,8 @@ application.controller(
         '$scope',
         '$interval',
         'project',
-        function( $scope, $interval, project )
+        'clipboard',
+        function( $scope, $interval, project, clipboard )
         {
             // Every 5 seconds
             $interval( function()
@@ -88,6 +89,19 @@ application.controller(
                 $scope.version = version;
 
                 $scope.file.notif = 0;
+            };
+
+            $scope.copy           = {};
+            $scope.copy.text      = 'copy';
+            $scope.copy.supported = clipboard.supported;
+            $scope.copy_to_clipboard_click = function()
+            {
+                $scope.copy.text = 'copied';
+                clipboard.copyText( $scope.version.content );
+            };
+            $scope.copy_to_clipboard_mouseleave = function()
+            {
+                $scope.copy.text = 'copy';
             };
 
             $scope.init = function( project_slug )

@@ -335,11 +335,11 @@ body.project
                 left 200px
                 right 0
                 height 30px
-                line-height 30px
                 background #4d5b8d
                 text-align center
 
                 .content
+                    line-height 30px
                     display inline-block
 
                     .path
@@ -350,6 +350,22 @@ body.project
                     .name
                         display inline-block
                         font-weight bold
+                
+                .right-buttons
+                    position absolute
+                    top 0
+                    right 2px
+                    
+                    .button
+                        display inline-block
+                        margin 4px 2px
+                        padding 5px 10px
+                        background rgba(128,147,232,0.2)
+                        text-decoration none
+                        transition background 0.15s
+                        will-change background
+                        &:hover
+                            background rgba(128,147,232,0.30)
 
             nav.versions-nav
                 position absolute

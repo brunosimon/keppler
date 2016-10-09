@@ -88,6 +88,11 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                         | {{file.path.directory}}/
                     span.name
                         | {{file.name}}
+                .right-buttons
+                    a.button.default.copy-to-clipboard(href="#",ng-show="copy.supported",ng-click="copy_to_clipboard_click()",ng-mouseleave="copy_to_clipboard_mouseleave()")
+                        | {{copy.text}}
+                    //- a.button.default.download(href="#",ng-click="download_click()")
+                    //-     | download
             nav.versions-nav
                 a.version(href="#",ng-repeat="_version in file.versions",ng-click="version_click(_version)",ng-class="_version.active ? 'active' : 'inactive'")
                     .background
