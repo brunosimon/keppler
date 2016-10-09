@@ -38,6 +38,7 @@ Share the URL that should appear with the viewers.
 - [ ] Lastest version on top
 - [ ] Copy file to clipboard button
 - [ ] Download file button
+- [ ] Font size buttons
 
 ### Futur features
 
