@@ -28,11 +28,19 @@ application.factory(
                 _version.lines = [];
                 var length = _version.content.split(/\r\n|\r|\n/).length;
                 for( var i = 1; i < length + 1; i++ )
-                    _version.lines.push( i );
+                {
+                    var line = {};
+                    line.index   = i;
+                    line.added   = false;
+                    line.removed = false;
+
+                    _version.lines.push( line );
+                }
 
                 // Differences
-                var count    = 0,
-                    modified = 0;
+                var count      = 0,
+                    modified   = 0,
+                    line_index = 0;
 
                 if( !_version.diff )
                 {
@@ -45,9 +53,31 @@ application.factory(
                     for( var _diff_key in _version.diff )
                     {
                         var _diff = _version.diff[ _diff_key ];
+
                         count += _diff.count;
+
                         if( _diff.added /*|| _diff.removed*/ )
+                        {
                             modified += _diff.count;
+                        }
+
+                        // Add info to line
+                        if( typeof _diff.removed === 'undefined' )
+                        {
+                            var lines_breaks = _diff.value.match(/\r\n|\r|\n/g),
+                                lines_count  = lines_breaks ? lines_breaks.length : 0;
+
+                            if( _diff.added )
+                            {
+                                for( var j = line_index; j < line_index + lines_count; j++ )
+                                {
+                                    var line = _version.lines[ j ];
+                                    line.added = true;
+                                }
+                            }
+
+                            line_index += lines_count;
+                        }
                     }
                     _version.diff_ratio = modified / count;
                 }
