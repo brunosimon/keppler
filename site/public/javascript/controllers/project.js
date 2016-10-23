@@ -71,7 +71,8 @@ application.controller(
 
                 if( file.versions.length )
                 {
-                    $scope.version        = file.versions[ file.versions.length - 1 ];
+                    console.log($scope.version);
+                    $scope.version        = file.versions[ 0 ];
                     $scope.version.active = true
                 }
                 else
