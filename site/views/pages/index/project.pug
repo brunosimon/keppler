@@ -8,8 +8,8 @@ script(type="text/ng-template",id="folder_template.html")
             | {{_folder.name}}
     ul
         li.folder(ng-repeat="_folder in _folder.folders",ng-include="'folder_template.html'",ng-class="_folder.active ? 'active' : 'inactive'")
-        li.file(ng-repeat="(_key,_file) in _folder.files",ng-class="_file.data.active ? 'active' : 'inactive'")
-            span(ng-click="file_click(_file)")
+        li.file(ng-repeat="(_key,_file) in _folder.files",ng-class="_file.data.active ? 'active' : 'inactive'",ng-click="file_click(_file)")
+            span
                 span.name
                     i(ng-class="_file.data.icon")
                     | {{_file.name}}
