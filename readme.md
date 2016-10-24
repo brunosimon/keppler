@@ -10,7 +10,7 @@ Start keppler inside your project folder, share the URL with the viewers and sta
 
 Keppler is easy to install and works with NodeJS.
 
-![Project screen](https://github.com/brunosimon/keppler/raw/master/resources/screenshots/screen-project-1.png)
+<img width="600" height="374" src="https://github.com/brunosimon/keppler/raw/master/resources/screenshots/screen-project-2.png" alt="Keppler screen">
 
 ### Instructions
 
@@ -34,16 +34,11 @@ keppler "My project"
 
 Share the URL that should appear with the viewers.
 
-### TODO
-- [ ] Log project URL and open in default browser
-- [ ] Fix debug in packaged version
-- [x] Lastest version on top
-- [x] Copy file to clipboard button
-- [ ] Download file button
-- [ ] Font size buttons
-
 ### Futur features
 
+- Log project URL and open in default browser
+- Font size buttons
+- Download file button
 - 404
 - Config file
 - Keyboard navigation
