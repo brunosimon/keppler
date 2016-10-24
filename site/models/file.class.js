@@ -43,6 +43,15 @@ class File
 		{
 			version.diff = false
 		}
+		else if( version.content === '' )
+		{
+			version.diff = [ { count: 1, added: true, removed: undefined, value: 'a'} ]
+
+			if( last_version.content === '' )
+			{
+				return false
+			}
+		}
 		else
 		{
 			version.diff = diff.diffLines(
@@ -54,8 +63,10 @@ class File
 			)
 
 			// No changed
-			if( version.diff.length === 1 )
+			if( version.diff.length === 1 && last_version.content !== '' )
+			{
 				return false
+			}
 		}
 
 		// Emit

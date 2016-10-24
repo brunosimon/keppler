@@ -54,7 +54,7 @@ class Files
 		// Retrieve file
 		let file = this.get( normalized_path, true )
 
-		if( _content )
+		if( typeof _content !== 'undefined' )
 		{
 			// Create version
 			file.create_version( _content )
