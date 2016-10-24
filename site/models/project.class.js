@@ -33,7 +33,7 @@ class Project
 	set_name( _name )
 	{
 		this.name = _name
-		this.slug = slug( this.name )
+		this.slug = slug( this.name, { lower: true } )
 	}
 
 	set_socket( socket )

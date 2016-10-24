@@ -62,7 +62,7 @@ class Site
 			return
 
 		// Default project
-		let project = this.projects.create_project( 'dummy' )
+		let project = this.projects.create_project( 'Dummy project' )
 
 		// // Same name projects
 		// let project_2 = this.projects.create_project( 'dummy' )
