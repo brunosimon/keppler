@@ -47,6 +47,13 @@ application.factory(
                     _version.diff_ratio = 1;
                     count    = 1;
                     modified = 1;
+
+                    // Set all every line as 'added'
+                    for( var k = 0; k < _version.lines.length; k++ )
+                    {
+                        var line = _version.lines[ k ];
+                        line.added = true;
+                    }
                 }
                 else
                 {
