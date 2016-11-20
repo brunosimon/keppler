@@ -55,6 +55,9 @@ class Keppler
         if( typeof _options.max_file_size === 'undefined' )
             _options.max_file_size = default_config.max_file_size
 
+        if( typeof _options.exclude === 'undefined' )
+            _options.exclude = default_config.exclude
+
         // Save
         this.options = _options
     }
@@ -101,6 +104,7 @@ class Keppler
             domain       : this.options.domain,
             debug        : this.options.debug,
             max_file_size: this.options.max_file_size,
+            exclude      : this.options.exclude,
             name         : this.arguments[ 0 ]
         } )
     }

@@ -7,7 +7,8 @@ let chokidar         = require( 'chokidar' ),
 	ip               = require( 'ip' ),
 	socket_io_client = require( 'socket.io-client' ),
 	fs               = require( 'fs' ),
-	mime             = require( 'mime' )
+	mime             = require( 'mime' ),
+	minimatch        = require( 'minimatch' )
 
 /**
  * Watcher class
@@ -104,9 +105,22 @@ class Watcher
 				file.can_read = false;
 			}
 
+			// Test exclusion
+			for( let _exclude_key in this.options.exclude )
+			{
+				// Set up
+				let _exclude      = this.options.exclude[ _exclude_key ],
+					relative_path = _path.replace( process.cwd() + '/', '' )
+
+				// Match excluded path
+				if( minimatch( relative_path, _exclude ) )
+					return;
+			}
+
 			// Retrieve stats
 			fs.stat( _path, ( error, stats ) =>
 			{
+				// Max file size
 				if( stats.size > this.options.max_file_size )
 					file.can_read = false
 
@@ -145,9 +159,22 @@ class Watcher
 				file.can_read = false;
 			}
 
+			// Test exclusion
+			for( let _exclude_key in this.options.exclude )
+			{
+				// Set up
+				let _exclude      = this.options.exclude[ _exclude_key ],
+					relative_path = _path.replace( process.cwd() + '/', '' )
+
+				// Match excluded path
+				if( minimatch( relative_path, _exclude ) )
+					return;
+			}
+
 			// Retrieve stats
 			fs.stat( _path, ( error, stats ) =>
 			{
+				// Test max file size
 				if( stats.size > this.options.max_file_size )
 					file.can_read = false
 
