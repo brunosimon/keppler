@@ -1,11 +1,12 @@
 'use strict'
 
 // Depedencies
-let path    = require( 'path' ),
-    colors  = require( 'colors' ),
-    ip      = require( 'ip' ),
-    Site    = require( '../site/site.class.js' ),
-    Watcher = require( '../watcher/watcher.class.js' )
+let path           = require( 'path' ),
+    colors         = require( 'colors' ),
+    ip             = require( 'ip' ),
+    Site           = require( '../site/site.class.js' ),
+    Watcher        = require( '../watcher/watcher.class.js' ),
+    default_config = require( './config.default.json' )
 
 /**
  * Keppler class
@@ -35,21 +36,24 @@ class Keppler
         // Defaults
         if( typeof _options.debug === 'undefined' )
         {
-            if( this.arguments.length )
+            if( this.arguments.length > 1 )
             {
                 _options.debug = this.arguments[ this.arguments.length - 1 ] === 'true' ? true : false
             }
             else
             {
-                _options.debug = false
+                _options.debug = default_config.debug
             }
         }
 
         if( typeof _options.port === 'undefined' )
-            _options.port = 1571
+            _options.port = default_config.port
 
         if( typeof _options.domain === 'undefined' )
             _options.domain = `http://${ip.address()}:${_options.port}`
+
+        if( typeof _options.max_file_size === 'undefined' )
+            _options.max_file_size = default_config.max_file_size
 
         // Save
         this.options = _options
@@ -93,10 +97,11 @@ class Keppler
     set_watcher()
     {
         this.watcher = new Watcher( {
-            port  : this.options.port,
-            domain: this.options.domain,
-            debug : this.options.debug,
-            name  : this.arguments[ 0 ]
+            port         : this.options.port,
+            domain       : this.options.domain,
+            debug        : this.options.debug,
+            max_file_size: this.options.max_file_size,
+            name         : this.arguments[ 0 ]
         } )
     }
 }

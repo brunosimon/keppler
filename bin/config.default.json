@@ -1,0 +1,5 @@
+{
+    "debug"         : false,
+    "port"          : 1571,
+    "max_file_size" : 2000
+}

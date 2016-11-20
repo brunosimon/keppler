@@ -43,6 +43,9 @@ class Watcher
 		if( typeof _options.domain === 'undefined' )
 			_options.domain = `http://${ip.address()}:${_options.port}`
 
+		if( typeof _options.max_file_size === 'undefined' )
+			_options.max_file_size = 2000
+
 		// Save
 		this.options = _options
 	}
@@ -104,7 +107,7 @@ class Watcher
 			// Retrieve stats
 			fs.stat( _path, ( error, stats ) =>
 			{
-				if( stats.size > 999999 )
+				if( stats.size > this.options.max_file_size )
 					file.can_read = false
 
 				// Read
@@ -145,7 +148,7 @@ class Watcher
 			// Retrieve stats
 			fs.stat( _path, ( error, stats ) =>
 			{
-				if( stats.size > 999999 )
+				if( stats.size > this.options.max_file_size )
 					file.can_read = false
 
 				// Read
