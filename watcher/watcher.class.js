@@ -96,13 +96,13 @@ class Watcher
 				mime_type     = mime.lookup( relative_path ),
 				file          = {}
 
-			file.path     = relative_path;
-			file.can_read = true;
+			file.path     = relative_path
+			file.can_read = true
 
 			// Test mime type
 			if( mime_type.match(/^(audio)|(video)|(image)/) )
 			{
-				file.can_read = false;
+				file.can_read = false
 			}
 
 			// Test exclusion
@@ -114,7 +114,7 @@ class Watcher
 
 				// Match excluded path
 				if( minimatch( relative_path, _exclude ) )
-					return;
+					return
 			}
 
 			// Retrieve stats
@@ -150,13 +150,13 @@ class Watcher
 				mime_type     = mime.lookup( relative_path ),
 				file          = {}
 
-			file.path     = relative_path;
-			file.can_read = true;
+			file.path     = relative_path
+			file.can_read = true
 
 			// Test mime type
 			if( mime_type.match(/^(audio)|(video)|(image)/) )
 			{
-				file.can_read = false;
+				file.can_read = false
 			}
 
 			// Test exclusion
@@ -168,7 +168,7 @@ class Watcher
 
 				// Match excluded path
 				if( minimatch( relative_path, _exclude ) )
-					return;
+					return
 			}
 
 			// Retrieve stats

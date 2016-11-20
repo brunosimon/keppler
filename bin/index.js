@@ -3,4 +3,4 @@
 'use strict'
 
 let Keppler = require( './keppler.class.js' ),
-    keppler = new Keppler();
+    keppler = new Keppler()

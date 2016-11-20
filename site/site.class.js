@@ -10,7 +10,8 @@ let express   = require( 'express' ),
 	util      = require( 'util' ),
 	path      = require( 'path' ),
 	Projects  = require( './models/projects.class.js' ),
-	fs        = require( 'fs' )
+	fs        = require( 'fs' ),
+	opener    = require( 'opener' )
 
 /**
  * Site class
@@ -257,6 +258,13 @@ class Site
 			socket.on( 'start_project', ( data ) =>
 			{
 				project = this.projects.create_project( data.name )
+
+				let url = this.options.domain + '/project/' + project.slug
+
+				console.log( 'server'.green.bold + ' - ' + url .cyan )
+
+				// Open in browser
+				opener( url )
 
 				// Debug
 				if( this.options.debug )
