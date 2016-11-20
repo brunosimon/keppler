@@ -83,7 +83,7 @@ class Watcher
 		this.watcher = chokidar.watch(
 				process.cwd(),
 				{
-					ignored      : /[\/\\]\./,
+					// ignored      : /[\/\\]\./,
 					ignoreInitial: true
 				}
 			)

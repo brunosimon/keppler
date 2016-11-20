@@ -4,6 +4,7 @@
     "max_file_size": 99999,
     "exclude"      :
     [
+        "**/.DS_Store",
         "node_modules/**",
         "vendors/**"
     ]
