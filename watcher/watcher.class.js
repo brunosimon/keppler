@@ -79,11 +79,30 @@ class Watcher
 	 */
 	set_watcher()
 	{
+		// Create ignored regex
+		let regexs    = [],
+			Minimatch = require( 'minimatch' ).Minimatch
+
+		for( let _exclude_key in this.options.exclude )
+		{
+			let _exclude  = this.options.exclude[ _exclude_key ],
+				minimatch = new Minimatch( _exclude, { dot: true } ),
+				regex     = '' + minimatch.makeRe()
+
+			regex = regex.replace( '/^', '' )
+			regex = regex.replace( '$/', '' )
+
+			regexs.push( regex )
+		}
+
+		let regex = new RegExp( regexs.join( '|' ) )
+
 		// Set up
 		this.watcher = chokidar.watch(
 				process.cwd(),
 				{
 					// ignored      : /[\/\\]\./,
+					ignored      : regex,
 					ignoreInitial: true
 				}
 			)
@@ -103,18 +122,6 @@ class Watcher
 			if( mime_type.match(/^(audio)|(video)|(image)/) )
 			{
 				file.can_read = false
-			}
-
-			// Test exclusion
-			for( let _exclude_key in this.options.exclude )
-			{
-				// Set up
-				let _exclude      = this.options.exclude[ _exclude_key ],
-					relative_path = _path.replace( process.cwd() + '/', '' )
-
-				// Match excluded path
-				if( minimatch( relative_path, _exclude ) )
-					return
 			}
 
 			// Retrieve stats
@@ -157,18 +164,6 @@ class Watcher
 			if( mime_type.match(/^(audio)|(video)|(image)/) )
 			{
 				file.can_read = false
-			}
-
-			// Test exclusion
-			for( let _exclude_key in this.options.exclude )
-			{
-				// Set up
-				let _exclude      = this.options.exclude[ _exclude_key ],
-					relative_path = _path.replace( process.cwd() + '/', '' )
-
-				// Match excluded path
-				if( minimatch( relative_path, _exclude ) )
-					return
 			}
 
 			// Retrieve stats
