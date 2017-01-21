@@ -73,6 +73,8 @@ div(ng-controller="ProjectController as controller",ng-init="init('" + project_s
                 .disk.index-0
             a.title(href="/")
                 | Keppler
+                span.version
+                    | #{keppler_version}
 
     section.main
         section.no-file.big-centered-text(ng-if="!file")

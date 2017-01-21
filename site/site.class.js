@@ -190,7 +190,10 @@ class Site
 		this.express.set( 'views', path.join( __dirname, 'views' ) )
 		this.express.use( express.static( path.join( __dirname, 'public' ) ) )
 
-		this.express.locals.domain = this.options.domain
+		let config = require( '../package.json' )
+
+		this.express.locals.keppler_version = config.version
+		this.express.locals.domain          = this.options.domain
 
 		// Controllers
 		this.express.use( '/', require( './controllers/index.js' ) )
