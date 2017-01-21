@@ -6,6 +6,7 @@
     [
         "**/.DS_Store",
         "node_modules/**",
-        "vendors/**"
+        "vendors/**",
+        ".git"
     ]
 }
