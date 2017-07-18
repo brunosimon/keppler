@@ -1,136 +1,138 @@
 'use strict'
 
-let Project = require( './project.class.js' )
+const Project = require('./project.class.js')
 
 class Projects
 {
-	constructor( _options )
-	{
-		this.all = {}
+    constructor(_options)
+    {
+        this.all = {}
 
-		this.set_options( _options )
-		this.set_socket( _options.socket )
-	}
+        this.setOptions(_options)
+        this.setSocket(_options.socket)
+    }
 
-	/**
-	 * Set options
-	 */
-	set_options( _options )
-	{
-		if( typeof _options.debug === 'undefined' )
-		{
-			_options.debug = false
-		}
+    /**
+     * Set options
+     */
+    setOptions(_options)
+    {
+        if(typeof _options.debug === 'undefined')
+        {
+            _options.debug = false
+        }
 
-		// Save
-		this.options = _options
-	}
+        // Save
+        this.options = _options
+    }
 
-	set_socket( socket )
-	{
-		// Set up
-		this.original_socket = socket
-		this.socket          = this.original_socket.of( '/projects' )
+    setSocket(socket)
+    {
+        // Set up
+        this.originalSocket = socket
+        this.socket = this.originalSocket.of('/projects')
 
-		// Connection event
-		this.socket.on( 'connection', ( socket ) =>
-		{
-		    this.socket.emit( 'update_projects', this.describe() )
+        // Connection event
+        this.socket.on('connection', (socket) =>
+        {
+            this.socket.emit('update_projects', this.describe())
 
-		    if( this.options.debug )
-		    {
-		    	console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
-		    }
-		} )
-	}
+            if(this.options.debug)
+            {
+                console.log('socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan)
+            }
+        })
+    }
 
-	create_project( _name )
-	{
-		// Create project
-		let project           = new Project( { name: _name, socket: this.original_socket, debug: this.options.debug } ),
-			same_name_project = this.all[ project.slug ]
+    createProject(_name)
+    {
+        // Create project
+        const project = new Project({ name: _name, socket: this.originalSocket, debug: this.options.debug })
+        let sameNameProject = this.all[ project.slug ]
 
-		// Try to found same name project
-		while( typeof same_name_project !== 'undefined' )
-		{
-			// Found new number
-			let last_number = same_name_project.name.match(/\d+$/),
-				new_number  = 2
+        // Try to found same name project
+        while(typeof sameNameProject !== 'undefined')
+        {
+            // Found new number
+            let lastNumber = sameNameProject.name.match(/\d+$/)
+            let newNumber  = 2
 
-			if( last_number && last_number.length )
-			{
-				last_number = ~~last_number[ 0 ]
+            if(lastNumber && lastNumber.length)
+            {
+                lastNumber = ~~lastNumber[ 0 ]
 
-				new_number = last_number + 1
-			}
+                newNumber = lastNumber + 1
+            }
 
-			// Update project name
-			project.set_name( _name + ' ' + new_number )
+            // Update project name
+            project.set_name(_name + ' ' + newNumber)
 
-			// Try to found
-			same_name_project = this.all[ project.slug ]
-		}
+            // Try to found
+            sameNameProject = this.all[ project.slug ]
+        }
 
-		// Save
-		this.all[ project.slug ] = project
+        // Save
+        this.all[ project.slug ] = project
 
-		// Emit
-    	this.socket.emit( 'update_projects', this.describe() )
+        // Emit
+        this.socket.emit('update_projects', this.describe())
 
-		// Return
-		return project
-	}
+        // Return
+        return project
+    }
 
-	delete_project( _slug )
-	{
-		// Set up
-		let project = this.all[ _slug ]
+    deleteProject(_slug)
+    {
+        // Set up
+        const project = this.all[ _slug ]
 
-		// Project found
-		if( typeof project !== 'undefined' )
-		{
-			// Delete
-			delete this.all[ _slug ]
-			project.destructor()
+        // Project found
+        if(typeof project !== 'undefined')
+        {
+            // Delete
+            delete this.all[ _slug ]
+            project.destructor()
 
-			// Emit
-	    	this.socket.emit( 'update_projects', this.describe() )
-		}
-	}
+            // Emit
+            this.socket.emit('update_projects', this.describe())
+        }
+    }
 
-	get_project_by_slug( _slug )
-	{
-		// Find project
-		let project = this.all[ _slug ]
+    getProjectBySlug(_slug)
+    {
+        // Find project
+        const project = this.all[ _slug ]
 
-		// Found
-		if( project )
-			return project
+        // Found
+        if(project)
+        {
+            return project
+        }
 
-		// Not found
-		return false
-	}
+        // Not found
+        return false
+    }
 
-	describe()
-	{
-		let result = {}
-		result.all = {}
+    describe()
+    {
+        const result = {}
+        result.all = {}
 
-		for( let _slug in this.all )
-		{
-			let _project = this.all[ _slug ]
+        for(const _slug in this.all)
+        {
+            const _project = this.all[ _slug ]
 
-			result.all[ _slug ] = {
-				slug            : _project.slug,
-				name            : _project.name,
-				files_count     : _project.files.count,
-				date            : _project.date,
-				last_update_date: _project.files.last_version_date,
-			}
-		}
+            result.all[ _slug ] = {
+                slug: _project.slug,
+                name: _project.name,
+                filesCount: _project.files.count,
+                date: _project.date,
+                lastUpdateDate: _project.files.last_version_date
+            }
+        }
 
-		return result
-	}
+        return result
+    }
 }
 
 module.exports = Projects

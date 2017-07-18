@@ -1,7 +1,7 @@
 'use strict'
 
 // Dependencies
-let path = require( 'path' )
+const path = require('path')
 
 class Paths
 {
@@ -10,25 +10,29 @@ class Paths
         this.separator = path.sep
     }
 
-    normalize( _path )
+    normalize(_path)
     {
-        if( _path === '.' || _path === '' )
-            return '.';
+        if(_path === '.' || _path === '')
+        {
+            const path = '.'
 
-        let normalized_path = './' + path.normalize( _path )
+            return path
+        }
 
-        return normalized_path
+        const normalizedPath = './' + path.normalize(_path)
+
+        return normalizedPath
     }
 
-    parse( _path )
+    parse(_path)
     {
-        let normalized_path = this.normalize( _path ),
-            parsed_path     = path.parse( normalized_path )
+        const normalizedPath = this.normalize(_path)
+        const parsedPath = path.parse(normalizedPath)
 
-        return parsed_path
+        return parsedPath
     }
 }
 
-let paths = new Paths()
+const paths = new Paths()
 
 module.exports = paths

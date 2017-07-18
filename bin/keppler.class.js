@@ -1,12 +1,10 @@
 'use strict'
 
 // Depedencies
-let path           = require( 'path' ),
-    colors         = require( 'colors' ),
-    ip             = require( 'ip' ),
-    Site           = require( '../site/site.class.js' ),
-    Watcher        = require( '../watcher/watcher.class.js' ),
-    default_config = require( './config.default.json' )
+const ip = require('ip')
+const Site = require('../site/site.class.js')
+const Watcher = require('../watcher/watcher.class.js')
+const defaultConfig = require('./config.default.json')
 
 /**
  * Keppler class
@@ -16,67 +14,72 @@ class Keppler
     /**
      * Constructor
      */
-    constructor( _options )
+    constructor(_options)
     {
-        this.set_arguments()
-        this.set_options( _options )
-        this.set_site()
-        this.set_watcher()
+        this.setArguments()
+        this.setOptions(_options)
+        this.setSite()
+        this.setWatcher()
     }
 
     /**
      * Set options
      */
-    set_options( _options )
+    setOptions(_options)
     {
-        // No option
-        if( typeof _options !== 'object' )
-            _options = {}
-
+        const options = typeof _options === 'object' ? _options : {}
+        
         // Defaults
-        if( typeof _options.debug === 'undefined' )
+        if(typeof options.debug === 'undefined')
         {
-            if( this.arguments.length > 1 )
+            if(this.arguments.length > 1)
             {
-                _options.debug = this.arguments[ this.arguments.length - 1 ] === 'true' ? true : false
+                options.debug = this.arguments[ this.arguments.length - 1 ] === 'true'
             }
             else
             {
-                _options.debug = default_config.debug
+                options.debug = defaultConfig.debug
             }
         }
 
-        if( typeof _options.port === 'undefined' )
-            _options.port = default_config.port
+        if(typeof options.port === 'undefined')
+        {
+            options.port = defaultConfig.port
+        }
 
-        if( typeof _options.domain === 'undefined' )
-            _options.domain = `http://${ip.address()}:${_options.port}`
+        if(typeof options.domain === 'undefined')
+        {
+            options.domain = `http://${ip.address()}:${options.port}`
+        }
 
-        if( typeof _options.max_file_size === 'undefined' )
-            _options.max_file_size = default_config.max_file_size
+        if(typeof options.maxFileSize === 'undefined')
+        {
+            options.maxFileSize = defaultConfig.maxFileSize
+        }
 
-        if( typeof _options.exclude === 'undefined' )
-            _options.exclude = default_config.exclude
+        if(typeof options.exclude === 'undefined')
+        {
+            options.exclude = defaultConfig.exclude
+        }
 
         // Save
-        this.options = _options
+        this.options = options
     }
 
     /**
      * Set arguments
      * Retrieve arguments and test if missing
      */
-    set_arguments()
+    setArguments()
     {
         // Set up
-        this.arguments = process.argv.slice( 2 )
+        this.arguments = process.argv.slice(2)
 
         // Missing project name
-        if( this.arguments.length === 0 )
+        if(this.arguments.length === 0)
         {
             // Stop process
-            console.log( 'Missing arguments: first argument should be the projet name'.red )
-            process.exit()
+            throw new Error('Missing arguments: first argument should be the projet name'.red)
         }
     }
 
@@ -84,29 +87,29 @@ class Keppler
      * Set site
      * Instantiate site
      */
-    set_site()
+    setSite()
     {
-        this.site = new Site( {
+        this.site = new Site({
             port  : this.options.port,
             domain: this.options.domain,
             debug : this.options.debug
-        } )
+        })
     }
 
     /**
      * Set watcher
      * Instantiate watcher
      */
-    set_watcher()
+    setWatcher()
     {
-        this.watcher = new Watcher( {
+        this.watcher = new Watcher({
             port         : this.options.port,
             domain       : this.options.domain,
             debug        : this.options.debug,
-            max_file_size: this.options.max_file_size,
+            maxFileSize: this.options.maxFileSize,
             exclude      : this.options.exclude,
             name         : this.arguments[ 0 ]
-        } )
+        })
     }
 }
 

@@ -1,4 +1,4 @@
 'use strict'
 
-let Watcher = require( './watcher.class.js' ),
-	watcher = new Watcher()
+const Watcher = require('./watcher.class.js')
+const watcher = new Watcher()

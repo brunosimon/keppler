@@ -1,6 +1,6 @@
 {
   "name": "keppler",
-  "version": "0.6.1",
+  "version": "1.0.0",
   "description": "",
   "bin": {
     "keppler": "bin/index.js"
@@ -33,5 +33,9 @@
     "slug": "^0.9.1",
     "socket.io": "^1.4.6",
     "socket.io-client": "^1.4.6"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-plugin-node": "^5.1.0"
   }
 }

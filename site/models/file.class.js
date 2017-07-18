@@ -1,106 +1,112 @@
 'use strict'
 
 // Depedencies
-let diff  = require( 'diff' ),
-	util  = require( 'util' ),
-	paths = require( '../utils/paths.class.js' ),
-	ids   = require( '../utils/ids.class.js' )
+const diff = require('diff')
+const ids = require('../utils/ids.class.js')
 
 class File
 {
-	constructor( _options )
-	{
-		// Set up
-		this.id             = ids.get_id()
-		this.name           = _options.name
-		this.path           = {}
-		this.path.directory = _options.path
-		this.path.full      = this.path.directory + '/' + this.name
-		this.versions       = []
-		this.socket         = _options.socket
+    constructor(_options)
+    {
+        // Set up
+        this.id             = ids.get_id()
+        this.name           = _options.name
+        this.path           = {}
+        this.path.directory = _options.path
+        this.path.full      = this.path.directory + '/' + this.name
+        this.versions       = []
+        this.socket         = _options.socket
 
-		let name_parts = this.name.split( '.' )
-		if( name_parts.length > 1 )
-			this.extension = name_parts[ name_parts.length - 1 ]
-		else
-			this.extension = ''
+        const nameParts = this.name.split('.')
 
-		// Create first version
-		if( typeof _options.content !== 'undefined' )
-			this.create_version( _options.content )
-	}
+        if(nameParts.length > 1)
+        {
+            this.extension = nameParts[ nameParts.length - 1 ]
+        }
+        else
+        {
+            this.extension = ''
+        }
 
-	create_version( content )
-	{
-		// Create version
-		let version      = {},
-			last_version = this.get_last_version()
+        // Create first version
+        if(typeof _options.content !== 'undefined')
+        {
+            this.createVersion(_options.content)
+        }
+    }
 
-		version.date    = new Date()
-		version.content = content
+    createVersion(content)
+    {
+        // Create version
+        const version = {}
+        const lastVersion = this.getLastVersion()
 
-		if( !last_version )
-		{
-			version.diff = false
-		}
-		else if( version.content === '' )
-		{
-			version.diff = [ { count: 1, added: true, removed: undefined, value: 'a'} ]
+        version.date = new Date()
+        version.content = content
 
-			if( last_version.content === '' )
-			{
-				return false
-			}
-		}
-		else
-		{
-			version.diff = diff.diffLines(
-				last_version.content,
-				version.content,
-				{
-					// ignoreWhitespace: true
-				}
-			)
+        if(!lastVersion)
+        {
+            version.diff = false
+        }
+        else if(version.content === '')
+        {
+            version.diff = [{ count: 1, added: true, removed: undefined, value: 'a' }]
 
-			// No changed
-			if( version.diff.length === 1 && last_version.content !== '' )
-			{
-				return false
-			}
-		}
+            if(lastVersion.content === '')
+            {
+                return false
+            }
+        }
+        else
+        {
+            version.diff = diff.diffLines(
+                lastVersion.content,
+                version.content,
+                {
+                    // ignoreWhitespace: true
+                }
+            )
 
-		// Emit
-		this.socket.emit( 'create_version', { file: this.path.full, version: version } )
+            // No changed
+            if(version.diff.length === 1 && lastVersion.content !== '')
+            {
+                return false
+            }
+        }
 
-		// Save
-		this.versions.push( version )
-	}
+        // Emit
+        this.socket.emit('createVersion', { file: this.path.full, version })
 
-	get_last_version()
-	{
-		if( this.versions.length === 0 )
-			return false
+        // Save
+        this.versions.push(version)
+    }
 
-		return this.versions[ this.versions.length - 1 ]
-	}
+    getLastVersion()
+    {
+        if(this.versions.length === 0)
+            return false
 
-	describe()
-	{
-		// Set up
-		let result = {}
-		result.id        = this.id
-		result.name      = this.name
-		result.path      = this.path
-		result.versions  = this.versions
-		result.extension = this.extension
+        return this.versions[ this.versions.length - 1 ]
+    }
 
-		return result
-	}
+    describe()
+    {
+        // Set up
+        const result = {}
 
-	destructor()
-	{
+        result.id        = this.id
+        result.name      = this.name
+        result.path      = this.path
+        result.versions  = this.versions
+        result.extension = this.extension
 
-	}
+        return result
+    }
+
+    destructor()
+    {
+
+    }
 }
 
 module.exports = File

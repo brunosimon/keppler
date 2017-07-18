@@ -1,75 +1,76 @@
 'use strict'
 
 // Dependencies
-let slug   = require( 'slug' ),
-	Files  = require( './files.class.js' )
+const slug = require('slug')
+const Files = require('./files.class.js')
 
 class Project
 {
-	constructor( _options )
-	{
-		this.set_options( _options )
-		this.set_name( _options.name )
-		this.set_socket( _options.socket )
+    constructor(_options)
+    {
+        this.setOptions(_options)
+        this.setName(_options.name)
+        this.setSocket(_options.socket)
 
-		this.files = new Files( { socket: this.socket } )
-		this.date  = new Date()
-	}
+        this.files = new Files({ socket: this.socket })
+        this.date  = new Date()
+    }
 
-	/**
-	 * Set options
-	 */
-	set_options( _options )
-	{
-		if( typeof _options.debug === 'undefined' )
-		{
-			_options.debug = false
-		}
+    /**
+     * Set options
+     */
+    setOptions(_options)
+    {
+        if(typeof _options.debug === 'undefined')
+        {
+            _options.debug = false
+        }
 
-		// Save
-		this.options = _options
-	}
+        // Save
+        this.options = _options
+    }
 
-	set_name( _name )
-	{
-		this.name = _name
-		this.slug = slug( this.name, { lower: true } )
-	}
+    setName(_name)
+    {
+        this.name = _name
+        this.slug = slug(this.name, { lower: true })
+    }
 
-	set_socket( socket )
-	{
-		// Set up
-		this.original_socket = socket
-		this.socket          = this.original_socket.of( '/project/' + this.slug )
+    setSocket(socket)
+    {
+        // Set up
+        this.originalSocket = socket
+        this.socket = this.originalSocket.of('/project/' + this.slug)
 
-		// Connection event
-		this.socket.on( 'connection', ( socket ) =>
-		{
-		    this.socket.emit( 'update_project', this.describe() )
+        // Connection event
+        this.socket.on('connection', (socket) =>
+        {
+            this.socket.emit('update_project', this.describe())
 
-		    // Debug
-		    if( this.options.debug )
-		    {
-		    	console.log( 'socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan )
-		    }
-		} )
-	}
+            // Debug
+            if(this.options.debug)
+            {
+                console.log('socket projects'.green.bold + ' - ' + 'connect'.cyan + ' - ' + socket.id.cyan)
+            }
+        })
+    }
 
-	describe()
-	{
-		// Set up
-		let result = {}
-		result.name  = this.name
-		result.files = this.files.describe()
-		result.date  = this.date
+    describe()
+    {
+        // Set up
+        const result = {}
 
-		return result
-	}
+        result.name  = this.name
+        result.files = this.files.describe()
+        result.date  = this.date
 
-	destructor()
-	{
-		this.socket.emit( 'destruct' )
-	}
+        return result
+    }
+
+    destructor()
+    {
+        this.socket.emit('destruct')
+    }
 }
 
 module.exports = Project

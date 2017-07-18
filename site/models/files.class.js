@@ -1,145 +1,146 @@
 'use strict'
 
 // Dependencies
-let paths         = require( '../utils/paths.class.js' ),
-	File          = require( './file.class.js' )
+const paths = require('../utils/paths.class.js')
+const File = require('./file.class.js')
 
 class Files
 {
-	constructor( _options )
-	{
-		this.items             = {}
-		this.count             = 0
-		this.socket            = _options.socket
-		this.last_version_date = new Date()
-	}
+    constructor(_options)
+    {
+        this.items             = {}
+        this.count             = 0
+        this.socket            = _options.socket
+        this.lastVersionDate = new Date()
+    }
 
-	create( _path, _content )
-	{
-		// Set up
-		let normalized_path = paths.normalize( _path ),
-			parsed_path     = paths.parse( normalized_path )
+    create(_path, _content)
+    {
+        // Set up
+        const normalizedPath = paths.normalize(_path)
+        const parsedPath = paths.parse(normalizedPath)
 
-		// Retrieve file
-		let file = this.get( normalized_path )
+        // Retrieve file
+        let file = this.get(normalizedPath)
 
-		// File already exist
-		if( file )
-			return false
+        // File already exist
+        if(file)
+        {
+            return false
+        }
 
-		// Create
-		file = new File( {
-			name   : parsed_path.base,
-			path   : parsed_path.dir,
-			content: _content,
-			socket : this.socket
-		} )
+        // Create
+        file = new File({
+            name   : parsedPath.base,
+            path   : parsedPath.dir,
+            content: _content,
+            socket : this.socket
+        })
 
-		// Save
-		this.items[ normalized_path ] = file
-		this.count++
-		this.last_version_date = new Date()
+        // Save
+        this.items[ normalizedPath ] = file
+        this.count++
+        this.lastVersionDate = new Date()
 
-		// Emit
-		this.socket.emit( 'create_file', file.describe() )
+        // Emit
+        this.socket.emit('create_file', file.describe())
 
-		return file
-	}
+        return file
+    }
 
-	create_version( _path, _content )
-	{
-		// Set up
-		let normalized_path = paths.normalize( _path )
+    createVersion(_path, _content)
+    {
+        // Set up
+        const normalizedPath = paths.normalize(_path)
 
-		// Retrieve file
-		let file = this.get( normalized_path, true )
+        // Retrieve file
+        const file = this.get(normalizedPath, true)
 
-		if( typeof _content !== 'undefined' )
-		{
-			// Create version
-			file.create_version( _content )
-		}
+        if(typeof _content !== 'undefined')
+        {
+            // Create version
+            file.createVersion(_content)
+        }
 
-		// Save
-		this.last_version_date = new Date()
+        // Save
+        this.lastVersionDate = new Date()
 
-    	return file
-	}
+        return file
+    }
 
-	get( _path, _force_creation )
-	{
-		// Params
-		if( typeof _force_creation === 'undefined' )
-			_force_creation = false
+    get(_path, _forceCreation)
+    {
+        const forceCreation = typeof _forceCreation === 'undefined' ? false : _forceCreation
 
-		// Set up
-		let normalized_path = paths.normalize( _path )
+        // Set up
+        const normalizedPath = paths.normalize(_path)
 
-		// Retrieve file
-		let file = this.items[ normalized_path ]
+        // Retrieve file
+        let file = this.items[ normalizedPath ]
 
-		// File found
-		if( typeof file !== 'undefined' )
-		{
-			return file
-		}
+        // File found
+        if(typeof file !== 'undefined')
+        {
+            return file
+        }
 
-		// Force creation
-		if( _force_creation )
-		{
-			file = this.create( normalized_path )
-			return file
-		}
+        // Force creation
+        if(forceCreation)
+        {
+            file = this.create(normalizedPath)
+            return file
+        }
 
-		// Not found
-		return false
-	}
+        // Not found
+        return false
+    }
 
-	delete( _path )
-	{
-		// Set up
-		let normalized_path = paths.normalize( _path )
+    delete(_path)
+    {
+        // Set up
+        const normalizedPath = paths.normalize(_path)
 
-		// Retrieve file
-		let file = this.get( normalized_path )
+        // Retrieve file
+        const file = this.get(normalizedPath)
 
-		// File found
-		if( file )
-		{
-			// Delete file
-			file.destructor()
-			delete this.items[ normalized_path ]
-			this.count--
+        // File found
+        if(file)
+        {
+            // Delete file
+            file.destructor()
+            delete this.items[ normalizedPath ]
+            this.count--
 
-			// Save
-			this.last_version_date = new Date()
+            // Save
+            this.lastVersionDate = new Date()
 
-			// Emit
-			this.socket.emit( 'delete_file', file.describe() )
+            // Emit
+            this.socket.emit('delete_file', file.describe())
 
-			return true
-		}
+            return true
+        }
 
-		return false
-	}
+        return false
+    }
 
-	describe()
-	{
-		// Set up
-		let result   = {}
-		result.count = this.count
-		result.items = {}
+    describe()
+    {
+        // Set up
+        const result   = {}
 
-		// Each file
-		for( let _file_path in this.items )
-		{
-			let _file = this.items[ _file_path ]
+        result.count = this.count
+        result.items = {}
 
-			result.items[ _file_path ] = _file.describe()
-		}
+        // Each file
+        for(const _filePath in this.items)
+        {
+            const file = this.items[_filePath]
 
-		return result
-	}
+            result.items[_filePath] = file.describe()
+        }
+
+        return result
+    }
 }
 
 module.exports = Files

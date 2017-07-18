@@ -1,8 +1,8 @@
 {
-    "debug"        : false,
-    "port"         : 1571,
-    "max_file_size": 99999,
-    "exclude"      :
+    "debug": false,
+    "port": 1571,
+    "maxFileSize": 99999,
+    "exclude":
     [
         "**/.DS_Store",
         "node_modules/**",

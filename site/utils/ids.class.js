@@ -4,15 +4,17 @@ class IDs
 {
     constructor()
     {
-        this.last_id = 0
+        this.lastId = 0
     }
 
-    get_id()
+    getId()
     {
-        return ++this.last_id
+        const lastId = ++this.lastId
+
+        return lastId
     }
 }
 
-let ids = new IDs()
+const ids = new IDs()
 
 module.exports = ids
