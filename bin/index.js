@@ -2,5 +2,5 @@
 
 'use strict'
 
-const Keppler = require('./keppler.class.js')
-const keppler = new Keppler()
+const App = require('../lib/app')
+const app = new App()
