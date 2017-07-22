@@ -7,7 +7,7 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder'"
+    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder' -d"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,8 @@
     "pug": "^2.0.0-beta4",
     "slug": "^0.9.1",
     "socket.io": "^1.4.6",
-    "socket.io-client": "^1.4.6"
+    "socket.io-client": "^1.4.6",
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "eslint": "^4.2.0",
