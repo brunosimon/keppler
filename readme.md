@@ -60,7 +60,7 @@ Arguments list
 |<span style="white-space:nowrap">`--open`</span>|`-o`|*(bool)*`true`|Open in default browser|
 |<span style="white-space:nowrap">`--test`</span>|`-t`|*(bool)*`false`|Start a test project|
 |<span style="white-space:nowrap">`--initial-send`</span>|`-i`|*(bool)*`false`|Send files in folder at start|
-|<span style="white-space:nowrap">`--max-file-size`</span>|`-i`|*(number)*`99999`|Maximum file size in octets|
+|<span style="white-space:nowrap">`--max-file-size`</span>|`-m`|*(number)*`99999`|Maximum file size in octets|
 
 ## Features
 
