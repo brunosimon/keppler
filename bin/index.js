@@ -2,5 +2,5 @@
 
 'use strict'
 
-const App = require('../lib/app')
+const App = require('../lib')
 const app = new App()
