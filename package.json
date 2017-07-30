@@ -7,8 +7,7 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder'",
-    "test-project": "node ./bin --debug 1 --test"
+    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder' --test"
   },
   "repository": {
     "type": "git",
