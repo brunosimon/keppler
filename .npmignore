@@ -1,0 +1,5 @@
+.eslintrc.js
+.gitignore
+.npmignore
+test/
+resources/
