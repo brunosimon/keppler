@@ -1,6 +1,6 @@
-# site-webpack
+# vue-test
 
->  
+> A Vue.js project
 
 ## Build Setup
 
