@@ -7,18 +7,24 @@ export default
     data()
     {
         return {
-            counter: 0
+            counter: 0,
+            projects: { type: Object, value: {} }
         }
     },
 
     mounted()
     {
-        const socketUrl = `${process.env === 'production' ? '' : 'http://192.168.1.12:1571/projects'}`
+        const socketUrl = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/projects`
         const socket = socketIoClient(socketUrl)
 
         socket.on('connect', () =>
         {
             console.log('connected')
+        })
+
+        socket.on('update_projects', (data) =>
+        {
+            this.projects = data.all
         })
 
         window.setInterval(() =>
