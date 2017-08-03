@@ -12,6 +12,7 @@ module.exports = {
     },
     'rules':
     {
+        'node/no-unsupported-features': 0,
         'no-console': 0,
         'dot-notation': 1,
         'eqeqeq': 1,
@@ -30,7 +31,7 @@ module.exports = {
         'func-style': [1, 'expression'],
         'id-length': 0,
         'indent': [1, 4],
-        'keyword-spacing': [1, { after: false, before: false }],
+        'keyword-spacing': 0,
         'max-len': 0,
         'new-cap': [1, { newIsCap: true, newIsCapExceptions: [], capIsNew: false, capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'] }],
         'no-array-constructor': 1,
