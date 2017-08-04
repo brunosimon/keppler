@@ -13,5 +13,13 @@ export default
     created()
     {
 
+    },
+
+    methods:
+    {
+        onProjectClick(projectSlug)
+        {
+            this.$store.commit('setCurrentProject', projectSlug)
+        }
     }
 }

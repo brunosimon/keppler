@@ -1,5 +1,5 @@
 <div>
-    <a :href="project.slug" v-for="project in projects">
+    <a href="#" v-for="project in projects" @click.prevent="onProjectClick(project.slug)">
         {{ project.name }}
     </a>
 </div>

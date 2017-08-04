@@ -5,7 +5,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state:
     {
-        projects: [],
+        projects: {},
         currentProject: null
     },
 
@@ -13,10 +13,28 @@ export default new Vuex.Store({
     {
         updateProjects(state, data)
         {
-            for(const key in data)
+            state.projects = data
+
+            // Has a current project
+            if(state.currentProject)
             {
-                const project = data[key]
-                state.projects.push(project)
+                // Current project has been removed
+                if(typeof state.projects[data] === 'undefined')
+                {
+                    state.currentProject = null
+                }
+            }
+
+            // No current project
+            else
+            {
+                const projectKeys = Object.keys(state.projects)
+
+                // If only one project, set has current
+                if(projectKeys.length === 1)
+                {
+                    state.currentProject = state.projects[projectKeys[0]]
+                }
             }
         },
 
@@ -25,9 +43,13 @@ export default new Vuex.Store({
             state.projects.push(data)
         },
 
-        removeProject(state, data)
+        setCurrentProject(state, data)
         {
-            console.log(data)
+            // Test of project exist
+            if(typeof state.projects[data] !== 'undefined')
+            {
+                state.currentProject = state.projects[data]
+            }
         }
     }
 })

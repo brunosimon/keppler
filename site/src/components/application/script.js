@@ -23,6 +23,11 @@ export default
         projects()
         {
             return this.$store.state.projects
+        },
+
+        project()
+        {
+            return this.$store.state.currentProject
         }
     },
 
