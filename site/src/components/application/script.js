@@ -1,32 +1,33 @@
-import socketIoClient from 'socket.io-client'
+import Connexion from '@/components/connexion'
+import ProjectsHub from '@/components/projects-hub'
 
 export default
 {
     name: 'application',
 
+    components:
+    {
+        Connexion,
+        ProjectsHub
+    },
+
     data()
     {
         return {
-            counter: 0,
-            projects: { type: Object, value: {} }
+            counter: 0
+        }
+    },
+
+    computed:
+    {
+        projects()
+        {
+            return this.$store.state.projects
         }
     },
 
     mounted()
     {
-        const socketUrl = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/projects`
-        const socket = socketIoClient(socketUrl)
-
-        socket.on('connect', () =>
-        {
-            console.log('connected')
-        })
-
-        socket.on('update_projects', (data) =>
-        {
-            this.projects = data.all
-        })
-
         window.setInterval(() =>
         {
             this.counter++
