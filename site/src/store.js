@@ -80,6 +80,16 @@ export default new Vuex.Store({
         deleteFile(state, data)
         {
             state.files.removeFile(data.path.full)
+        },
+
+        setFile(state, data)
+        {
+            const file = state.files.getFile(data)
+
+            if(file)
+            {
+                state.file = file
+            }
         }
     }
 })

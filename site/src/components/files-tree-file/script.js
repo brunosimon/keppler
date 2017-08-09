@@ -14,5 +14,9 @@ export default
 
     methods:
     {
+        onNameClick()
+        {
+            this.$store.commit('setFile', this.content.data.path.full)
+        }
     }
 }

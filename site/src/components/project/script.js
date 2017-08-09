@@ -1,4 +1,5 @@
 import FilesTree from '@/components/files-tree'
+import File from '@/components/file'
 
 export default
 {
@@ -6,7 +7,8 @@ export default
 
     components:
     {
-        FilesTree
+        FilesTree,
+        File
     },
 
     computed:
@@ -14,6 +16,10 @@ export default
         project()
         {
             return this.$store.state.project
+        },
+        file()
+        {
+            return this.$store.state.file
         }
     },
 
