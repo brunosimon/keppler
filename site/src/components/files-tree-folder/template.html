@@ -1,0 +1,7 @@
+<div>
+    <div class="name" :style="{paddingLeft:depth * 20 + 'px'}">
+        {{ content.name }}
+    </div>
+    <files-tree-folder v-for="folder of content.folders" :key="+ new Date()" :content="folder" :depth="depth + 1"></files-tree-folder>
+    <files-tree-file v-for="file of content.files" :key="+ new Date()" :content="file" :depth="depth + 1"></files-tree-file>
+</div>

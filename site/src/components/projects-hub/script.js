@@ -19,7 +19,7 @@ export default
     {
         onProjectClick(projectSlug)
         {
-            this.$store.commit('setCurrentProject', projectSlug)
+            this.$store.commit('setProject', projectSlug)
         }
     }
 }

@@ -1,27 +1,34 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import FileTree from '@/utils/FileTree'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:
     {
         projects: {},
-        currentProject: null
+        project: null,
+        files: new FileTree({ autoWash: true }),
+        file: null
     },
 
     mutations:
     {
+        /**
+         * Projects
+         */
         updateProjects(state, data)
         {
             state.projects = data
 
             // Has a current project
-            if(state.currentProject)
+            if(state.project)
             {
                 // Current project has been removed
                 if(typeof state.projects[data] === 'undefined')
                 {
-                    state.currentProject = null
+                    state.project = null
                 }
             }
 
@@ -33,7 +40,7 @@ export default new Vuex.Store({
                 // If only one project, set has current
                 if(projectKeys.length === 1)
                 {
-                    state.currentProject = state.projects[projectKeys[0]]
+                    state.project = state.projects[projectKeys[0]]
                 }
             }
         },
@@ -43,13 +50,36 @@ export default new Vuex.Store({
             state.projects.push(data)
         },
 
-        setCurrentProject(state, data)
+        setProject(state, data)
         {
             // Test of project exist
             if(typeof state.projects[data] !== 'undefined')
             {
-                state.currentProject = state.projects[data]
+                state.project = state.projects[data]
             }
+        },
+
+        /**
+         * Files
+         */
+        updateFiles(state, data)
+        {
+            state.files = new FileTree({ autoWash: true })
+
+            for(const file of data)
+            {
+                state.files.addFile(file.path.full, file)
+            }
+        },
+
+        createFile(state, data)
+        {
+            state.files.addFile(data.path.full, data)
+        },
+
+        deleteFile(state, data)
+        {
+            state.files.removeFile(data.path.full)
         }
     }
 })

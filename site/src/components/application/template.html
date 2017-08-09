@@ -2,7 +2,5 @@
     {{ counter }}
     <connexion></connexion>
     <projects-hub></projects-hub>
-    <div v-if="project">
-        {{ project.name }}
-    </div>
+    <project v-if="project"></project>
 </div>
