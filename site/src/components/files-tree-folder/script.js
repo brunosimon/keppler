@@ -1,4 +1,5 @@
 import FilesTreeFile from '@/components/files-tree-file'
+
 export default
 {
     name: 'files-tree-folder',
@@ -14,11 +15,22 @@ export default
         content: { type: Object }
     },
 
+    data()
+    {
+        return {
+            open: true
+        }
+    },
+
     created()
     {
     },
 
     methods:
     {
+        onNameClick()
+        {
+            this.open = !this.open
+        }
     }
 }

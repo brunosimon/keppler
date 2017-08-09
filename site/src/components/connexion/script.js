@@ -49,25 +49,21 @@ export default
 
             this.projectSocket.on('update_project', (data) =>
             {
-                // console.log('update_project', data)
                 this.$store.commit('updateFiles', data.files.items)
             })
 
             this.projectSocket.on('create_file', (data) =>
             {
-                // console.log('create_file', data)
                 this.$store.commit('createFile', data)
             })
 
             this.projectSocket.on('delete_file', (data) =>
             {
-                // console.log('delete_file', data)
                 this.$store.commit('deleteFile', data)
             })
 
             this.projectSocket.on('createVersion', (data) =>
             {
-                // console.log('createVersion', data)
             })
         }
     }

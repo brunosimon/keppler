@@ -40,15 +40,14 @@ class FileTree
         // Ending `/`
         path = path.replace(/\/$/, '')
 
-        console.log(path)
-
-        // Starting `.`
-        path = path.replace(/^\./, '')
-
         // Starting `/`
         path = path.replace(/^\//, '')
 
-        path = './' + path
+        // Missing starting `./`
+        if(path !== '.' && path.search('./') !== 0)
+        {
+            path = './' + path
+        }
 
         return path
     }

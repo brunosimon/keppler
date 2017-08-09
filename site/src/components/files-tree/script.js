@@ -39,22 +39,11 @@ export default
         }
     },
 
-    watch:
-    {
-        files: 'onFilesChange'
-    },
-
     created()
     {
     },
 
     methods:
     {
-        onFilesChange(newValue, oldValue)
-        {
-            console.log('onFilesChange')
-            console.log(newValue)
-            console.log(oldValue)
-        }
     }
 }
