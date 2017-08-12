@@ -64,6 +64,7 @@ export default
 
             this.projectSocket.on('createVersion', (data) =>
             {
+                this.$store.commit('createVersion', data)
             })
         }
     }

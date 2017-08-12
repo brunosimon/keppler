@@ -93,6 +93,16 @@ export default new Vuex.Store({
             }
         },
 
+        createVersion(state, data)
+        {
+            const file = state.files.getFile(data.file)
+
+            if(file)
+            {
+                file.data.versions.push(data.version)
+            }
+        },
+
         setVersion(state, data)
         {
             state.version = data
