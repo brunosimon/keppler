@@ -12,5 +12,21 @@ export default
     props:
     {
         content: { type: Array }
+    },
+
+    computed:
+    {
+        versions()
+        {
+            const versions = this.content.sort((versionA, versionB) =>
+            {
+                const dateA = new Date(versionA.date)
+                const dateB = new Date(versionB.date)
+
+                return dateB.getTime() - dateA.getTime()
+            })
+
+            return versions
+        }
     }
 }

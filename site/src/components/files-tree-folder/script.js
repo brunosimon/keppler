@@ -22,6 +22,19 @@ export default
         }
     },
 
+    computed:
+    {
+        files()
+        {
+            const files = this.content.files.sort((fileA, fileB) =>
+            {
+                return fileA.name < fileB.name ? -1 : 1
+            })
+
+            return files
+        }
+    },
+
     created()
     {
     },
