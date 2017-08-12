@@ -26,10 +26,7 @@ export default
     {
         files()
         {
-            const files = this.content.files.sort((fileA, fileB) =>
-            {
-                return fileA.name < fileB.name ? -1 : 1
-            })
+            const files = this.content.files.sort((fileA, fileB) => fileA.name < fileB.name ? -1 : 1)
 
             return files
         }
