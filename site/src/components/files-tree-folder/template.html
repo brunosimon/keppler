@@ -1,7 +1,7 @@
 <div>
-    <div class="name" :style="{ paddingLeft:depth * 20 + 'px' }" @click.prevent="onNameClick">
+    <a href="#" class="name" :style="{ paddingLeft:depth * 20 + 'px' }" @click.prevent="onNameClick">
         {{ content.name }}
-    </div>
+    </a>
     <div v-show="open">
         <files-tree-folder v-for="folder of content.folders" :key="folder.name" :content="folder" :depth="depth + 1"></files-tree-folder>
         <files-tree-file v-for="file of content.files" :key="file.data.path.full" :content="file" :depth="depth + 1"></files-tree-file>

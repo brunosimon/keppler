@@ -10,7 +10,8 @@ export default new Vuex.Store({
         projects: {},
         project: null,
         files: new FileTree({ autoWash: true }),
-        file: null
+        file: null,
+        version: null
     },
 
     mutations:
@@ -90,6 +91,11 @@ export default new Vuex.Store({
             {
                 state.file = file
             }
+        },
+
+        setVersion(state, data)
+        {
+            state.version = data
         }
     }
 })

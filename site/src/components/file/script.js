@@ -1,4 +1,5 @@
 import Versions from '@/components/versions'
+import Viewer from '@/components/viewer'
 
 export default
 {
@@ -6,7 +7,8 @@ export default
 
     components:
     {
-        Versions
+        Versions,
+        Viewer
     },
 
     props:
