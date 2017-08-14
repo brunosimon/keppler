@@ -15,7 +15,7 @@ export default {
             if(state.current)
             {
                 // Current project has been removed
-                if(typeof state.all[data] === 'undefined')
+                if(typeof state.all[state.current.slug] === 'undefined')
                 {
                     state.current = null
                 }
@@ -46,6 +46,6 @@ export default {
             {
                 state.current = state.all[data]
             }
-        },
+        }
     }
 }

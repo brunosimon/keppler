@@ -17,7 +17,7 @@ export default
     {
         project()
         {
-            return this.$store.state.projects.all
+            return this.$store.state.projects.current
         },
 
         file()

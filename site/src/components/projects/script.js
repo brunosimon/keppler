@@ -1,6 +1,6 @@
 export default
 {
-    name: 'projects-hub',
+    name: 'projects',
 
     computed:
     {
