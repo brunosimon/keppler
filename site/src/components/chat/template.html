@@ -18,4 +18,7 @@
     <div class="infos" v-if="user">
         Your nickname is <input class="user-name" :style="`color: ${user.color};`" v-model="userName" @change="onUserNameChange($event)" @keydown="onUserNameKeyDown($event)"/>
     </div>
+    <div class="message">
+        <textarea class="text" v-model="messageText" @keydown="onMessageTextKeyDown($event)"></textarea>
+    </div>
 </div>

@@ -14,13 +14,19 @@ export default
         pendingUser()
         {
             return this.$store.state.chat.pendingUser
+        },
+
+        pendingMessage()
+        {
+            return this.$store.state.chat.pendingMessage
         }
     },
 
     watch:
     {
         project: 'onProjectChange',
-        pendingUser: 'onPendingUser'
+        pendingUser: 'onPendingUser',
+        pendingMessage: 'onPendingMessage'
     },
 
     created()
@@ -104,6 +110,14 @@ export default
             if(value)
             {
                 this.chatSocket.emit('update_user', value)
+            }
+        },
+
+        onPendingMessage(value)
+        {
+            if(value)
+            {
+                this.chatSocket.emit('message', value)
             }
         }
     }

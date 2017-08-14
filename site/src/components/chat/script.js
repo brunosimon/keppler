@@ -5,7 +5,8 @@ export default
     data()
     {
         return {
-            userName: ''
+            userName: '',
+            messageText: ''
         }
     },
 
@@ -38,7 +39,7 @@ export default
     {
         onUserNameChange()
         {
-            this.$store.commit('askUpdateUser', { name: this.userName })
+            this.$store.commit('setPendingUser', { name: this.userName })
         },
 
         onUserNameKeyDown(event)
@@ -47,6 +48,19 @@ export default
             if(event.keyCode === 13)
             {
                 event.target.blur()
+            }
+        },
+
+        onMessageTextKeyDown(event)
+        {
+            // Blur if enter pressed
+            if(event.keyCode === 13)
+            {
+                event.preventDefault()
+                event.target.blur()
+
+                this.$store.commit('setPendingMessage', { text: this.messageText })
+                this.messageText = ''
             }
         }
     }

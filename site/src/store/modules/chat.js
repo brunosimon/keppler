@@ -24,9 +24,14 @@ export default {
             state.user = data
         },
 
-        askUpdateUser(state, data)
+        setPendingUser(state, data)
         {
             state.pendingUser = data
+        },
+
+        setPendingMessage(state, data)
+        {
+            state.pendingMessage = data
         }
     }
 }
