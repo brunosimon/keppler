@@ -9,12 +9,18 @@ export default
         project()
         {
             return this.$store.state.project
+        },
+
+        pendingUser()
+        {
+            return this.$store.state.pendingUser
         }
     },
 
     watch:
     {
-        project: 'onProjectChange'
+        project: 'onProjectChange',
+        pendingUser: 'onPendingUser'
     },
 
     created()
@@ -29,7 +35,6 @@ export default
 
         this.projectsSocket.on('update_projects', (data) =>
         {
-            // console.log('update_projects', data)
             this.$store.commit('updateProjects', data.all)
         })
     },
@@ -38,6 +43,12 @@ export default
     {
         onProjectChange(value)
         {
+            if(!value)
+            {
+                return
+            }
+
+            // Project socket
             const projectURL = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/project/${value.slug}`
 
             this.projectSocket = socketIoClient(projectURL)
@@ -66,6 +77,31 @@ export default
             {
                 this.$store.commit('createVersion', data)
             })
+
+            // Chat socket
+            const chatURL = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/project/${value.slug}/chat`
+
+            this.chatSocket = socketIoClient(chatURL)
+
+            this.chatSocket.on('connect', () =>
+            {
+                // console.log('chat connected')
+            })
+
+            this.chatSocket.on('user', (data) =>
+            {
+                this.$store.commit('updateUser', data)
+            })
+
+            this.chatSocket.on('message', (data) =>
+            {
+                this.$store.commit('createMessage', data)
+            })
+        },
+
+        onPendingUser(value)
+        {
+            this.chatSocket.emit('update_user', value)
         }
     }
 }

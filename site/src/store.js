@@ -11,7 +11,10 @@ export default new Vuex.Store({
         project: null,
         files: new FileTree({ autoWash: true }),
         file: null,
-        version: null
+        version: null,
+        chatMessages: [],
+        user: null,
+        pendingUser: null
     },
 
     mutations:
@@ -106,6 +109,32 @@ export default new Vuex.Store({
         setVersion(state, data)
         {
             state.version = data
+        },
+
+        /**
+         * Messages
+         */
+        createMessage(state, data)
+        {
+            state.chatMessages.push(data)
+
+            if(state.chatMessages.length > 100)
+            {
+                state.chatMessages.splice(0, state.chatMessages.length - 100)
+            }
+        },
+
+        /**
+         * User
+         */
+        updateUser(state, data)
+        {
+            state.user = data
+        },
+
+        askUpdateUser(state, data)
+        {
+            state.pendingUser = data
         }
     }
 })

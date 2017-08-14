@@ -1,5 +1,6 @@
 import FilesTree from '@/components/files-tree'
 import File from '@/components/file'
+import Chat from '@/components/chat'
 
 export default
 {
@@ -8,7 +9,8 @@ export default
     components:
     {
         FilesTree,
-        File
+        File,
+        Chat
     },
 
     computed:

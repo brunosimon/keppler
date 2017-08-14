@@ -1,0 +1,21 @@
+<div class="chat">
+    <header>
+        Discussions
+    </header>
+    <div class="messages">
+        <div class="message" v-for="message of messages" :key="message.id">
+            <div class="date">
+                {{ message.time }}
+            </div>
+            <div class="user" :style="`color: ${message.user.color};`">
+                {{ message.user.name }}
+            </div>
+            <div class="text">
+                {{ message.text }}
+            </div>
+        </div>
+    </div>
+    <div class="infos" v-if="user">
+        Your nickname is <input class="user-name" :style="`color: ${user.color};`" v-model="userName" @change="onUserNameChange($event)" @keydown="onUserNameKeyDown($event)"/>
+    </div>
+</div>
