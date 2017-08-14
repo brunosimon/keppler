@@ -7,7 +7,8 @@ export default
         return {
             userName: '',
             messageText: '',
-            open: false
+            open: false,
+            unreadCount: 0
         }
     },
 
@@ -33,6 +34,11 @@ export default
 
         messages()
         {
+            if(!this.atBottom || !this.open)
+            {
+                this.unreadCount++
+            }
+
             window.requestAnimationFrame(() =>
             {
                 if(this.atBottom)
@@ -59,6 +65,12 @@ export default
         onHeaderClick()
         {
             this.open = !this.open
+
+            // Reset unread count
+            if(this.open)
+            {
+                this.unreadCount = 0
+            }
         },
 
         onUserNameChange()
@@ -91,6 +103,12 @@ export default
         onMessagesScroll()
         {
             this.atBottom = this.$messages.scrollTop + this.$messages.offsetHeight >= this.$innerMessages.offsetHeight - 15
+
+            // Reset unread count
+            if(this.atBottom)
+            {
+                this.unreadCount = 0
+            }
         }
     }
 }

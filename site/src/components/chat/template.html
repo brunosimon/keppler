@@ -1,6 +1,6 @@
 <div class="chat">
     <header class="header" @click="onHeaderClick">
-        Discussions
+        Discussions ({{ unreadCount }})
     </header>
     <div class="content" v-show="open">
         <div class="messages" @scroll="onMessagesScroll">
