@@ -6,7 +6,8 @@ export default
     {
         return {
             userName: '',
-            messageText: ''
+            messageText: '',
+            open: false
         }
     },
 
@@ -37,6 +38,11 @@ export default
 
     methods:
     {
+        onHeaderClick()
+        {
+            this.open = !this.open
+        },
+
         onUserNameChange()
         {
             this.$store.commit('setPendingUser', { name: this.userName })

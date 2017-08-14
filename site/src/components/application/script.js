@@ -13,31 +13,11 @@ export default
         Project
     },
 
-    data()
-    {
-        return {
-            counter: 0
-        }
-    },
-
     computed:
     {
-        projects()
-        {
-            return this.$store.state.projects.all
-        },
-
         project()
         {
             return this.$store.state.projects.current
         }
-    },
-
-    mounted()
-    {
-        window.setInterval(() =>
-        {
-            this.counter++
-        }, 1000)
     }
 }
