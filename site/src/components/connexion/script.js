@@ -8,12 +8,12 @@ export default
     {
         project()
         {
-            return this.$store.state.project
+            return this.$store.state.projects.current
         },
 
         pendingUser()
         {
-            return this.$store.state.pendingUser
+            return this.$store.state.chat.pendingUser
         }
     },
 
@@ -101,7 +101,10 @@ export default
 
         onPendingUser(value)
         {
-            this.chatSocket.emit('update_user', value)
+            if(value)
+            {
+                this.chatSocket.emit('update_user', value)
+            }
         }
     }
 }

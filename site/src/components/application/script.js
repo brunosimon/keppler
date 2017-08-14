@@ -1,5 +1,5 @@
 import Connexion from '@/components/connexion'
-import ProjectsHub from '@/components/projects-hub'
+import Projects from '@/components/projects'
 import Project from '@/components/project'
 
 export default
@@ -9,7 +9,7 @@ export default
     components:
     {
         Connexion,
-        ProjectsHub,
+        Projects,
         Project
     },
 
@@ -24,12 +24,12 @@ export default
     {
         projects()
         {
-            return this.$store.state.projects
+            return this.$store.state.projects.all
         },
 
         project()
         {
-            return this.$store.state.project
+            return this.$store.state.projects.current
         }
     },
 

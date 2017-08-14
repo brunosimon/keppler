@@ -10,7 +10,7 @@ export default
     {
         version()
         {
-            return this.$store.state.version
+            return this.$store.state.files.currentVersion
         }
     }
 }

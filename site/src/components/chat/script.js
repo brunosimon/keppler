@@ -13,12 +13,12 @@ export default
     {
         messages()
         {
-            return this.$store.state.chatMessages
+            return this.$store.state.chat.messages
         },
 
         user()
         {
-            return this.$store.state.user
+            return this.$store.state.chat.user
         }
     },
 

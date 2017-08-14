@@ -17,11 +17,12 @@ export default
     {
         project()
         {
-            return this.$store.state.project
+            return this.$store.state.projects.all
         },
+
         file()
         {
-            return this.$store.state.file
+            return this.$store.state.files.current
         }
     },
 
