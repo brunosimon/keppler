@@ -29,11 +29,29 @@ export default
         user(value)
         {
             this.userName = value.name
+        },
+
+        messages()
+        {
+            window.requestAnimationFrame(() =>
+            {
+                if(this.atBottom)
+                {
+                    this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight
+                }
+            })
         }
+    },
+
+    created()
+    {
+        this.atBottom = true
     },
 
     mounted()
     {
+        this.$messages = this.$el.querySelector('.messages')
+        this.$innerMessages = this.$messages.querySelector('.inner-messages')
     },
 
     methods:
@@ -68,6 +86,11 @@ export default
                 this.$store.commit('setPendingMessage', { text: this.messageText })
                 this.messageText = ''
             }
+        },
+
+        onMessagesScroll()
+        {
+            this.atBottom = this.$messages.scrollTop + this.$messages.offsetHeight >= this.$innerMessages.offsetHeight - 15
         }
     }
 }

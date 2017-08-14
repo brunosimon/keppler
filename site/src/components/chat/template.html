@@ -3,16 +3,18 @@
         Discussions
     </header>
     <div class="content" v-show="open">
-        <div class="messages">
-            <div class="message" v-for="message of messages" :key="message.date">
-                <div class="date">
-                    {{ message.time }}
-                </div>
-                <div class="user" :style="`color: ${message.user.color};`">
-                    {{ message.user.name }}
-                </div>
-                <div class="text">
-                    {{ message.text }}
+        <div class="messages" @scroll="onMessagesScroll">
+            <div class="inner-messages">
+                <div class="message" v-for="message of messages" :key="message.date">
+                    <div class="date">
+                        {{ message.time }}
+                    </div>
+                    <div class="user" :style="`color: ${message.user.color};`">
+                        {{ message.user.name }}
+                    </div>
+                    <div class="text">
+                        {{ message.text }}
+                    </div>
                 </div>
             </div>
         </div>
