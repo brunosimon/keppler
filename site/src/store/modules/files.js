@@ -5,7 +5,8 @@ export default {
     {
         tree: new FileTree({ autoWash: true }),
         current: null,
-        currentVersion: null
+        currentVersion: null,
+        search: ''
     },
 
     mutations:
@@ -53,6 +54,11 @@ export default {
         setVersion(state, data)
         {
             state.currentVersion = data
+        },
+
+        searchFile(state, data)
+        {
+            state.search = data
         }
     }
 }

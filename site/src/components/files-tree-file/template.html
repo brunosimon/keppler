@@ -1,4 +1,4 @@
-<div>
+<div v-show="visible">
     <a href="#" class="name" :style="{ paddingLeft:depth * 20 + 'px' }" @click.prevent="onNameClick">
         <file-icon class="icon" :extension="content.data.extension"></file-icon>
         <span class="text">

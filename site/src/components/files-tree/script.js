@@ -5,6 +5,13 @@ export default
 {
     name: 'files-tree',
 
+    data()
+    {
+        return {
+            searchValue: ''
+        }
+    },
+
     components:
     {
         FilesTreeFile,
@@ -16,6 +23,19 @@ export default
         files()
         {
             return this.$store.state.files.tree
+        }
+    },
+
+    watch:
+    {
+        searchValue: 'onSearchValueChange'
+    },
+
+    methods:
+    {
+        onSearchValueChange(value)
+        {
+            this.$store.commit('searchFile', value)
         }
     }
 }

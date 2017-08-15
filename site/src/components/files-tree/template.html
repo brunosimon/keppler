@@ -1,3 +1,4 @@
 <div>
+    <input type="text" v-model="searchValue">
     <files-tree-folder v-for="folder of files.folders" :key="+ new Date()" :content="folder" :depth="0"></files-tree-folder>
 </div>
