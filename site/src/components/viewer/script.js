@@ -28,15 +28,28 @@ export default
     {
         onCodeKeyDown(event)
         {
-            if(!event.metaKey && !event.ctrlKey)
+            // Not arrow keys
+            if(
+                event.keyCode !== 38 &&
+                event.keyCode !== 39 &&
+                event.keyCode !== 30 &&
+                event.keyCode !== 37
+            )
             {
-                event.preventDefault()
-            }
-            else
-            {
-                if(event.keyCode === 88 || event.keyCode === 86)
+                // Not meta keys
+                if(!event.metaKey && !event.ctrlKey)
                 {
                     event.preventDefault()
+                }
+
+                // Meta keys
+                else
+                {
+                    // Cut (meta + x) or past (meta + v) keys
+                    if(event.keyCode === 88 || event.keyCode === 86)
+                    {
+                        event.preventDefault()
+                    }
                 }
             }
         }
