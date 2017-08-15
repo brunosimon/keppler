@@ -19,6 +19,11 @@ export default
         pendingMessage()
         {
             return this.$store.state.chat.pendingMessage
+        },
+
+        pendingAlert()
+        {
+            return this.$store.state.chat.pendingAlert
         }
     },
 
@@ -26,7 +31,8 @@ export default
     {
         project: 'onProjectChange',
         pendingUser: 'onPendingUser',
-        pendingMessage: 'onPendingMessage'
+        pendingMessage: 'onPendingMessage',
+        pendingAlert: 'onPendingAlert'
     },
 
     created()
@@ -118,6 +124,14 @@ export default
             if(value)
             {
                 this.chatSocket.emit('message', value)
+            }
+        },
+
+        onPendingAlert(value)
+        {
+            if(value)
+            {
+                this.chatSocket.emit('alert')
             }
         }
     }

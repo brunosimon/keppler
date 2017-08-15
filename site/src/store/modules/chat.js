@@ -4,7 +4,8 @@ export default {
         user: null,
         pendingUser: null,
         messages: [],
-        pendingMessage: null
+        pendingMessage: null,
+        pendingAlert: null
     },
 
     mutations:
@@ -32,6 +33,12 @@ export default {
         setPendingMessage(state, data)
         {
             state.pendingMessage = data
+        },
+
+        setPendingAlert(state)
+        {
+            const date = new Date()
+            state.pendingAlert = { date }
         }
     }
 }

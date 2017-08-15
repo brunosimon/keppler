@@ -1,6 +1,7 @@
 import FilesTree from '@/components/files-tree'
 import File from '@/components/file'
 import Chat from '@/components/chat'
+import Alert from '@/components/alert'
 
 export default
 {
@@ -10,7 +11,8 @@ export default
     {
         FilesTree,
         File,
-        Chat
+        Chat,
+        Alert
     },
 
     computed:
