@@ -35,7 +35,9 @@ export default
             git: ['gitignore', 'gitkeep'],
             xml: ['xml'],
             twig: ['twig'],
-            c: ['c', 'h']
+            c: ['c', 'h'],
+            folder: ['folder'],
+            'folder-active': ['folder-active']
         }
 
         this.icon = 'random'

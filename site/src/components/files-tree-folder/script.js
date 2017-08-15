@@ -1,4 +1,5 @@
 import FilesTreeFile from '@/components/files-tree-file'
+import FileIcon from '@/components/file-icon/'
 
 export default
 {
@@ -6,7 +7,8 @@ export default
 
     components:
     {
-        FilesTreeFile
+        FilesTreeFile,
+        FileIcon
     },
 
     props:
