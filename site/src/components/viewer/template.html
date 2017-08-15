@@ -1,3 +1,6 @@
 <div class="viewer" v-if="version">
     <pre v-highlightjs="version.content" contenteditable @keydown="onCodeKeyDown($event)"><code></code></pre>
+    <div class="lines">
+        <div class="line" v-for="i in linesCount">{{ i }}</div>
+    </div>
 </div>

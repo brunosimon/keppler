@@ -16,6 +16,11 @@ export default
         version()
         {
             return this.$store.state.files.currentVersion
+        },
+
+        linesCount()
+        {
+            return (this.$store.state.files.currentVersion.content.match(/\n/g) || []).length + 1
         }
     },
 
