@@ -2,13 +2,6 @@ export default
 {
     name: 'file-icon',
 
-    data()
-    {
-        return {
-            test: require('./icons/' + 'apache' + '.svg')
-        }
-    },
-
     props:
     {
         extension: { type: String, default: '' }
