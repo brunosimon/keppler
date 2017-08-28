@@ -3,6 +3,7 @@
 
     <files-tree></files-tree>
     <file v-if="file" :content="file.data"></file>
+    <landing v-if="!file"></landing>
     <chat></chat>
     <alert></alert>
 </div>
