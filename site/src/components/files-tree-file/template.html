@@ -2,7 +2,9 @@
     <a href="#" class="name" :style="{ paddingLeft:depth * 20 + 'px' }" @click.prevent="onNameClick">
         <file-icon class="icon" :extension="content.data.extension"></file-icon>
         <span class="text">
-            {{ content.name }}
+            <template v-for="(letter, key) in content.name">
+                <span :style="matchingPositions.indexOf(key) !== -1 ? 'font-weight:bold;' : ''">{{ letter }}</span>
+            </template>
         </span>
     </a>
 </div>

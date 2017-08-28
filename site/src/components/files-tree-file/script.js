@@ -15,39 +15,48 @@ export default
         content: { type: Object }
     },
 
+    data()
+    {
+        return {
+            matchingPositions: []
+        }
+    },
+
     computed:
     {
         visible()
         {
+            let visible = true
+
             // Get and clean search
-            const search = this.$store.state.files.search.replace(/\ /g, '').toLowerCase()
+            const search = this.$store.state.files.search.replace(/ /g, '').toLowerCase()
 
             // If no search value, return true
-            if(search === '')
+            if(search !== '')
             {
-                return true
-            }
+                // Set up fuzzy search
+                const text = this.content.data.path.full.replace(/^\.\//, '')
+                let searchPosition = 0
+                this.matchingPositions = []
 
-            // Set up fuzzy search
-            const text = this.content.data.path.full
-            let searchPosition = 0
-
-            // Go through each character in the text
-            for(let n = 0; n < text.length; n++)
-            {
-                // If match a character in the search, highlight it
-                if(searchPosition < search.length && text[n].toLowerCase() === search[searchPosition])
+                // Go through each character in the text
+                for(let n = 0; n < text.length; n++)
                 {
-                    searchPosition += 1
+                    // If match a character in the search, highlight it
+                    if(searchPosition < search.length && text[n].toLowerCase() === search[searchPosition])
+                    {
+                        searchPosition += 1
+                        this.matchingPositions.push(n - this.content.data.path.directory.length + 1)
+                    }
+                }
+
+                if(searchPosition !== search.length)
+                {
+                    visible = false
                 }
             }
 
-            if(searchPosition !== search.length)
-            {
-                return false
-            }
-
-            return true
+            return visible
         }
     },
 
