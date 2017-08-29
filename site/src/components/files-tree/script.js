@@ -36,6 +36,29 @@ export default
         onSearchValueChange(value)
         {
             this.$store.commit('searchFile', value)
+        },
+
+        onAllReadClick()
+        {
+            // Go through each folder and file
+            const eachFolder = (obj) =>
+            {
+                for(const folder of obj.folders)
+                {
+                    eachFolder(folder)
+                }
+                if(obj.files)
+                {
+                    for(const file of obj.files)
+                    {
+                        // Update changed and new properties
+                        file.isChanged = false
+                        file.isNew = false
+                    }
+                }
+            }
+
+            eachFolder(this.files)
         }
     }
 }
