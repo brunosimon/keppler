@@ -6,5 +6,7 @@
                 <span :style="matchingPositions.indexOf(key) !== -1 ? 'font-weight:bold;' : ''">{{ letter }}</span>
             </template>
         </span>
+        <span v-if="content.data.isNew" class="new">(new)</span>
+        <span v-if="content.data.isChanged && !content.data.isNew" class="changed">(changed)</span>
     </a>
 </div>

@@ -17,12 +17,16 @@ export default {
 
             for(const file of data)
             {
+                file.isNew = false
+                file.isChanged = false
                 state.tree.addFile(file.path.full, file)
             }
         },
 
         createFile(state, data)
         {
+            data.isNew = true
+            data.isChanged = false
             state.tree.addFile(data.path.full, data)
         },
 
@@ -38,6 +42,8 @@ export default {
             if(!state.current || state.current.data.id !== file.data.id)
             {
                 state.current = file
+                state.current.data.isNew = false
+                state.current.data.isChanged = false
             }
         },
 
@@ -48,6 +54,7 @@ export default {
             if(file)
             {
                 file.data.versions.push(data.version)
+                file.data.isChanged = true
             }
         },
 

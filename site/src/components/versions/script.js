@@ -54,6 +54,7 @@ export default
         {
             if(this.keepLatest)
             {
+                this.file.isChanged = false
                 this.$store.commit('setVersion', this.versions[0])
             }
         },
@@ -67,6 +68,7 @@ export default
         onVersionClick(version, index)
         {
             this.keepLatest = index === 0
+            this.file.isChanged = false
 
             this.$store.commit('setVersion', version)
         }
