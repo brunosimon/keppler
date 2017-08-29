@@ -1,20 +1,62 @@
+// Fonts
+@font-face
+    font-family 'Inconsolata'
+    font-weight normal
+    font-style normal
+    src url('../../../static/fonts/Inconsolata-Regular.ttf')
+    
+@font-face
+    font-family 'Inconsolata'
+    font-weight bold
+    font-style normal
+    src url('../../../static/fonts/Inconsolata-Bold.ttf')
+
+// Viewer
 .viewer
     position absolute
     top 30px
     right 0
     width 75%
     height 100%
-    background rgba(0, 0, 255, 0.3)
+    font-family Inconsolata, Monaco, Consolas, 'Courier New', Courier
+    line-height 20px
+    letter-spacing 0.5px
+    font-size 15px
+    background #2d2d49
+    overflow scroll
+    
+.lines
+    position absolute
+    top 0
+    left 0
+    pointer-events none
+    
+    .line
+        color #abb2bf
+        opacity 0.75
+        letter-spacing -1px
+        padding-left 25px
+    
+.code
+    position absolute
+    top 0
+    left 70px
+    right 0
+    height 100%
+    outline none
+    ::-moz-selection
+        background #bdb9bf
+    ::selection
+        background #bdb9bf
 
+// Highlight js
 .hljs-title
     color red
 
 .hljs
     display block
     overflow-x auto
-    padding 0.5em
     color #abb2bf
-    background #2d2d49
 
 .hljs-comment
 .hljs-quote
