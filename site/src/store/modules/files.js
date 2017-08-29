@@ -38,8 +38,6 @@ export default {
             if(!state.current || state.current.data.id !== file.data.id)
             {
                 state.current = file
-                // console.log(state.current.data.versions.length)
-                // state.currentVersion = state.current.data.versions[state.current.data.versions.length - 1]
             }
         },
 
