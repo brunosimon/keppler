@@ -39,11 +39,11 @@ export default {
         {
             const file = state.tree.getFile(data)
 
-            if(!state.current || state.current.data.id !== file.data.id)
+            if(!state.current || state.current.id !== file.id)
             {
                 state.current = file
-                state.current.data.isNew = false
-                state.current.data.isChanged = false
+                state.current.isNew = false
+                state.current.isChanged = false
             }
         },
 
@@ -53,8 +53,8 @@ export default {
 
             if(file)
             {
-                file.data.versions.push(data.version)
-                file.data.isChanged = true
+                file.versions.push(data.version)
+                file.isChanged = true
             }
         },
 

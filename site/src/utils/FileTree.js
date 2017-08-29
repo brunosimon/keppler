@@ -99,8 +99,14 @@ class FileTree
                 folder = {
                     folders: [],
                     files: [],
-                    name: _part,
-                    data: _data
+                    name: _part
+                }
+
+                // Add data
+                for(const dataKey in _data)
+                {
+                    const data = _data[dataKey]
+                    folder[dataKey] = data
                 }
 
                 // Save
@@ -144,8 +150,14 @@ class FileTree
 
         // Create file
         const file = {
-            name: filePart,
-            data: _data
+            name: filePart
+        }
+
+        // Add data
+        for(const dataKey in _data)
+        {
+            const data = _data[dataKey]
+            file[dataKey] = data
         }
 
         // Save
@@ -175,9 +187,9 @@ class FileTree
                 folder.folders.splice(_folderKey, 1)
 
                 // Callback
-                if(typeof _folder.data.onRemove === 'function')
+                if(typeof _folder.onRemove === 'function')
                 {
-                    _folder.data.onRemove.apply(this, [_folder])
+                    _folder.onRemove.apply(this, [_folder])
                 }
             }
 
@@ -189,9 +201,9 @@ class FileTree
                 folder.files.splice(_fileKey, 1)
 
                 // Callback
-                if(typeof _file.data.onRemove === 'function')
+                if(typeof _file.onRemove === 'function')
                 {
-                    _file.data.onRemove.apply(this, [_file])
+                    _file.onRemove.apply(this, [_file])
                 }
             }
         }
@@ -243,9 +255,9 @@ class FileTree
             folders.splice(index, 1)
 
             // Callback
-            if(typeof folder.data.onRemove === 'function')
+            if(typeof folder.onRemove === 'function')
             {
-                folder.data.onRemove.apply(this, [folder])
+                folder.onRemove.apply(this, [folder])
             }
 
             // Auto wash
@@ -324,9 +336,9 @@ class FileTree
                 }
 
                 // Callback
-                if(typeof file.data.onRemove === 'function')
+                if(typeof file.onRemove === 'function')
                 {
-                    file.data.onRemove.apply(this, [file])
+                    file.onRemove.apply(this, [file])
                 }
 
                 return true
@@ -466,9 +478,9 @@ class FileTree
                     folder.folders.splice(_folderKey, 1)
 
                     // Callback
-                    if(typeof _folder.data.onRemove === 'function')
+                    if(typeof _folder.onRemove === 'function')
                     {
-                        _folder.data.onRemove.apply(this, [_folder])
+                        _folder.onRemove.apply(this, [_folder])
                     }
                 }
             }

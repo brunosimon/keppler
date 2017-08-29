@@ -35,7 +35,7 @@ export default
             if(search !== '')
             {
                 // Set up fuzzy search
-                const text = this.content.data.path.full.replace(/^\.\//, '')
+                const text = this.content.path.full.replace(/^\.\//, '')
                 let searchPosition = 0
                 this.matchingPositions = []
 
@@ -46,7 +46,7 @@ export default
                     if(searchPosition < search.length && text[n].toLowerCase() === search[searchPosition])
                     {
                         searchPosition += 1
-                        this.matchingPositions.push(n - this.content.data.path.directory.length + 1)
+                        this.matchingPositions.push(n - this.content.path.directory.length + 1)
                     }
                 }
 
@@ -64,7 +64,7 @@ export default
     {
         onNameClick()
         {
-            this.$store.commit('setFile', this.content.data.path.full)
+            this.$store.commit('setFile', this.content.path.full)
         }
     }
 }
