@@ -1,3 +1,3 @@
 <div class="versions">
-    <version v-for="version of versions" :content="version"></version>
+    <version v-for="(version, key) of versions" :content="version" @click.native.prevent="onVersionClick(version, key)"></version>
 </div>

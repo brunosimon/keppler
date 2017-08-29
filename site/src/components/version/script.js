@@ -5,13 +5,5 @@ export default
     props:
     {
         content: { type: Object }
-    },
-
-    methods:
-    {
-        onClick()
-        {
-            this.$store.commit('setVersion', this.content)
-        }
     }
 }
