@@ -13,6 +13,11 @@ export default
 
     computed:
     {
+        extension()
+        {
+            return this.$store.state.files.current.data.extension
+        },
+
         version()
         {
             return this.$store.state.files.currentVersion
