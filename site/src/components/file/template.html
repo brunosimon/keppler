@@ -1,8 +1,9 @@
 <div class="file">
     <header>
+        <a href="#" @click.prevent="onDifferencesClick">Differences <span v-if="differencesActive">(on)</span></a>
         File
         {{ content.path.directory }} {{ content.name }}
     </header>
     <versions :file="content" :content="content.versions"></versions>
-    <viewer></viewer>
+    <viewer :differences-active="differencesActive"></viewer>
 </div>

@@ -7,8 +7,9 @@ export default
 {
     name: 'viewer',
 
-    components:
+    props:
     {
+        differencesActive: { type: Boolean, default: true }
     },
 
     computed:

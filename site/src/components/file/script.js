@@ -11,8 +11,23 @@ export default
         Viewer
     },
 
+    data()
+    {
+        return {
+            differencesActive: true
+        }
+    },
+
     props:
     {
         content: { type: Object }
+    },
+
+    methods:
+    {
+        onDifferencesClick()
+        {
+            this.differencesActive = !this.differencesActive
+        }
     }
 }

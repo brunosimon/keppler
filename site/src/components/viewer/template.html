@@ -2,8 +2,8 @@
     <pre class="code" v-highlightjs="version.content" contenteditable @keydown="onCodeKeyDown($event)"><code :class="[ extension ]"></code></pre>
     <div class="lines">
         <div class="line" v-for="line in lines">
-            <div class="added" v-if="line.added">+</div>
-            <div class="removed" v-if="line.removed">-</div>
+            <div class="added" v-if="line.added && differencesActive">+</div>
+            <div class="removed" v-if="line.removed && differencesActive">-</div>
             <span class="index">{{ line.index }}.</span>
         </div>
     </div>
