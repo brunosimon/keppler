@@ -14,7 +14,8 @@ export default
     data()
     {
         return {
-            differencesActive: true
+            differencesActive: true,
+            versionsActive: true
         }
     },
 
@@ -28,6 +29,11 @@ export default
         onDifferencesClick()
         {
             this.differencesActive = !this.differencesActive
+        },
+
+        onVersionsClick()
+        {
+            this.versionsActive = !this.versionsActive
         }
     }
 }

@@ -1,9 +1,9 @@
-<div class="file">
+<div class="file" :class="[versionsActive ? 'version-active' : '']">
     <header>
         <a href="#" @click.prevent="onDifferencesClick">Differences <span v-if="differencesActive">(on)</span></a>
-        File
+        <a href="#" @click.prevent="onVersionsClick">Versions <span v-if="versionsActive">(on)</span></a>
         {{ content.path.directory }} {{ content.name }}
     </header>
-    <versions :file="content" :content="content.versions"></versions>
+    <versions :file="content" :content="content.versions" v-if="versionsActive"></versions>
     <viewer :differences-active="differencesActive"></viewer>
 </div>
