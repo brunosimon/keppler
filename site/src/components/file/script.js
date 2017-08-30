@@ -11,6 +11,14 @@ export default
         Viewer
     },
 
+    computed:
+    {
+        project()
+        {
+            return this.$store.state.projects.current
+        }
+    },
+
     data()
     {
         return {
