@@ -7,6 +7,9 @@ export default
     computed:
     {
         quote: () => quotes[Math.floor(quotes.length * Math.random())],
-        url: () => window.location.href
+        url()
+        {
+            return this.$store.state.url
+        }
     }
 }
