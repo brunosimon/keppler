@@ -19,6 +19,11 @@ export default
 
     computed:
     {
+        downloadUrl()
+        {
+            return `${this.$store.state.url}/${this.project.slug}/download`
+        },
+
         project()
         {
             return this.$store.state.projects.current

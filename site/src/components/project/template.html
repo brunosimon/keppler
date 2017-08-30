@@ -1,6 +1,6 @@
 <div>
     {{ project.name }}
-    <a :href="`${project.slug}/download`" download>Download</a>
+    <a :href="downloadUrl" download>Download</a>
 
     <files-tree></files-tree>
     <file v-if="file" :content="file"></file>

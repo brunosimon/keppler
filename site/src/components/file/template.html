@@ -2,7 +2,7 @@
     <header>
         <a href="#" @click.prevent="onDifferencesClick">Differences <span v-if="differencesActive">(on)</span></a>
         <a href="#" @click.prevent="onVersionsClick">Versions <span v-if="versionsActive">(on)</span></a>
-        <a :href="`${project.slug}/files/${content.path.full}`" download>Download</a>
+        <a :href="downloadUrl" download>Download</a>
         {{ content.path.directory }} {{ content.name }}
     </header>
     <versions :file="content" :content="content.versions" v-if="versionsActive"></versions>

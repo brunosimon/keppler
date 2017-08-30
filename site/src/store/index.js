@@ -13,5 +13,18 @@ export default new Vuex.Store({
         chat: chatModule,
         projects: projectsModule,
         files: filesModule
+    },
+
+    state:
+    {
+        url: ''
+    },
+
+    mutations:
+    {
+        updateUrl(state, data)
+        {
+            state.url = data
+        }
     }
 })

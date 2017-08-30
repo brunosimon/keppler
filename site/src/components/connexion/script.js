@@ -47,6 +47,7 @@ export default
 
         this.projectsSocket.on('update_projects', (data) =>
         {
+            this.$store.commit('updateUrl', data.domain)
             this.$store.commit('updateProjects', data.all)
         })
     },
