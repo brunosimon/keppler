@@ -4,7 +4,7 @@
     font-weight normal
     font-style normal
     src url('../../../static/fonts/Inconsolata-Regular.ttf')
-    
+
 @font-face
     font-family 'Inconsolata'
     font-weight bold
@@ -24,19 +24,32 @@
     font-size 15px
     background #2d2d49
     overflow scroll
-    
+
 .lines
     position absolute
     top 0
     left 0
     pointer-events none
-    
+
     .line
+        position relative
         color #abb2bf
         opacity 0.75
         letter-spacing -1px
         padding-left 25px
-    
+
+        .added
+            position absolute
+            top 0
+            left 9px
+            color #00ffa5
+
+        .removed
+            top -10px
+            left 9px
+            position absolute
+            color #ff8157
+
 .code
     position absolute
     top 0
