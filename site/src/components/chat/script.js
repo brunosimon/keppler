@@ -7,13 +7,22 @@ export default
         return {
             userName: '',
             messageText: '',
-            open: false,
             unreadCount: 0
         }
     },
 
     computed:
     {
+        open()
+        {
+            return this.$store.state.chat.open
+        },
+
+        question()
+        {
+            return this.$store.state.chat.question
+        },
+
         messages()
         {
             return this.$store.state.chat.messages
@@ -64,7 +73,7 @@ export default
     {
         onHeaderClick()
         {
-            this.open = !this.open
+            this.$store.commit('toggleChat')
 
             // Reset unread count
             if(this.open)
@@ -89,14 +98,30 @@ export default
 
         onMessageTextKeyDown(event)
         {
-            // Blur if enter pressed
+            // Enter key pressed
             if(event.keyCode === 13)
             {
                 event.preventDefault()
+
+                // Blur
                 event.target.blur()
 
-                this.$store.commit('setPendingMessage', { text: this.messageText })
+                // Create and send message
+                const message = {}
+                message.text = this.messageText
+
+                if(this.question)
+                {
+                    message.file = this.question.file
+                    message.line = this.question.line
+                    message.version = this.question.version
+                }
+
+                this.$store.commit('setPendingMessage', message)
                 this.messageText = ''
+
+                // Reset question
+                this.$store.commit('setQuestion', null)
             }
         },
 
@@ -109,6 +134,22 @@ export default
             {
                 this.unreadCount = 0
             }
+        },
+
+        onQuestionRemoveClick()
+        {
+            this.$store.commit('setQuestion', null)
+        },
+
+        onFileClick(file, version, line)
+        {
+            this.$store.commit('setFile', file)
+            this.$store.commit('setLine', line)
+
+            window.requestAnimationFrame(() =>
+            {
+                this.$store.commit('setVersion', version)
+            })
         }
     }
 }

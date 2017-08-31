@@ -64,13 +64,14 @@ export default
             this.keepLatest = true
             this.$store.commit('setVersion', this.versions[0])
         },
-        
+
         onVersionClick(version, index)
         {
             this.keepLatest = index === 0
             this.file.isChanged = false
 
             this.$store.commit('setVersion', version)
+            this.$store.commit('setLine', null)
         }
     }
 }

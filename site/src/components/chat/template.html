@@ -12,6 +12,9 @@
                     <div class="user" :style="`color: ${message.user.color};`">
                         {{ message.user.name }}
                     </div>
+                    <a href="#" class="file" v-if="message.file && message.line" @click.prevent="onFileClick(message.file, message.version, message.line)">
+                        {{ message.file }}:{{ message.line }}
+                    </a>
                     <div class="text">
                         {{ message.text }}
                     </div>
@@ -20,6 +23,11 @@
         </div>
         <div class="infos" v-if="user">
             Your nickname is <input class="user-name" :style="`color: ${user.color};`" v-model="userName" @change="onUserNameChange($event)" @keydown="onUserNameKeyDown($event)"/>
+        </div>
+        <div class="question" v-if="question">
+            Question:
+            <span class="question-file">{{ question.file }}:{{ question.line }}</span>
+            <a href="#" class="remove" @click.prevent="onQuestionRemoveClick">x</a>
         </div>
         <div class="message">
             <textarea class="text" v-model="messageText" @keydown="onMessageTextKeyDown($event)"></textarea>

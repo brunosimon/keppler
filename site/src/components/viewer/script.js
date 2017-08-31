@@ -28,6 +28,7 @@ export default
         {
             const lines = []
             const lineBreaks = (this.version.content.match(/\n/g) || []).length + 1
+            const currentLine = this.$store.state.files.currentLine
 
             // Create all lines
             for(let i = 0; i < lineBreaks; i++)
@@ -36,6 +37,7 @@ export default
                 line.index = lines.length + 1
                 line.added = false
                 line.removed = false
+                line.active = currentLine !== null && i === currentLine - 1
 
                 lines.push(line)
             }
@@ -134,6 +136,16 @@ export default
                     }
                 }
             }
+        },
+
+        onLineClick(index)
+        {
+            const question = {}
+            question.line = index
+            question.version = this.version.date
+            question.file = this.$store.state.files.current.path.full
+            this.$store.commit('setQuestion', question)
+            this.$store.commit('openChat')
         }
     }
 }

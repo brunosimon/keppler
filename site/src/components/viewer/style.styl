@@ -32,7 +32,6 @@
     position absolute
     top 0
     left 0
-    pointer-events none
 
     .line
         position relative
@@ -40,6 +39,7 @@
         opacity 0.75
         letter-spacing -1px
         padding-left 25px
+        cursor pointer
 
         .added
             position absolute
@@ -48,10 +48,29 @@
             color #00ffa5
 
         .removed
+            position absolute
             top -10px
             left 9px
-            position absolute
             color #ff8157
+
+        .question
+            display none
+            position absolute
+            top 0
+            right -8px
+            font-size 12px
+            color #00d8ff
+
+        .active
+            position absolute
+            top 0
+            right -14px
+            font-size 12px
+            color #00d8ff
+
+        &:hover
+            .question
+                display block
 
 .code
     position absolute

@@ -1,11 +1,13 @@
 export default {
     state:
     {
+        open: false,
         user: null,
         pendingUser: null,
         messages: [],
         pendingMessage: null,
-        pendingAlert: null
+        pendingAlert: null,
+        question: null
     },
 
     mutations:
@@ -39,6 +41,26 @@ export default {
         {
             const date = new Date()
             state.pendingAlert = { date }
+        },
+
+        setQuestion(state, data)
+        {
+            state.question = data
+        },
+
+        openChat(state)
+        {
+            state.open = true
+        },
+
+        closeChat(state)
+        {
+            state.open = false
+        },
+
+        toggleChat(state)
+        {
+            state.open = !state.open
         }
     }
 }

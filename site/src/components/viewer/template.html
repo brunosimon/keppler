@@ -1,10 +1,12 @@
 <div class="viewer" v-if="version">
     <pre class="code" v-highlightjs="version.content" contenteditable @keydown="onCodeKeyDown($event)"><code :class="[ extension ]"></code></pre>
     <div class="lines">
-        <div class="line" v-for="line in lines">
-            <div class="added" v-if="line.added && differencesActive">+</div>
-            <div class="removed" v-if="line.removed && differencesActive">-</div>
+        <div class="line" v-for="line in lines" @click.prevent="onLineClick(line.index)">
+            <span class="added" v-if="line.added && differencesActive">+</span>
+            <span class="removed" v-if="line.removed && differencesActive">-</span>
             <span class="index">{{ line.index }}.</span>
+            <span class="question">?</span>
+            <span class="active" v-if="line.active">!</span>
         </div>
     </div>
 </div>

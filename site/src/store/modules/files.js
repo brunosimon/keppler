@@ -6,6 +6,7 @@ export default {
         tree: new FileTree({ autoWash: true }),
         current: null,
         currentVersion: null,
+        currentLine: null,
         search: ''
     },
 
@@ -37,8 +38,10 @@ export default {
 
         setFile(state, data)
         {
+            // Retrieve file from path
             const file = state.tree.getFile(data)
 
+            // No current file or file different than current
             if(!state.current || state.current.id !== file.id)
             {
                 state.current = file
@@ -60,7 +63,29 @@ export default {
 
         setVersion(state, data)
         {
-            state.currentVersion = data
+            // Date sent
+            if(typeof data === 'string')
+            {
+                // Find version by date
+                const version = state.current.versions.find((version) => version.date === data)
+
+                // Found
+                if(version)
+                {
+                    state.currentVersion = version
+                }
+            }
+
+            // Version directly sent
+            else
+            {
+                state.currentVersion = data
+            }
+        },
+
+        setLine(state, data)
+        {
+            state.currentLine = data
         },
 
         searchFile(state, data)

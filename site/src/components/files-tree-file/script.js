@@ -65,6 +65,7 @@ export default
         onNameClick()
         {
             this.$store.commit('setFile', this.content.path.full)
+            this.$store.commit('setLine', null)
         }
     }
 }
