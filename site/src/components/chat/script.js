@@ -103,25 +103,30 @@ export default
             {
                 event.preventDefault()
 
-                // Blur
-                event.target.blur()
+                const text = this.messageText.trim()
 
-                // Create and send message
-                const message = {}
-                message.text = this.messageText
-
-                if(this.question)
+                if(text)
                 {
-                    message.file = this.question.file
-                    message.line = this.question.line
-                    message.version = this.question.version
+                    // Blur
+                    event.target.blur()
+
+                    // Create and send message
+                    const message = {}
+                    message.text = text
+
+                    if(this.question)
+                    {
+                        message.file = this.question.file
+                        message.line = this.question.line
+                        message.version = this.question.version
+                    }
+
+                    this.$store.commit('setPendingMessage', message)
+                    this.messageText = ''
+
+                    // Reset question
+                    this.$store.commit('setQuestion', null)
                 }
-
-                this.$store.commit('setPendingMessage', message)
-                this.messageText = ''
-
-                // Reset question
-                this.$store.commit('setQuestion', null)
             }
         },
 
