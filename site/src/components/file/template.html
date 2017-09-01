@@ -3,6 +3,7 @@
         <a href="#" @click.prevent="onDifferencesClick" v-if="isCode">Differences <span v-if="differencesActive">(on)</span></a>
         <a href="#" @click.prevent="onVersionsClick" v-if="isCode">Versions <span v-if="versionsActive">(on)</span></a>
         <a :href="downloadUrl" download>Download</a>
+        <a href="#" @click.prevent="onCopyClick" @mouseleave="onCopyMouseleave" v-if="isCode">{{ this.copied ? 'Copied' : 'Copy' }}</a>
         {{ content.path.directory }}/{{ content.name }}
     </header>
     <versions :file="content" :content="content.versions" v-if="versionsActive && isCode"></versions>

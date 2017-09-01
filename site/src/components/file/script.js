@@ -1,5 +1,6 @@
 import Versions from '@/components/versions'
 import Viewer from '@/components/viewer'
+import copyToClipboard from 'copy-to-clipboard'
 
 export default
 {
@@ -26,6 +27,11 @@ export default
         isCode()
         {
             return this.content.versions.length > 0
+        },
+
+        version()
+        {
+            return this.$store.state.files.currentVersion
         }
     },
 
@@ -33,7 +39,8 @@ export default
     {
         return {
             differencesActive: true,
-            versionsActive: true
+            versionsActive: true,
+            copied: false
         }
     },
 
@@ -52,6 +59,17 @@ export default
         onVersionsClick()
         {
             this.versionsActive = !this.versionsActive
+        },
+
+        onCopyClick()
+        {
+            copyToClipboard(this.version.content)
+            this.copied = true
+        },
+
+        onCopyMouseleave()
+        {
+            this.copied = false
         }
     }
 }
