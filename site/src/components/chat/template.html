@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="infos" v-if="user">
-            Your nickname is <input class="user-name" :style="`color: ${user.color};`" v-model="userName" @change="onUserNameChange($event)" @keydown="onUserNameKeyDown($event)"/>
+            Your nickname is <input maxlength="22" class="user-name" :style="`color: ${user.color};`" v-model="userName" @change="onUserNameChange($event)" @keydown="onUserNameKeyDown($event)"/>
         </div>
         <div class="question" v-if="question">
             Question:
