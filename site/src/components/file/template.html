@@ -1,10 +1,17 @@
-<div class="file" :class="[versionsActive ? 'version-active' : '']">
+<div class="file" :class="[versionsActive && isCode ? 'version-active' : '']">
     <header>
-        <a href="#" @click.prevent="onDifferencesClick">Differences <span v-if="differencesActive">(on)</span></a>
-        <a href="#" @click.prevent="onVersionsClick">Versions <span v-if="versionsActive">(on)</span></a>
+        <a href="#" @click.prevent="onDifferencesClick" v-if="isCode">Differences <span v-if="differencesActive">(on)</span></a>
+        <a href="#" @click.prevent="onVersionsClick" v-if="isCode">Versions <span v-if="versionsActive">(on)</span></a>
         <a :href="downloadUrl" download>Download</a>
-        {{ content.path.directory }} {{ content.name }}
+        {{ content.path.directory }}/{{ content.name }}
     </header>
-    <versions :file="content" :content="content.versions" v-if="versionsActive"></versions>
-    <viewer :differences-active="differencesActive"></viewer>
+    <versions :file="content" :content="content.versions" v-if="versionsActive && isCode"></versions>
+    <viewer :differences-active="differencesActive" v-if="isCode"></viewer>
+    <div class="preview" v-if="isImage">
+    	<img :src="downloadUrl">
+    </div>
+    <div class="cant-read" v-if="!isCode && !isImage">
+    	<br>Sorry, I can't read this file.
+    	<br>But you can <a :href="downloadUrl" download>download it</a>
+    </div>
 </div>

@@ -16,6 +16,16 @@ export default
         downloadUrl()
         {
             return `${this.$store.state.url}/${this.$store.state.projects.current.slug}/files/${this.content.path.full}`
+        },
+
+        isImage()
+        {
+            return ['jpg', 'jpeg', 'png', 'tiff', 'gif', 'webp'].indexOf(this.content.extension) !== -1
+        },
+
+        isCode()
+        {
+            return this.content.versions.length > 0
         }
     },
 
