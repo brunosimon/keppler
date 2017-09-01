@@ -52,9 +52,36 @@ export default
             {
                 if(this.atBottom)
                 {
-                    this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight
+                    this.scrollToBottom()
                 }
             })
+        },
+
+        open(value)
+        {
+            if(value)
+            {
+                window.requestAnimationFrame(() =>
+                {
+                    // Focus on textearea
+                    this.$textarea.focus()
+                })
+            }
+        },
+
+        question(value)
+        {
+            if(value)
+            {
+                window.requestAnimationFrame(() =>
+                {
+                    // Focus on textearea
+                    this.$textarea.focus()
+
+                    // Scroll to bottom
+                    this.scrollToBottom()
+                })
+            }
         }
     },
 
@@ -66,6 +93,7 @@ export default
     mounted()
     {
         this.$messages = this.$el.querySelector('.messages')
+        this.$textarea = this.$el.querySelector('.textarea')
         this.$innerMessages = this.$messages.querySelector('.inner-messages')
     },
 
@@ -92,13 +120,14 @@ export default
             // Blur if enter pressed
             if(event.keyCode === 13)
             {
-                event.target.blur()
+                // Focus on textearea
+                this.$textarea.focus()
             }
         },
 
         onMessageTextKeyDown(event)
         {
-            // Enter key pressed
+            // Enter key pressed but without shift key
             if(event.keyCode === 13)
             {
                 event.preventDefault()
@@ -107,9 +136,6 @@ export default
 
                 if(text)
                 {
-                    // Blur
-                    event.target.blur()
-
                     // Create and send message
                     const message = {}
                     message.text = text
@@ -143,11 +169,16 @@ export default
 
         onQuestionRemoveClick()
         {
+            // Reset question
             this.$store.commit('setQuestion', null)
+
+            // Focus on textearea
+            this.$textarea.focus()
         },
 
         onFileClick(file, version, line)
         {
+            // Set file, line and version
             this.$store.commit('setFile', file)
             this.$store.commit('setLine', line)
 
@@ -155,6 +186,17 @@ export default
             {
                 this.$store.commit('setVersion', version)
             })
+
+            // Focus on textearea
+            this.$textarea.focus()
+
+            // Scroll to bottom
+            this.scrollToBottom()
+        },
+
+        scrollToBottom()
+        {
+            this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight
         }
     }
 }
