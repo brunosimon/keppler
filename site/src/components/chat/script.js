@@ -128,7 +128,7 @@ export default
         onMessageTextKeyDown(event)
         {
             // Enter key pressed but without shift key
-            if(event.keyCode === 13)
+            if(event.keyCode === 13 && !event.shiftKey)
             {
                 event.preventDefault()
 

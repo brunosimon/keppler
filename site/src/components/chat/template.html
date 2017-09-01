@@ -15,9 +15,7 @@
                     <a href="#" class="file" v-if="message.file && message.line" @click.prevent="onFileClick(message.file, message.version, message.line)">
                         {{ message.file }}:{{ message.line }}
                     </a>
-                    <div class="text">
-                        {{ message.text }}
-                    </div>
+                    <div class="text" v-html="message.text.replace(/\n/g, '<br>')"></div>
                 </div>
             </div>
         </div>
