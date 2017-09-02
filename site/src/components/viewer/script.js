@@ -24,87 +24,14 @@ export default
             return this.$store.state.files.currentVersion
         },
 
-        lines()
+        linesCount()
         {
-            const lines = []
-            const lineBreaks = (this.version.content.match(/\n/g) || []).length + 1
-            const currentLine = this.$store.state.files.currentLine
+            return (this.version.content.match(/\n/g) || []).length + 1
+        },
 
-            // Create all lines
-            for(let i = 0; i < lineBreaks; i++)
-            {
-                const line = {}
-                line.index = lines.length + 1
-                line.added = false
-                line.removed = false
-                line.active = currentLine !== null && i === currentLine - 1
-
-                lines.push(line)
-            }
-
-            // Loop through each diff and add line infos
-            if(this.version.diff)
-            {
-                let lineProgress = 0
-
-                // Added lines and unchanged lines
-                for(const diffKey in this.version.diff)
-                {
-                    const diff = this.version.diff[diffKey]
-                    let lineBreaks = (diff.value.match(/\n/g) || []).length
-
-                    if(parseInt(diffKey) === this.version.diff.length - 1)
-                    {
-                        lineBreaks += 1
-                    }
-
-                    if(diff.added)
-                    {
-                        for(let i = 0; i < lineBreaks; i++)
-                        {
-                            const line = lines[lineProgress + i]
-                            line.added = true
-                        }
-                    }
-
-                    if(!diff.removed)
-                    {
-                        lineProgress += lineBreaks
-                    }
-                }
-
-                lineProgress = 0
-
-                // Removed lines
-                for(const diffKey in this.version.diff)
-                {
-                    const diff = this.version.diff[diffKey]
-                    let lineBreaks = (diff.value.match(/\n/g) || []).length
-
-                    if(parseInt(diffKey) === this.version.diff.length - 1)
-                    {
-                        lineBreaks += 1
-                    }
-
-                    if(diff.removed)
-                    {
-                        const line = lines[lineProgress]
-                        const nextLine = lines[lineProgress + 1]
-
-                        if(!line.added && (!nextLine || nextLine.added === false))
-                        {
-                            line.removed = true
-                        }
-                    }
-
-                    if(!diff.removed)
-                    {
-                        lineProgress += lineBreaks
-                    }
-                }
-            }
-
-            return lines
+        currentLine()
+        {
+            return this.$store.state.files.currentLine
         }
     },
 
