@@ -32,6 +32,11 @@ export default
         currentLine()
         {
             return this.$store.state.files.currentLine
+        },
+
+        scrollbarWidth()
+        {
+            return this.$store.state.scrollbarWidth
         }
     },
 

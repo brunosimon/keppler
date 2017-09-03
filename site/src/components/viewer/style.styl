@@ -17,16 +17,25 @@
     top 30px
     right 0
     width 100%
-    height 100%
+    bottom 0
     font-family Inconsolata, Monaco, Consolas, 'Courier New', Courier
     line-height 20px
     letter-spacing 0.5px
     font-size 15px
     background #2d2d49
-    overflow scroll
+    overflow hidden
 
     .version-active &
         width 75%
+
+.scroll-hack
+    position absolute
+    top 0
+    left 0
+    bottom -15px
+    right -15px
+    overflow scroll
+
 
 .lines
     position absolute
@@ -90,7 +99,7 @@
 
 .hljs
     display block
-    overflow-x auto
+    // overflow-x auto
     color #abb2bf
 
 .hljs-comment

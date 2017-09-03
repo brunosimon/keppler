@@ -17,7 +17,8 @@ export default new Vuex.Store({
 
     state:
     {
-        url: ''
+        url: '',
+        scrollbarWidth: 0
     },
 
     mutations:
@@ -25,6 +26,11 @@ export default new Vuex.Store({
         updateUrl(state, data)
         {
             state.url = data
+        },
+
+        updateScrollbarWidth(state, data)
+        {
+            state.scrollbarWidth = data
         }
     }
 })
