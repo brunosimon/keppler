@@ -1,14 +1,14 @@
 <div class="viewer" v-if="version">
     <div class="scroll-hack" :style="`bottom:-${scrollbarWidth}px;right:-${scrollbarWidth}px;`">
-        <pre class="code" v-highlightjs="version.content" contenteditable @keydown="onCodeKeyDown($event)"><code :class="[ extension ]"></code></pre>
         <div class="lines">
-            <div class="line" v-for="line in linesCount" @click.prevent="onLineClick(line)">
-                <span class="added" v-if="version.addedLines.indexOf(line - 1) !== -1 && differencesActive">+</span>
-                <span class="removed" v-if="version.removedLines.indexOf(line - 1) !== -1 && differencesActive">-</span>
+            <div class="line" v-for="line in linesCount">
+                <span class="highlight active" v-if="line === currentLine">!</span>
+                <span class="highlight added" v-if="version.addedLines.indexOf(line - 1) !== -1 && differencesActive"></span>
+                <span class="highlight removed" v-if="version.removedLines.indexOf(line - 1) !== -1 && differencesActive"></span>
                 <span class="index">{{ line }}.</span>
-                <span class="question">?</span>
-                <span class="active" v-if="line === currentLine">!</span>
+                <span class="question" @click.prevent="onLineClick(line)">?</span>
             </div>
         </div>
+        <pre class="code" v-highlightjs="version.content" contenteditable @keydown="onCodeKeyDown($event)"><code :class="[ extension ]"></code></pre>
     </div>
 </div>
