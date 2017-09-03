@@ -20,6 +20,12 @@ export default
     {
         isActive()
         {
+            // No current version
+            if(!this.$store.state.files.currentVersion)
+            {
+                return ''
+            }
+
             return this.$store.state.files.currentVersion.date === this.content.date
         },
 
