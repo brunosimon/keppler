@@ -29,6 +29,11 @@ export default
             })
 
             return versions
+        },
+
+        scrollbarWidth()
+        {
+            return this.$store.state.scrollbarWidth
         }
     },
 

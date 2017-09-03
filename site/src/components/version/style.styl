@@ -1,2 +1,55 @@
 .version
-	display block
+    position relative
+    display block
+    width 200px
+    height 50px
+    background #232733
+    margin-top 1px
+    margin-bottom 2px
+    margin-left 1px
+    color #F6F6F6
+
+    &.active
+        width 202px
+        margin-left 0
+        background #2D2D49
+
+    .date
+        position absolute
+        top 14px
+        left 8px
+        opacity 0.6
+        font-size 10px
+
+    .from-now
+        position absolute
+        top 28px
+        left 8px
+        opacity 0.6
+        font-size 7px
+        text-transform uppercase
+
+    .modified-lines
+        position absolute
+        top 25px
+        right 8px
+        opacity 0.6
+        font-size 10px
+
+    .repartition
+        position absolute
+        top 17px
+        right 6px
+        font-size 0
+
+        .block
+            display inline-block
+            width 4px
+            height 4px
+            margin-right 2px
+
+            &.added
+                background #41FF79
+
+            &.removed
+                background #FD4141

@@ -6,7 +6,8 @@
         {{ fromNow }}
     </div>
     <div class="repartition">
-        <span v-for="added in repartition.added">1</span><span v-for="removed in repartition.removed">0</span>
+        <span class="block added" v-for="block in repartition.added"></span>
+        <span class="block removed" v-for="block in repartition.removed"></span>
     </div>
     <div class="modified-lines">
         {{ modifiedLines }}
