@@ -65,6 +65,7 @@
     "html-entities": "^1.2.1",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
+    "moment": "^2.18.1",
     "npm-run-all": "^4.0.2",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",

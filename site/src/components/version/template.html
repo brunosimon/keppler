@@ -1,3 +1,14 @@
-<a href="#" class="version">
-    {{ content.date }}
+<a href="#" class="version" :class="[isActive ? 'active' : '']">
+    <div class="date">
+        {{ date }}
+    </div>
+    <div class="from-now">
+        {{ fromNow }}
+    </div>
+    <div class="repartition">
+        <span v-for="added in repartition.added">1</span><span v-for="removed in repartition.removed">0</span>
+    </div>
+    <div class="modified-lines">
+        {{ modifiedLines }}
+    </div>
 </a>
