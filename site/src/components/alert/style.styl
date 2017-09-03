@@ -1,4 +1,27 @@
 .alert
+    display block
     position fixed
     bottom 0
-    right 30px
+    right 60px
+    width 62px
+    height 40px
+    background #24263A
+
+    .icon
+        position absolute
+        top 10px
+        left 18px
+
+        &.default
+            display inline-block
+
+        &.hover
+            display none
+
+    &:hover
+        .icon
+            &.default
+                display none
+
+            &.hover
+                display inline-block
