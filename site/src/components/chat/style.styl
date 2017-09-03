@@ -1,11 +1,37 @@
 .chat
     position fixed
     bottom 0
-    right 90px
-    background #fff
+    right 123px
+    color #fff
 
-.header
-    cursor pointer
+.trigger
+    position absolute
+    bottom 0
+    right 0
+    height 40px
+    padding-left 14px
+    padding-right 18px
+    line-height 40px
+    background #24263A
+    font-size 14px
+    white-space nowrap
+
+    .icon
+        margin-left 4px
+
+    .unread
+        display inline-block
+        position absolute
+        top 7px
+        left calc(100% - 25px)
+        width 20px
+        text-align center
+        font-size 9px
+        line-height 9px
+        color #4BD1C5
+
+    &:hover
+        color #4BD1C5
 
 .user-name
     outline none

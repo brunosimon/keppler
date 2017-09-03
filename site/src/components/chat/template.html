@@ -1,8 +1,14 @@
 <div class="chat">
-    <header class="header" @click="onHeaderClick">
-        Discussions ({{ unreadCount }})
-    </header>
+    <a href="#" v-show="!open" class="trigger" @click="onHeaderClick">
+        Discussions
+        <img v-if="unreadCount === 0" class="icon default" src="../../../static/svg/chat-star.svg" alt="">
+        <img v-if="unreadCount > 0" class="icon hover" src="../../../static/svg/chat-star-hover.svg" alt="">
+        <span v-if="unreadCount > 0" class="unread">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
+    </a>
     <div class="content" v-show="open">
+        <a href="#" class="header" @click="onHeaderClick">
+            Discussions
+        </a>
         <div class="messages" @scroll="onMessagesScroll">
             <div class="inner-messages">
                 <div class="message" v-for="message of messages" :key="message.date">
