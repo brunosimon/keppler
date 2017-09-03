@@ -11,3 +11,103 @@ header
     position absolute
     top 0
     left 0
+    right 0
+    height 50px
+    background #1E202F
+
+    a
+        &.active
+            background #26283B
+
+        .icon
+            &.default
+                display inline-block
+
+            &.hover
+                display none
+
+        &:hover
+            .icon
+                &.default
+                    display none
+
+                &.hover
+                    display inline-block
+
+    .versions-toggle
+        display block
+        position absolute
+        top 0
+        left 0
+        width 50px
+        height 50px
+        padding-top 13px
+        padding-left 18px
+
+        .icon
+            &.default
+                opacity 0.5
+
+        &.active
+            background #26283B
+
+    .differences-toggle
+        display block
+        position absolute
+        top 0
+        left 50px
+        width 58px
+        height 50px
+        padding-top 13px
+        padding-left 19px
+
+        .icon
+            &.default
+                opacity 0.7
+
+        &.active
+            background #26283B
+
+    .copy
+        display block
+        position absolute
+        top 0
+        right 58px
+        width 58px
+        height 50px
+        padding-top 14px
+        padding-left 22px
+
+        .icon
+            &.default
+                opacity 0.8
+
+        &.active
+            background #26283B
+
+    .download
+        display block
+        position absolute
+        top 0
+        right 0
+        width 58px
+        height 50px
+        padding-top 14px
+        padding-left 22px
+
+        .icon
+            &.default
+                opacity 0.5
+
+    .path
+        position absolute
+        top 20px
+        left 0
+        right 0
+        text-align center
+        font-size 14px
+        color #fff
+        letter-spacing 0.25px
+
+        .directory
+            opacity 0.3
