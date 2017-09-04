@@ -31,6 +31,11 @@ export default
         user()
         {
             return this.$store.state.chat.user
+        },
+
+        scrollbarWidth()
+        {
+            return this.$store.state.scrollbarWidth
         }
     },
 
@@ -152,6 +157,9 @@ export default
 
                     // Reset question
                     this.$store.commit('setQuestion', null)
+
+                    // Scroll to bottom
+                    this.scrollToBottom()
                 }
             }
         },
@@ -197,6 +205,25 @@ export default
         scrollToBottom()
         {
             this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight
+        },
+
+        formatMinutes(time)
+        {
+            const date = new Date(time)
+
+            let minutes = '' + date.getMinutes()
+            if(minutes.length === 1)
+            {
+                minutes = `0${minutes}`
+            }
+
+            let hours = '' + date.getHours()
+            if(hours.length === 1)
+            {
+                hours = `0${hours}`
+            }
+
+            return `${hours}:${minutes}`
         }
     }
 }
