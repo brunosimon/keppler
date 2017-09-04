@@ -35,7 +35,9 @@
 
     <!-- Preview -->
     <div class="preview" v-if="isImage">
-        <img :src="downloadUrl">
+        <div class="inner">
+            <img :src="downloadUrl">
+        </div>
     </div>
 
     <!-- Can't read -->
