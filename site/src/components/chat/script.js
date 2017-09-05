@@ -204,7 +204,7 @@ export default
 
         scrollToBottom()
         {
-            this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight
+            this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight + 10
         },
 
         formatMinutes(time)

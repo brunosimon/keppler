@@ -1,4 +1,16 @@
 <div class="landing">
+    <div class="url">
+        {{ url }}
+    </div>
+    <div class="illustration">
+        <div class="element star" v-for="index in 20" :style="`left: ${Math.random() * 200 - 50}%;top: ${Math.random() * 200 - 50}%;animation-delay: ${Math.random() * 4}s;`">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+        </div>
+        <img class="element cloud" src="../../../static/svg/landing-cloud.svg" alt="">
+        <img class="element astronaut" src="../../../static/svg/landing-astronaut.svg" alt="">
+        <img class="element book" src="../../../static/svg/landing-book.svg" alt="">
+    </div>
     <div class="title">
         Welcome to keppler!
     </div>
@@ -6,10 +18,6 @@
         Here you can browse the presenter's code in real time.
     </div>
     <div class="quote">
-        "{{ quote }}"
+        — {{ quote }}
     </div>
-    <div class="url">
-        {{ url }}
-    </div>
-    <img src="../../../static/svg/landing-astronaut.svg" alt="">
 </div>
