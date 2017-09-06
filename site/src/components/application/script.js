@@ -1,5 +1,5 @@
 import Connexion from '@/components/connexion'
-import Projects from '@/components/projects'
+import ProjectsHub from '@/components/projects-hub'
 import Project from '@/components/project'
 
 export default
@@ -9,7 +9,7 @@ export default
     components:
     {
         Connexion,
-        Projects,
+        ProjectsHub,
         Project
     },
 
@@ -51,7 +51,6 @@ export default
 
         onHeaderClick()
         {
-            console.log('click')
             this.$store.commit('setFile', null)
         }
     }
