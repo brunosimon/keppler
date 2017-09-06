@@ -47,6 +47,12 @@ export default
 
             // Delete the DIV
             this.$el.removeChild(dummy)
+        },
+
+        onHeaderClick()
+        {
+            console.log('click')
+            this.$store.commit('setFile', null)
         }
     }
 }

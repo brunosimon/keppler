@@ -20,7 +20,7 @@
     position absolute
     top 0
     right 0
-    width 75%
+    left 290px
     height 100%
     background #2D2D49
     font-family 'DINNextRoundedLTPro'
@@ -46,7 +46,7 @@
         &.astronaut
             top 60px
             left 70px
-            animation illustration-astronaut 6s infinite alternate
+            animation illustration-astronaut 6s ease-in-out infinite alternate
             will-change transform
 
             @keyframes illustration-astronaut
@@ -58,7 +58,7 @@
         &.book
             top 170px
             left 150px
-            animation illustration-book 4.5s infinite alternate
+            animation illustration-book 4.5s ease-in-out infinite alternate
             will-change transform
 
             @keyframes illustration-book
@@ -73,7 +73,7 @@
             width 8px
             height 8px
             opacity 0
-            animation illustration-star 4.5s infinite alternate
+            animation illustration-star 4.5s ease-in-out infinite alternate
             will-change opacity
 
             @keyframes illustration-star
@@ -81,7 +81,6 @@
                     opacity 0
                 100%
                     opacity 1
-
 
             .bar
                 position absolute

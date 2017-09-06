@@ -31,7 +31,7 @@ export default
 
         file()
         {
-            return this.$store.state.files.current
+            return this.$store.state.files.currentFile
         }
     },
 

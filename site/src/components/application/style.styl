@@ -20,6 +20,54 @@ a
     left 0
     overflow scroll
 
+// Header
+.application-header
+    position absolute
+    top 0
+    left 0
+    width 290px
+    height 80px
+    background #393855
+
+    a
+        display block
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+
+    .element
+        position absolute
+
+        &.background
+            top 0
+            left 0
+
+        &.robot-container
+            top 17px
+            left 52px
+            animation header-robot-container 3s alternate infinite ease-in-out
+
+            @keyframes header-robot-container
+                0%
+                    transform translateX(-5px)
+                100%
+                    transform translateX(5px)
+
+        &.robot
+            animation header-robot 4.15s alternate infinite ease-in-out
+
+            @keyframes header-robot
+                0%
+                    transform translateY(-3px)
+                100%
+                    transform translateY(3px)
+
+        &.title
+            top 21px
+            left 112px
+
 // Reset
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

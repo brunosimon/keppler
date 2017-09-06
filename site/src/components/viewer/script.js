@@ -16,7 +16,7 @@ export default
     {
         extension()
         {
-            return this.$store.state.files.current.extension
+            return this.$store.state.files.currentFile.extension
         },
 
         version()
