@@ -75,7 +75,7 @@ export default
             const question = {}
             question.line = index
             question.version = this.version.date
-            question.file = this.$store.state.files.current.path.full
+            question.file = this.$store.state.files.currentFile.path.full
             this.$store.commit('setQuestion', question)
             this.$store.commit('openChat')
         }

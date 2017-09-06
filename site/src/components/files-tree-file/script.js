@@ -57,6 +57,11 @@ export default
             }
 
             return visible
+        },
+
+        currentFile()
+        {
+            return this.$store.state.files.currentFile
         }
     },
 

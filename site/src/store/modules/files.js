@@ -28,6 +28,7 @@ export default {
         {
             data.isNew = true
             data.isChanged = false
+            data.isActive = false
             state.tree.addFile(data.path.full, data)
         },
 
@@ -41,7 +42,12 @@ export default {
             // Null file
             if(!data)
             {
-                state.currentFile = data
+                if(state.currentFile)
+                {
+                    state.currentFile.isActive = false
+                }
+
+                state.currentFile = null
             }
 
             // File path
@@ -53,7 +59,13 @@ export default {
                 // No current file or file different than current
                 if(!state.currentFile || state.currentFile.id !== file.id)
                 {
+                    if(state.currentFile)
+                    {
+                        state.currentFile.isActive = false
+                    }
+
                     state.currentFile = file
+                    state.currentFile.isActive = true
                     state.currentFile.isNew = false
                     state.currentFile.isChanged = false
                 }
