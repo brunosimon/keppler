@@ -23,6 +23,11 @@ export default
         files()
         {
             return this.$store.state.files.tree
+        },
+
+        scrollbarWidth()
+        {
+            return this.$store.state.scrollbarWidth
         }
     },
 

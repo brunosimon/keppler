@@ -22,6 +22,11 @@ export default
 
         downloadUrl()
         {
+            if(!this.currentProject)
+            {
+                return ''
+            }
+
             return `${this.$store.state.url}/${this.currentProject.slug}/download`
         }
     },

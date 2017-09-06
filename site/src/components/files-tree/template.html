@@ -1,6 +1,6 @@
-<div class="file-tree">
+<div class="file-tree" :style="`right: calc(100vw - 290px - ${scrollbarWidth}px);`">
     <input type="text" v-model="searchValue">
-    <files-tree-folder v-for="folder of files.folders" :key="+ new Date()" :content="folder" :depth="0"></files-tree-folder>
+    <files-tree-folder class="content" v-for="folder of files.folders" :key="+ new Date()" :content="folder" :depth="0"></files-tree-folder>
     <div>
          <a href="#" class="all-read" @click.prevent="onAllReadClick">Mark all as read</a>
     </div>
