@@ -4,7 +4,7 @@
         <file-icon class="icon" extension="folder" v-show="!open"></file-icon>
         <span class="text">
             <template v-for="(letter, key) in content.name">
-                <span :style="matchingPositions.indexOf(key) !== -1 ? 'font-weight:bold;' : ''">{{ letter }}</span>
+                <span class="letter" :class="[matchingPositions.indexOf(key) !== -1 ? 'highlight' : '']">{{ letter }}</span>
             </template>
         </span>
     </a>

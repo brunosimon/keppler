@@ -3,7 +3,13 @@
 
     .text
         padding-left 12px
-        opacity 0.6
+
+        .letter
+            opacity 0.6
+
+            &.highlight
+                opacity 1
+                font-weight bold
 
     .notif
         display inline-block
@@ -29,5 +35,7 @@
 
     &:hover
         .text
-            opacity 1
             color #4bd1c5
+
+            .letter
+                opacity 1

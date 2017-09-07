@@ -3,7 +3,7 @@
         <file-icon class="icon" :extension="content.extension"></file-icon>
         <span class="text">
             <template v-for="(letter, key) in content.name">
-                <span :style="matchingPositions.indexOf(key) !== -1 ? 'font-weight:bold;' : ''">{{ letter }}</span>
+                <span class="letter" :class="[matchingPositions.indexOf(key) !== -1 ? 'highlight' : '']">{{ letter }}</span>
             </template>
         </span>
         <span v-if="content.isNew" class="notif new">new</span>
