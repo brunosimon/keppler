@@ -1,6 +1,7 @@
 import Connexion from '@/components/connexion'
 import ProjectsHub from '@/components/projects-hub'
 import Project from '@/components/project'
+import Favicon from '@/components/favicon'
 
 export default
 {
@@ -10,7 +11,8 @@ export default
     {
         Connexion,
         ProjectsHub,
-        Project
+        Project,
+        Favicon
     },
 
     computed:

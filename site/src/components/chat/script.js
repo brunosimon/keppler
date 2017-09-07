@@ -6,8 +6,7 @@ export default
     {
         return {
             userName: '',
-            messageText: '',
-            unreadCount: 0
+            messageText: ''
         }
     },
 
@@ -36,6 +35,11 @@ export default
         scrollbarWidth()
         {
             return this.$store.state.scrollbarWidth
+        },
+
+        unreadCount()
+        {
+            return this.$store.state.chat.unreadCount
         }
     },
 
@@ -48,11 +52,6 @@ export default
 
         messages()
         {
-            if(!this.atBottom || !this.open)
-            {
-                this.unreadCount++
-            }
-
             window.requestAnimationFrame(() =>
             {
                 if(this.atBottom)
@@ -107,12 +106,6 @@ export default
         onHeaderClick()
         {
             this.$store.commit('toggleChat')
-
-            // Reset unread count
-            if(this.open)
-            {
-                this.unreadCount = 0
-            }
         },
 
         onUserNameChange()
@@ -167,12 +160,6 @@ export default
         onMessagesScroll()
         {
             this.atBottom = this.$messages.scrollTop + this.$messages.offsetHeight >= this.$innerMessages.offsetHeight - 15
-
-            // Reset unread count
-            if(this.atBottom)
-            {
-                this.unreadCount = 0
-            }
         },
 
         onQuestionRemoveClick()
@@ -204,7 +191,7 @@ export default
 
         scrollToBottom()
         {
-            this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight + 10
+            this.$messages.scrollTop = this.$innerMessages.offsetHeight - this.$messages.offsetHeight + 15
         },
 
         formatMinutes(time)

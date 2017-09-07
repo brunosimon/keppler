@@ -7,7 +7,8 @@ export default {
         messages: [],
         pendingMessage: null,
         pendingAlert: null,
-        question: null
+        question: null,
+        unreadCount: 0
     },
 
     mutations:
@@ -16,6 +17,13 @@ export default {
         {
             state.messages.push(data)
 
+            // Add to unread count if not open or document is hidden (tab not active)
+            if(!state.open || document.hidden)
+            {
+                state.unreadCount++
+            }
+
+            // Clamp
             if(state.messages.length > 100)
             {
                 state.messages.splice(0, state.messages.length - 100)
@@ -50,6 +58,7 @@ export default {
 
         openChat(state)
         {
+            state.unreadCount = 0
             state.open = true
         },
 
@@ -60,6 +69,7 @@ export default {
 
         toggleChat(state)
         {
+            state.unreadCount = 0
             state.open = !state.open
         }
     }
