@@ -1,9 +1,11 @@
-<div class="landing">
-    <div class="url">
+<div class="landing" :class="[ focus ? 'focus' : '' ]" @click.prevent="onLandingClick">
+
+    <div class="url" @click.prevent.stop="onUrlClick">
         {{ url }}
     </div>
+
     <div class="illustration">
-        <div class="element star" v-for="index in 20" :style="`left: ${Math.random() * 200 - 50}%;top: ${Math.random() * 200 - 50}%;animation-delay: ${Math.random() * 4}s;`">
+        <div class="element star" v-for="star of stars" :style="`left: ${star[0]};top: ${star[1]};animation-delay: ${star[2]};`">
             <span class="bar bar-1"></span>
             <span class="bar bar-2"></span>
         </div>
@@ -11,13 +13,20 @@
         <img class="element astronaut" src="../../../static/svg/landing-astronaut.svg" alt="">
         <img class="element book" src="../../../static/svg/landing-book.svg" alt="">
     </div>
+
     <div class="title">
         Welcome to keppler!
     </div>
+
     <div class="sub-title">
         Here you can browse the presenter's code in real time.
     </div>
+
     <div class="quote">
         — {{ quote }}
     </div>
+
+    <div class="mask"></div>
+
+    <fireworks :running="fireworksRunning"></fireworks>
 </div>

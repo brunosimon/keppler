@@ -25,11 +25,6 @@
     background #2D2D49
     font-family 'DINNextRoundedLTPro'
 
-.url
-    color #fff
-    font-size 20px
-    margin-bottom 50px
-
 .illustration
     position relative
     width 300px
@@ -117,3 +112,34 @@
     color #4bd1c5
     font-size 18px
 
+.url
+    color #fff
+    font-size 20px
+    margin-bottom 30px
+    padding 20px
+    cursor pointer
+    z-index 2
+    transform translateX(0) translateY(0) scale(1, 1)
+    transition transform 0.3s
+
+    .focus &
+        transform  translateX(-145px) translateY(250px) scale(3, 3)
+        transition-duration 5s
+
+.mask
+    position absolute
+    top 0
+    left -290px
+    width calc(100% + 290px)
+    height 100%
+    background #000
+    z-index 1
+    pointer-events none
+    opacity 0
+    transition opacity 0.3s
+    will-change opacity
+
+    .focus &
+        pointer-events default
+        opacity 0.8
+        transition-duration 3s
