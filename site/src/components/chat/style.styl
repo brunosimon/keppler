@@ -15,6 +15,7 @@
     background #24263A
     font-size 14px
     white-space nowrap
+    user-select none
 
     .stroke
         position absolute
@@ -59,6 +60,7 @@
         padding-left 14px
         line-height 40px
         font-size 14px
+        user-select none
 
         .stroke
             position absolute
@@ -136,10 +138,17 @@
 
         .user-label
             opacity 0.7
+            pointer-events none
+            user-select none
 
         .user-name
+            width 185px
+            padding-left 1px
             outline none
             border none
+
+            &:hover
+                background rgba(255, 255, 255, 0.075)
 
     .question
         position absolute
