@@ -21,7 +21,7 @@ export default
         this.$favicon = document.querySelector('.favicon')
 
         this.size = 16 * window.devicePixelRatio
-        this.notifSize = 0.2
+        this.notifSize = 0.17
 
         this.canvas = document.createElement('canvas')
         this.canvas.width = this.size
@@ -68,13 +68,14 @@ export default
             if(this.chatUnreadCount > 0)
             {
                 this.context.beginPath()
-                this.context.arc(this.size * (1 - this.notifSize), this.size * (1 - this.notifSize), this.size * this.notifSize, 0, Math.PI * 2)
+                this.context.arc(this.size * (1 - this.notifSize) - 1, this.size * (1 - this.notifSize) - 1, this.size * this.notifSize, 0, Math.PI * 2)
                 // this.context.arc(this.size * (1 - this.notifSize * 2.25), this.size * (1 - this.notifSize), this.size * this.notifSize, 0, Math.PI * 2)
 
-                this.context.fillStyle = '#ff763d'
+                this.context.fillStyle = '#4bd1c5' // ff763d
                 this.context.fill()
 
-                this.context.strokeStyle = '#ad1d3c'
+                this.context.lineWidth = 2
+                this.context.strokeStyle = '#0071ab' // ad1d3c
                 this.context.stroke()
             }
 
