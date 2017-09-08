@@ -1,0 +1,19 @@
+<div class="illustration">
+
+    <div class="element star" v-for="star of stars" :style="`left: ${star[0]};top: ${star[1]};animation-delay: ${star[2]};`">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+    </div>
+
+    <img class="element cloud" src="../../../static/svg/illustration-cloud.svg" alt="">
+
+    <div v-if="name === 'astronaut'">
+        <img class="element astronaut" src="../../../static/svg/illustration-astronaut.svg" alt="">
+        <img class="element book" src="../../../static/svg/illustration-book.svg" alt="">
+    </div>
+
+    <div v-if="name === 'sad-robot'">
+        <img class="element sad-robot" src="../../../static/svg/illustration-sad-robot.svg" alt="">
+    </div>
+
+</div>

@@ -15,8 +15,11 @@
 
     <!-- Can't read -->
     <div class="cant-read" v-if="!isCode && !isImage">
-        <br>Sorry, I can't read this file.
-        <br>But you can <a :href="downloadUrl" download>download it</a>
+        <illustration name="sad-robot"></illustration>
+        <div class="text">
+            Sorry, I can't read this file.
+            <br>But you can <a :href="downloadUrl" download class="download">download it</a>.
+        </div>
     </div>
 
     <!-- Header -->

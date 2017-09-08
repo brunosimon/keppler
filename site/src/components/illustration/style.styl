@@ -1,0 +1,83 @@
+
+.illustration
+    position relative
+    width 300px
+    height 275px
+    margin-bottom 30px
+    user-select none
+
+    .element
+        position absolute
+
+        &.star
+            top 0
+            left 0
+            width 8px
+            height 8px
+            opacity 0
+            animation illustration-star 4.5s ease-in-out infinite alternate
+            will-change opacity
+
+            @keyframes illustration-star
+                0%
+                    opacity 0
+                100%
+                    opacity 1
+
+            .bar
+                position absolute
+                background #fff
+                border-radius 2px
+
+                &.bar-1
+                    top 0
+                    left 3px
+                    width 2px
+                    height 100%
+
+                &.bar-2
+                    top 3px
+                    left 0
+                    width 100%
+                    height 2px
+
+        &.cloud
+            top 0
+            left 0
+
+        &.astronaut
+            top 60px
+            left 70px
+            animation illustration-astronaut 6s ease-in-out infinite alternate
+            will-change transform
+
+            @keyframes illustration-astronaut
+                0%
+                    transform translateX(-10px) translateY(-5px) translateZ(0)
+                100%
+                    transform translateX(10px) translateY(5px) translateZ(0)
+
+        &.book
+            top 170px
+            left 150px
+            animation illustration-book 4.5s ease-in-out infinite alternate
+            will-change transform
+
+            @keyframes illustration-book
+                0%
+                    transform translateX(4px) translateY(-8px) translateZ(0)
+                100%
+                    transform translateX(-4px) translateY(8px) translateZ(0)
+
+        &.sad-robot
+            top 60px
+            left 80px
+            width 130px
+            animation illustration-sad-robot 6s ease-in-out infinite alternate
+            will-change transform
+
+            @keyframes illustration-sad-robot
+                0%
+                    transform translateX(-10px) translateY(-5px) translateZ(0)
+                100%
+                    transform translateX(10px) translateY(5px) translateZ(0)

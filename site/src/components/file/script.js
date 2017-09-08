@@ -1,6 +1,7 @@
 import Versions from '@/components/versions'
 import Viewer from '@/components/viewer'
 import Tooltip from '@/components/tooltip'
+import Illustration from '@/components/illustration'
 import copyToClipboard from 'copy-to-clipboard'
 
 export default
@@ -11,7 +12,8 @@ export default
     {
         Versions,
         Viewer,
-        Tooltip
+        Tooltip,
+        Illustration
     },
 
     computed:

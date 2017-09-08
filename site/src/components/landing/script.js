@@ -1,5 +1,6 @@
 import quotes from './quotes'
 import Fireworks from '@/components/fireworks'
+import Illustration from '@/components/illustration'
 
 export default
 {
@@ -7,15 +8,15 @@ export default
 
     components:
     {
-        Fireworks
+        Fireworks,
+        Illustration
     },
 
     data()
     {
         return {
             focus: false,
-            fireworksRunning: false,
-            stars: []
+            fireworksRunning: false
         }
     },
 
@@ -30,18 +31,6 @@ export default
         url()
         {
             return this.$store.state.url
-        }
-    },
-
-    created()
-    {
-        for(let i = 0; i < 20; i++)
-        {
-            this.stars.push([
-                Math.round(Math.random() * 200 - 50) + '%',
-                Math.round(Math.random() * 200 - 50) + '%',
-                Math.random() * 4 + 's'
-            ])
         }
     },
 

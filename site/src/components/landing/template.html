@@ -4,15 +4,7 @@
         {{ url }}
     </div>
 
-    <div class="illustration">
-        <div class="element star" v-for="star of stars" :style="`left: ${star[0]};top: ${star[1]};animation-delay: ${star[2]};`">
-            <span class="bar bar-1"></span>
-            <span class="bar bar-2"></span>
-        </div>
-        <img class="element cloud" src="../../../static/svg/landing-cloud.svg" alt="">
-        <img class="element astronaut" src="../../../static/svg/landing-astronaut.svg" alt="">
-        <img class="element book" src="../../../static/svg/landing-book.svg" alt="">
-    </div>
+    <illustration name="astronaut"></illustration>
 
     <div class="title">
         Welcome to keppler!
