@@ -74,7 +74,7 @@ export default
                 this.context.fillStyle = '#4bd1c5' // ff763d
                 this.context.fill()
 
-                this.context.lineWidth = 2
+                this.context.lineWidth = window.devicePixelRatio
                 this.context.strokeStyle = '#0071ab' // ad1d3c
                 this.context.stroke()
             }
