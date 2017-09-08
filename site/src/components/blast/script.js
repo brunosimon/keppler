@@ -6,19 +6,25 @@ export default
     {
         return {
             sparks: [],
-            color: 'yellow'
+            cssColor: 'yellow'
         }
+    },
+
+    props:
+    {
+        color: { type: String, default: 'random' },
+        sparksCount: { type: Number, default: 25 }
     },
 
     created()
     {
         // Create sparks
-        for(let i = 0; i < 25; i++)
+        for(let i = 0; i < this.sparksCount; i++)
         {
             this.sparks.push([
-                Math.random() * 360 + 'deg',
-                Math.random(),
-                0.5 + Math.random() * 1.5 + 's'
+                Math.random() * 360 + 'deg', // Orientation
+                Math.random(), // Scale
+                0.5 + Math.random() * 1.5 + 's' // Duration
             ])
         }
 
@@ -28,15 +34,15 @@ export default
             this.$emit('end', this.index)
         }, 4000)
 
-        // Color
-        this.color = `hsl(${255 * Math.random()}, 100%, 50%)`
-    },
-
-    mounted()
-    {
-    },
-
-    methods:
-    {
+        // Random color
+        if(this.color === 'random')
+        {
+            this.cssColor = `hsl(${255 * Math.random()}, 100%, 50%)`
+        }
+        // Specific color
+        else
+        {
+            this.cssColor = this.color
+        }
     }
 }

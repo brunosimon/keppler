@@ -11,7 +11,11 @@ export default
 
     props:
     {
-        running: { type: Boolean, default: true }
+        running: { type: Boolean, default: true },
+        minimumFrequency: { type: Number, default: 0.5 },
+        randomFrequency: { type: Number, default: 2.5 },
+        color: { type: String, default: 'random' },
+        sparksCount: { type: Number, default: 30 }
     },
 
     data()
@@ -33,7 +37,11 @@ export default
 
     mounted()
     {
-        this.start()
+        // If running add first blast
+        if(this.running)
+        {
+            this.addBlast()
+        }
     },
 
     methods:
@@ -46,40 +54,34 @@ export default
             }
         },
 
-        start()
-        {
-            if(this.running)
-            {
-                this.addBlast()
-            }
-        },
-
         addBlast()
         {
+            // Add blast to array
             this.blasts.push(this.blastsIndex++)
 
+            // If still running wait and add another blast
             if(this.running)
             {
+                const duration = (this.minimumFrequency * 1000) + Math.random() * (this.randomFrequency * 1000)
                 window.setTimeout(() =>
                 {
-                    this.addBlast()
-                }, 1000 + Math.random() * 3000)
+                    if(this.running)
+                    {
+                        this.addBlast()
+                    }
+                }, duration)
             }
         },
 
-        removeBlast(index)
+        onBlastEnd(index)
         {
+            // Find blast index and remove properly from array
             const blast = this.blasts.indexOf(index)
 
             if(blast !== -1)
             {
                 this.blasts.splice(blast, 1)
             }
-        },
-
-        onBlastEnd(index)
-        {
-            this.removeBlast(index)
         }
     }
 }
