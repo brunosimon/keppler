@@ -12,6 +12,6 @@ class ClassName extends AnotherClass
 
     test()
     {
-
+    	console.log('salut quentin lol')
     }
 }
