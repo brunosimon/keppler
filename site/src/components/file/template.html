@@ -1,32 +1,5 @@
 <div class="file" :class="[versionsActive && isCode ? 'version-active' : '']">
 
-    <!-- Header -->
-    <header>
-
-        <div class="path"><span class="directory">{{ content.path.directory }}/</span><span class="name">{{ content.name }}</span></div>
-
-        <a class="versions-toggle" :class="[versionsActive ? 'active' : '']" href="#" @click.prevent="onVersionsClick" v-if="isCode">
-            <img class="icon default" src="../../../static/svg/versions.svg" alt="">
-            <img class="icon hover" src="../../../static/svg/versions-hover.svg" alt="">
-        </a>
-
-        <a class="differences-toggle" :class="[differencesActive ? 'active' : '']" href="#" @click.prevent="onDifferencesClick" v-if="isCode">
-            <img class="icon default" src="../../../static/svg/differences.svg" alt="">
-            <img class="icon hover" src="../../../static/svg/differences-hover.svg" alt="">
-        </a>
-
-        <a class="copy" :class="[copied ? 'active' : '']" href="#" @click.prevent="onCopyClick" @mouseleave="onCopyMouseleave" v-if="isCode">
-            <img class="icon default" src="../../../static/svg/copy.svg" alt="">
-            <img class="icon hover" src="../../../static/svg/copy-hover.svg" alt="">
-        </a>
-
-        <a class="download" :href="downloadUrl" download>
-            <img class="icon default" src="../../../static/svg/download.svg" alt="">
-            <img class="icon hover" src="../../../static/svg/download-hover.svg" alt="">
-        </a>
-
-    </header>
-
     <!-- Versions -->
     <versions :file="content" :content="content.versions" v-if="versionsActive && isCode"></versions>
 
@@ -45,4 +18,36 @@
         <br>Sorry, I can't read this file.
         <br>But you can <a :href="downloadUrl" download>download it</a>
     </div>
+
+    <!-- Header -->
+    <header>
+
+        <div class="path"><span class="directory">{{ content.path.directory }}/</span><span class="name">{{ content.name }}</span></div>
+
+        <a class="versions-toggle" :class="[versionsActive ? 'active' : '']" href="#" @click.prevent="onVersionsClick" v-if="isCode">
+            <img class="icon default" src="../../../static/svg/versions.svg" alt="">
+            <img class="icon hover" src="../../../static/svg/versions-hover.svg" alt="">
+            <tooltip position="bottom-right">Toggle the revision history</tooltip>
+        </a>
+
+        <a class="differences-toggle" :class="[differencesActive ? 'active' : '']" href="#" @click.prevent="onDifferencesClick" v-if="isCode">
+            <img class="icon default" src="../../../static/svg/differences.svg" alt="">
+            <img class="icon hover" src="../../../static/svg/differences-hover.svg" alt="">
+            <tooltip position="bottom-right">Toggle the line-by-line differences</tooltip>
+        </a>
+
+        <a class="copy" :class="[copied ? 'active' : '']" href="#" @click.prevent="onCopyClick" @mouseleave="onCopyMouseleave" v-if="isCode">
+            <img class="icon default" src="../../../static/svg/copy.svg" alt="">
+            <img class="icon hover" src="../../../static/svg/copy-hover.svg" alt="">
+            <tooltip position="bottom">Copy to clipboard</tooltip>
+        </a>
+
+        <a class="download" :href="downloadUrl" download>
+            <img class="icon default" src="../../../static/svg/download.svg" alt="">
+            <img class="icon hover" src="../../../static/svg/download-hover.svg" alt="">
+            <tooltip position="bottom-left">Download the latest version of the file</tooltip>
+        </a>
+
+    </header>
+
 </div>

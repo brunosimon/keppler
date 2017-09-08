@@ -1,6 +1,13 @@
+import Tooltip from '@/components/tooltip'
+
 export default
 {
     name: 'projects-hub',
+
+    components:
+    {
+        Tooltip
+    },
 
     computed:
     {

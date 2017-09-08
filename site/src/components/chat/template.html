@@ -5,6 +5,7 @@
         <img v-if="unreadCount === 0" class="icon default" src="../../../static/svg/chat-star.svg" alt="">
         <img v-if="unreadCount > 0" class="icon hover" src="../../../static/svg/chat-star-hover.svg" alt="">
         <span v-if="unreadCount > 0" class="unread">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
+        <tooltip position="top-left">Chat with other person on the project</tooltip>
     </a>
     <div class="content" v-show="open">
         <a href="#" class="header" @click="onHeaderClick">
