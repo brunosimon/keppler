@@ -1,20 +1,19 @@
 .version
     position relative
     display block
-    width 200px
+    width 202px
     height 50px
-    background #232733
-    margin-top 1px
-    margin-bottom 2px
-    margin-left 1px
     color #F6F6F6
     -webkit-font-smoothing initial
     -moz-osx-font-smoothing initial
-
-    &.active
-        width 202px
-        margin-left 0
-        background #2D2D49
+    
+    .background
+        position absolute
+        top 0
+        right 1px
+        bottom 1px
+        left 1px
+        background #232733
 
     .date
         position absolute
@@ -28,7 +27,7 @@
         top 28px
         left 8px
         opacity 0.6
-        font-size 7px
+        font-size 8px
         text-transform uppercase
 
     .modified-lines
@@ -56,8 +55,13 @@
             &.removed
                 background #FD4141
 
-    &:hover
+    &.active
+        .background
+            background #2D2D49
+            right 0
+            left 0
 
+    &:hover
         .date
         .from-now
         // .modified-lines
