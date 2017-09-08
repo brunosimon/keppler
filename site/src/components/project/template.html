@@ -1,7 +1,4 @@
 <div>
-    {{ project.name }}
-    <a :href="downloadUrl" download>Download</a>
-
     <files-tree></files-tree>
     <file v-if="file" :content="file"></file>
     <landing v-if="!file"></landing>
