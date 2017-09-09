@@ -1,0 +1,40 @@
+<div class="popin">
+
+    <!-- Trigger -->
+    <a href="#" class="trigger" @click.prevent="onTriggerClick">i</a>
+
+    <!-- Content -->
+    <div class="content" :class="[active ? 'active' : '']">
+        <div class="mask" @click.prevent="onMaskClick"></div>
+        <div class="inner">
+
+            <!-- Close -->
+            <a href="#" class="close" @click.prevent="onCloseClick">
+                <img class="icon default" src="../../../static/svg/cross.svg" alt="">
+                <img class="icon hover" src="../../../static/svg/cross-hover.svg" alt="">
+            </a>
+
+            <!-- Texts -->
+            <p class="title">Keppler <span class="version">{{ version }}</span></p>
+            <p>Real time code sharing for you lectures and presentations.</p>
+            <ul>
+                <li><a href="https://github.com/brunosimon/keppler" target="_blank">GitHub</a></li>
+                <li><a href="https://www.npmjs.com/package/keppler" target="_blank">NPM</a></li>
+            </ul>
+
+            <p class="title">Development</p>
+            <ul>
+                <li>Bruno Simon (<a href="https://github.com/brunosimon" target="_blank">GitHub</a>, <a href="https://twitter.com/bruno_simon/" target="_blank">Twitter</a>, <a href="https://bruno-simon.com" target="_blank">Site</a>)</li>
+            </ul>
+
+            <p class="title">UX / UI</p>
+            <ul>
+                <li>Tom Bonnike</li>
+                <li>Thibaud Vaubourg</li>
+                <li>Aymeric Sans</li>
+                <li>Axel Chalon</li>
+            </ul>
+        </div>
+    </div>
+
+</div>

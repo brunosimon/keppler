@@ -7,7 +7,7 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder' --open false --initial-send true",
+    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder' --open false --test true --initial-send true",
     "site-dev": "node site/build/dev-server.js",
     "site-build": "node site/build/build.js",
     "dev": "npm-run-all --parallel demo-folder site-dev"

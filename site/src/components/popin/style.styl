@@ -1,0 +1,104 @@
+.trigger
+    position absolute
+    top 17px
+    left 253px
+    width 18px
+    height 18px
+    font-size 14px
+    border 1px solid rgba(255, 255, 255, 0.5)
+    font-family 'DINNextRoundedLTPro'
+    text-align center
+    line-height 20px
+    color #fff
+    border-radius 10px
+
+    &:hover
+        border-color #4bd1c5
+
+.content
+    display flex
+    align-items center
+    justify-content center
+    flex-direction column
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    z-index 3
+    pointer-events none
+    opacity 0
+    transition opacity 0.3s
+    will-change opacity
+
+    .mask
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        opacity 0.85
+        background #000
+
+    .inner
+        position relative
+        width 400px
+        padding-top 0px
+        padding-right 30px
+        padding-bottom 26px
+        padding-left 30px
+        font-size 14px
+        line-height 1.2em
+        background #2d2d49
+        color #fff
+
+        .close
+            position absolute
+            top 10px
+            right 10px
+            width 40px
+            height 40px
+            padding-top 14px
+            padding-left 13px
+
+            .icon
+                &.default
+                    display block
+
+                &.hover
+                    display none
+
+            &:hover
+                .icon
+                    &.default
+                        display none
+
+                    &.hover
+                        display block
+
+        p
+            margin-bottom 1em
+
+            &.title
+                font-weight bold
+                margin-top 2em
+
+                .version
+                    font-weight normal
+                    opacity 0.6
+
+        a
+            text-decoration underline
+
+            &:hover
+                color #4bd1c5
+
+        ul
+            padding-left 22px
+
+            li
+                list-style-type disc
+
+    &.active
+        pointer-events initial
+        opacity 1

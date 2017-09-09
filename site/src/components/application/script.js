@@ -2,6 +2,7 @@ import Connexion from '@/components/connexion'
 import ProjectsHub from '@/components/projects-hub'
 import Project from '@/components/project'
 import Favicon from '@/components/favicon'
+import Popin from '@/components/popin'
 
 export default
 {
@@ -12,7 +13,8 @@ export default
         Connexion,
         ProjectsHub,
         Project,
-        Favicon
+        Favicon,
+        Popin
     },
 
     computed:
