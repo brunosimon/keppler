@@ -1,6 +1,6 @@
 # Keppler
 
-Real time code sharing for you lectures and presentations.
+Real time code sharing for your lectures and presentations.
 
 ## What is keppler
 
