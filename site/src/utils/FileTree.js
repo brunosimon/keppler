@@ -9,6 +9,9 @@ class FileTree
     {
         // Options
         this.autoWash = typeof _options.autoWash === 'undefined' ? false : _options.autoWash
+        this.filesCount = 0
+        this.foldersCount = 0
+        this.allCount = 0
 
         // Set up
         this.folders = []
@@ -115,6 +118,9 @@ class FileTree
             }
         }
 
+        // Update counts
+        this.updateCounts()
+
         // Return
         return folder
     }
@@ -162,6 +168,9 @@ class FileTree
 
         // Save
         folder.files.push(file)
+
+        // Update counts
+        this.updateCounts()
 
         return file
     }
@@ -266,6 +275,9 @@ class FileTree
                 this.removeEmptyFolders()
             }
 
+            // Update counts
+            this.updateCounts()
+
             return true
         }
 
@@ -340,6 +352,9 @@ class FileTree
                 {
                     file.onRemove.apply(this, [file])
                 }
+
+                // Update counts
+                this.updateCounts()
 
                 return true
             }
@@ -502,7 +517,45 @@ class FileTree
         // Try from ./
         canRemoveFolder(this.folders[0])
 
+        // Update counts
+        this.updateCounts()
+
         return removedCount
+    }
+
+    /**
+     * Update counts
+     */
+    updateCounts()
+    {
+        let filesCount = 0
+        let foldersCount = 0
+
+        // Recursive emptying
+        const traverseFolder = function(folder)
+        {
+            // Each folder
+            for(const _folderKey in folder.folders)
+            {
+                const _folder = folder.folders[_folderKey]
+
+                traverseFolder(_folder)
+
+                foldersCount++
+            }
+
+            // Each file
+            for(const _fileKey in folder.files)
+            {
+                filesCount++
+            }
+        }
+
+        traverseFolder(this.folders[0])
+
+        this.filesCount = filesCount
+        this.foldersCount = foldersCount
+        this.allCount = this.filesCount + this.foldersCount
     }
 
     /**
