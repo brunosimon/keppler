@@ -45,7 +45,7 @@ export default
 
     created()
     {
-        this.keepLatest = false
+        this.keepLatest = true
     },
 
     mounted()
