@@ -1,6 +1,6 @@
 # Keppler
 
-Real time code sharing for your lectures and presentations.
+> Real time code sharing for your lectures and presentations.
 
 ## What is keppler
 
@@ -45,13 +45,13 @@ Simply share the URL that should appear with your audience and they will start r
 
 ## Configuration
 
-You can add configuration argument when calling Keppler.
+You can add configuration arguments when calling Keppler.
 
 ```
 keppler "My project" --debug 0 --port 1234 --exclude "node_modules/**" --open true --test true --initial-send true --max-file-size 99999
 ```
 
-or with shortcuts
+Same arguments using shortcuts
 
 ```
 keppler "My project" -d 0 -p 1234 -e "node_modules/**" -oti -m 99999
@@ -59,16 +59,61 @@ keppler "My project" -d 0 -p 1234 -e "node_modules/**" -oti -m 99999
 
 Arguments list
 
-|name|shortcut|default value|description|
-|---|---|---|---|
-|<span style="white-space:nowrap">`--debug`</span>|`-d`|*(number)*`1`|Debug level<br>`0`: almost no log<br>`1`: primary logs<br>`2`: too much logs|
-|<span style="white-space:nowrap">`--name`</span>|`-n`|*(string)*`No name`|Project name<br>(you can simply add a string after `keppler` keyword like `keppler "My project"`)|
-|<span style="white-space:nowrap">`--port`</span>|`-p`|*(number)*`1571`|Server port|
-|<span style="white-space:nowrap">`--exclude`</span>|`-e`|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git`|Files to exclude|
-|<span style="white-space:nowrap">`--open`</span>|`-o`|*(bool)*`true`|Open in default browser|
-|<span style="white-space:nowrap">`--test`</span>|`-t`|*(bool)*`false`|Start a test project with testing contents|
-|<span style="white-space:nowrap">`--initial-send`</span>|`-i`|*(bool)*`false`|Send current files in the folder at start|
-|<span style="white-space:nowrap">`--max-file-size`</span>|`-m`|*(number)*`99999`|Maximum file size in octets|
+|||
+|---|---|
+|parameter|`--debug`|
+|shortcut|`--d`|
+|default value|*(number)*`1`|
+|description|Debug level<br>`0`: almost no log<br>`1`: primary logs<br>`2`: too much logs|
+
+|||
+|---|---|
+|parameter|`--name`|
+|shortcut|`-n`|
+|default value|*(string)*`No name`|
+|description|Project name<br>(you can simply add a string after `keppler` keyword like `keppler "My project"`)|
+
+|||
+|---|---|
+|parameter|`--port`|
+|shortcut|`-p`|
+|default value|*(number)*`1571`|
+|description|Server port|
+
+|||
+|---|---|
+|parameter|`--exclude`|
+|shortcut|`-e`|
+|default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git`|
+|description|List of paths to exclude seperated with commas with wildcards support|
+
+|||
+|---|---|
+|parameter|`--open`|
+|shortcut|`-o`|
+|default value|*(bool)*`true`|
+|description|Open Keppler in default browser|
+
+|||
+|---|---|
+|parameter|`--test`|
+|shortcut|`-t`|
+|default value|*(bool)*`false`|
+|description|Start a test project with demo contents<br>:warning:Should not be used for a real presentation|
+
+|||
+|---|---|
+|parameter|`--initial-send`|
+|shortcut|`-i`|
+|default value|*(bool)*`false`|
+|description|Send current files in the folder at start<br>:warning:To much files may cause issues|
+
+|||
+|---|---|
+|parameter|`--max-file-size`|
+|shortcut|`-m`|
+|default value|*(number)*`99999`|
+|description|Maximum file size in octets<br>(99999 ≈ 100ko)|
 
 ## Features
 
