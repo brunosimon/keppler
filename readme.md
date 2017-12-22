@@ -99,14 +99,14 @@ Arguments list
 |parameter|`--test`|
 |shortcut|`-t`|
 |default value|*(bool)*`false`|
-|description|Start a test project with demo contents<br>:warning:Should not be used for a real presentation|
+|description|Start a test project with demo contents<br>:warning: Only for development purpose|
 
 |||
 |---|---|
 |parameter|`--initial-send`|
 |shortcut|`-i`|
 |default value|*(bool)*`false`|
-|description|Send current files in the folder at start<br>:warning:To much files may cause issues|
+|description|Send current files in the folder at start<br>:warning: Too much files may cause issues|
 
 |||
 |---|---|
@@ -114,6 +114,50 @@ Arguments list
 |shortcut|`-m`|
 |default value|*(number)*`99999`|
 |description|Maximum file size in octets<br>(99999 ≈ 100ko)|
+
+|||
+|---|---|
+|parameter|`--server`|
+|shortcut|`-s`|
+|default value|*(bool)*`false`|
+|description|Start keppler has a server<br>(if you want to run an online instance)|
+
+|||
+|---|---|
+|parameter|`--host`|
+|shortcut|`-h`|
+|default value|*(string)*``|
+|description|Keppler host<br>(if you want to connect to an online instance)|
+
+## Online instance
+
+You can run Keppler on an online. That way, anybody can connect to it and your audience doesn't need to be on the same network as you.
+
+Keppler doesn't provide any host solution. You'll have to use your own server.
+
+#### On the server
+
+Install Node.js
+
+Install keppler
+
+```
+npm install -g keppler
+```
+
+Start a keppler instance with the `--server` parameter
+
+```
+keppler --server
+```
+
+#### On you local machine
+
+Start keppler with the `--host` parameter. The value should be the domain to the server.
+
+```
+keppler "My awesome project" --host 12.34.56.78
+```
 
 ## Features
 
@@ -133,6 +177,7 @@ Arguments list
 - Download project button
 - Alert button
 - Tooltips
+- Online support
 
 ## Credits
 
