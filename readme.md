@@ -71,7 +71,7 @@ Arguments list
 |---|---|
 |parameter|`--name`|
 |shortcut|`-n`|
-|default value|*(string)*`No name`|
+|default value|*(string)* folder name|
 |description|Project name<br>(you can simply add a string after `keppler` keyword like `keppler "My project"`)|
 
 |||
