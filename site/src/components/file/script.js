@@ -23,6 +23,16 @@ export default
             return `${this.$store.state.url}/${this.$store.state.projects.current.slug}/files/${this.content.path.full}`
         },
 
+        downloadDataUri()
+        {
+            if(this.$store.state.files.currentVersion)
+            {
+                return `data:text/plain;charset=utf-8,${encodeURIComponent(this.$store.state.files.currentVersion.content)}`
+            }
+
+            return ''
+        },
+
         isImage()
         {
             return ['jpg', 'jpeg', 'png', 'tiff', 'gif', 'webp'].indexOf(this.content.extension) !== -1
