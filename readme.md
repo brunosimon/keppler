@@ -19,6 +19,7 @@ Any time you save a file, viewers will receive those changes. They can browse th
 
 You must have [NodeJS](https://nodejs.org/en/) and [NPM](https://www.npmjs.org) already installed.
 In your console, run:
+
 <sup>(You may need to add `sudo` at start)</sup>
 
 ```
@@ -36,12 +37,12 @@ cd ./my-awesome-project
 keppler "My awesome project"
 ```
 
-Keppler should open in your default browser and start watching any changes you make on the folder.
+Keppler should open in your default browser and start watching any changes you make on the files inside the folder.
 
 #### 3 - Share the URL with your audience
 
-You must be on the same network.
-Simply share the URL that should appear with your audience and they will start receiving your changes.
+Simply share the URL that should appear and your audience will have access to your code through Keppler.
+By default, you must be on the same network.
 
 ## Configuration
 
@@ -51,7 +52,7 @@ You can add configuration arguments when calling Keppler.
 keppler "My project" --debug 0 --port 1234 --exclude "node_modules/**" --open true --test true --initial-send true --max-file-size 99999
 ```
 
-Same arguments using shortcuts
+And you can use shortcuts for those arguments
 
 ```
 keppler "My project" -d 0 -p 1234 -e "node_modules/**" -oti -m 99999
@@ -59,12 +60,12 @@ keppler "My project" -d 0 -p 1234 -e "node_modules/**" -oti -m 99999
 
 Arguments list
 
-|||
+||Debug level|
 |---|---|
 |parameter|`--debug`|
 |shortcut|`--d`|
 |default value|*(number)*`1`|
-|description|Debug level<br>`0`: almost no log<br>`1`: primary logs<br>`2`: too much logs|
+|description|How much logs should be shown<br>`0`: almost no log<br>`1`: primary logs<br>`2`: too much logs|
 
 |||
 |---|---|
@@ -75,17 +76,10 @@ Arguments list
 
 |||
 |---|---|
-|parameter|`--port`|
-|shortcut|`-p`|
-|default value|*(number)*`1571`|
-|description|Server port|
-
-|||
-|---|---|
 |parameter|`--exclude`|
 |shortcut|`-e`|
 |default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git`|
-|description|List of paths to exclude seperated with commas with wildcards support|
+|description|List of paths to exclude (comma seperated and wildcards support)|
 
 |||
 |---|---|
@@ -106,7 +100,7 @@ Arguments list
 |parameter|`--initial-send`|
 |shortcut|`-i`|
 |default value|*(bool)*`false`|
-|description|Send current files in the folder at start<br>:warning: Too much files may cause issues|
+|description|Send current files in the folder<br>:warning: Too much files may cause issues|
 
 |||
 |---|---|
@@ -127,11 +121,18 @@ Arguments list
 |parameter|`--host`|
 |shortcut|`-h`|
 |default value|*(string)*``|
-|description|Keppler host<br>(if you want to connect to an online instance)|
+|description|Server host<br>(if you want to connect to an online instance)|
+
+|||
+|---|---|
+|parameter|`--port`|
+|shortcut|`-p`|
+|default value|*(number)*`1571`|
+|description|Server port|
 
 ## Online instance
 
-You can run Keppler on an online. That way, anybody can connect to it and your audience doesn't need to be on the same network as you.
+You can run Keppler online. Anybody would be able to connect to it and your audience won't need to be on the same network as you.
 
 Keppler doesn't provide any host solution. You'll have to use your own server.
 
@@ -153,7 +154,7 @@ keppler --server
 
 #### On you local machine
 
-Start keppler with the `--host` parameter. The value should be the domain to the server.
+Start keppler with the `--host` parameter and server domain as the value
 
 ```
 keppler "My awesome project" --host 12.34.56.78
