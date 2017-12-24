@@ -114,7 +114,7 @@ Arguments list
 |parameter|`--server`|
 |shortcut|`-s`|
 |default value|*(bool)*`false`|
-|description|Start keppler has a server<br>(if you want to run an online instance)|
+|description|Start keppler server only<br>(if you want to run an online instance)|
 
 |||
 |---|---|
