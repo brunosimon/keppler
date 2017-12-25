@@ -65,8 +65,11 @@ export default
                 return
             }
 
-            // Set null file
+            // Reset file
             this.$store.commit('setFile', null)
+
+            // Reset messages
+            this.$store.commit('emptyMessages', null)
 
             // If was connected to another socket
             if(this.projectSocket)

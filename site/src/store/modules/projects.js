@@ -17,7 +17,8 @@ export default {
                 // Current project has been removed
                 if(typeof state.all[state.current.slug] === 'undefined')
                 {
-                    state.current = null
+                    const projectKeys = Object.keys(state.all)
+                    state.current = state.all[projectKeys[0]]
                 }
             }
 

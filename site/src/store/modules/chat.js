@@ -13,6 +13,11 @@ export default {
 
     mutations:
     {
+        emptyMessages(state)
+        {
+            state.messages = []
+        },
+
         createMessage(state, data)
         {
             state.messages.push(data)
