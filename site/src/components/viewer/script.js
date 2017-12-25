@@ -48,7 +48,7 @@ export default
             if(
                 event.keyCode !== 38 &&
                 event.keyCode !== 39 &&
-                event.keyCode !== 30 &&
+                event.keyCode !== 40 &&
                 event.keyCode !== 37
             )
             {
