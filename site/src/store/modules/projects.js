@@ -24,13 +24,9 @@ export default {
             // No current project
             else
             {
+                // Set first project as current
                 const projectKeys = Object.keys(state.all)
-
-                // If only one project, set has current
-                if(projectKeys.length === 1)
-                {
-                    state.current = state.all[projectKeys[0]]
-                }
+                state.current = state.all[projectKeys[0]]
             }
         },
 
