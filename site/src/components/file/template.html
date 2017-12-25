@@ -6,10 +6,18 @@
     <!-- Viewer / Code -->
     <viewer :differences-active="differencesActive" v-if="isCode"></viewer>
 
-    <!-- Preview -->
-    <div class="preview" v-if="isImage">
-        <div class="inner">
-            <!-- <img :src="downloadUrl"> -->
+    <!-- Preview image no server -->
+    <div class="preview" v-if="isImage && !serverConfig.server">
+        <a :href="downloadUrl" class="inner" download>
+            <img :src="downloadUrl">
+        </a>
+    </div>
+
+    <!-- Can't read image server -->
+    <div class="cant-read" v-if="isImage && serverConfig.server">
+        <illustration name="sad-robot"></illustration>
+        <div class="text">
+            Sorry, preview isn't available in server mode
         </div>
     </div>
 
@@ -18,7 +26,9 @@
         <illustration name="sad-robot"></illustration>
         <div class="text">
             Sorry, I can't read this file.
-            <!-- <br>But you can <a :href="downloadUrl" download class="download">download it</a>. -->
+            <div v-if="!serverConfig.server">
+                But you can <a :href="downloadUrl" download class="download">download it</a>.
+            </div>
         </div>
     </div>
 

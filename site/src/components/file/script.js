@@ -18,6 +18,11 @@ export default
 
     computed:
     {
+        serverConfig()
+        {
+            return this.$store.state.serverConfig
+        },
+
         downloadUrl()
         {
             return `${this.$store.state.serverConfig.domain}/${this.$store.state.projects.current.slug}/files/${this.content.path.full}`
