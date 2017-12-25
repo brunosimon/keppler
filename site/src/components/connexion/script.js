@@ -65,10 +65,22 @@ export default
                 return
             }
 
-            // Project socket
-            const projectURL = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/project/${value.slug}`
+            // Set null file
+            this.$store.commit('setFile', null)
 
-            this.projectSocket = socketIoClient(projectURL)
+            // If was connected to another socket
+            if(this.projectSocket)
+            {
+                this.projectSocket.off('connect')
+                this.projectSocket.off('update_project')
+                this.projectSocket.off('create_file')
+                this.projectSocket.off('delete_file')
+                this.projectSocket.off('createVersion')
+                this.projectSocket.disconnect()
+            }
+
+            // Create new socket connexion
+            this.projectSocket = socketIoClient(`${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/project/${value.slug}`)
 
             this.projectSocket.on('connect', () =>
             {
@@ -95,10 +107,17 @@ export default
                 this.$store.commit('createVersion', data)
             })
 
-            // Chat socket
-            const chatURL = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/project/${value.slug}/chat`
+            // If was connected to another socket
+            if(this.chatSocket)
+            {
+                this.chatSocket.off('connect')
+                this.chatSocket.off('user')
+                this.chatSocket.off('message')
+                this.chatSocket.disconnect()
+            }
 
-            this.chatSocket = socketIoClient(chatURL)
+            // Chat socket
+            this.chatSocket = socketIoClient(`${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/project/${value.slug}/chat`)
 
             this.chatSocket.on('connect', () =>
             {
