@@ -16,7 +16,7 @@
         opacity 0.6
 
     .select-projects
-        line-height 40px
+        line-height 22px
         cursor pointer
 
         .arrow-down
@@ -31,15 +31,23 @@
             &.hover
                 display none
 
-        .current
-            padding-left 20px
-
         .others
             display none
             top 100%
             background #393855
 
-            .other-project
+        .project
+            padding-top 9px
+            padding-bottom 9px
+            text-overflow ellipsis
+
+            &.current
+                padding-left 20px
+                white-space nowrap
+                overflow hidden
+                padding-right 92px
+
+            &.other-project
                 display block
                 padding-left 20px
 

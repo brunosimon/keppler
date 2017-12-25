@@ -4,7 +4,7 @@
     </div>
 
     <div v-if="projectsCount > 1" class="select-projects">
-        <div class="current">
+        <div class="current project">
             {{ currentProject.name }}
         </div>
 
@@ -12,7 +12,7 @@
         <img class="icon arrow-down hover" src="../../../static/svg/arrow-down-hover.svg" alt="">
 
         <div class="others">
-            <a class="other-project" v-if="currentProject.slug !== project.slug" href="#" v-for="project in projects" :key="project.slug" @click.prevent="onProjectClick(project.slug)">
+            <a class="other-project project" v-if="currentProject.slug !== project.slug" href="#" v-for="project in projects" :key="project.slug" @click.prevent="onProjectClick(project.slug)">
                 {{ project.name }}
             </a>
         </div>
