@@ -30,7 +30,7 @@ export default
         quote: () => quotes[Math.floor(quotes.length * Math.random())],
         url()
         {
-            return this.$store.state.url
+            return this.$store.state.serverConfig.domain
         }
     },
 

@@ -5,21 +5,25 @@
     <!-- Favicon -->
     <favicon></favicon>
 
-    <!-- Header -->
-    <a class="application-header" href="#" @click.prevent="onHeaderClick">
-        <img class="element background" src="../../../static/svg/header-background.svg" alt="">
-        <span class="element robot-container">
-            <img class="element robot" src="../../../static/svg/header-robot.svg" alt="">
-        </span>
-        <img class="element title" src="../../../static/svg/keppler-title.svg" alt="">
-    </a>
+    <div v-if="serverConfig">
 
-    <!-- Popin -->
-    <popin></popin>
+        <!-- Header -->
+        <a class="application-header" href="#" @click.prevent="onHeaderClick">
+            <img class="element background" src="../../../static/svg/header-background.svg" alt="">
+            <span class="element robot-container">
+                <img class="element robot" src="../../../static/svg/header-robot.svg" alt="">
+            </span>
+            <img class="element title" src="../../../static/svg/keppler-title.svg" alt="">
+        </a>
 
-    <!-- Projects -->
-    <projects-hub></projects-hub>
+        <!-- Popin -->
+        <popin></popin>
 
-    <!-- Project -->
-    <project v-if="project"></project>
+        <!-- Projects -->
+        <projects-hub></projects-hub>
+
+        <!-- Project -->
+        <project v-if="project"></project>
+
+    </div>
 </div>

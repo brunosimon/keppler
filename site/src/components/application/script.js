@@ -19,6 +19,11 @@ export default
 
     computed:
     {
+        serverConfig()
+        {
+            return this.$store.state.serverConfig
+        },
+
         project()
         {
             return this.$store.state.projects.current

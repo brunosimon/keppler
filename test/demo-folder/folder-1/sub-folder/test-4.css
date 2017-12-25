@@ -1,0 +1,8 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+.toto .tata > span {
+    background:url('kikoo.png') top left repeat-x;
+}

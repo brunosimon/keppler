@@ -40,14 +40,18 @@ export default
         const projectsUrl = `${process.env.NODE_ENV === 'production' ? '' : 'http://localhost:1571'}/projects`
         this.projectsSocket = socketIoClient(projectsUrl)
 
-        this.projectsSocket.on('connect', () =>
+        this.projectsSocket.on('connect', (data) =>
         {
             // console.log('projects connected')
         })
 
+        this.projectsSocket.on('config', (data) =>
+        {
+            this.$store.commit('updateServerConfig', data)
+        })
+
         this.projectsSocket.on('update_projects', (data) =>
         {
-            this.$store.commit('updateUrl', data.domain)
             this.$store.commit('updateProjects', data.all)
         })
     },

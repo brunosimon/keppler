@@ -21,7 +21,7 @@ export default
     {
         downloadUrl()
         {
-            return `${this.$store.state.url}/${this.project.slug}/download`
+            return `${this.$store.state.serverConfig.domain}/${this.project.slug}/download`
         },
 
         project()

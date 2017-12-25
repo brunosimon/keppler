@@ -11,6 +11,11 @@ export default
 
     computed:
     {
+        serverConfig()
+        {
+            return this.$store.state.serverConfig
+        },
+
         projects()
         {
             return this.$store.state.projects.all
@@ -34,7 +39,7 @@ export default
                 return ''
             }
 
-            return `${this.$store.state.url}/${this.currentProject.slug}/download`
+            return `${this.$store.state.serverConfig.domain}/${this.currentProject.slug}/download`
         }
     },
 

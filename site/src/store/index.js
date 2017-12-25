@@ -17,15 +17,15 @@ export default new Vuex.Store({
 
     state:
     {
-        url: '',
+        serverConfig: null,
         scrollbarWidth: 0
     },
 
     mutations:
     {
-        updateUrl(state, data)
+        updateServerConfig(state, data)
         {
-            state.url = data
+            state.serverConfig = data
         },
 
         updateScrollbarWidth(state, data)
