@@ -4,8 +4,6 @@
 
 ## What is keppler
 
-Keppler lets you share your code during a presentation.
-
 Start keppler inside your project folder, share the URL with your audience and start coding.
 Any time you save a file, viewers will receive those changes. They can browse through the files, go back in history, copy the code, download the project, preview images, chat with other viewers, ask the presenter to slow down, etc.
 
@@ -78,7 +76,7 @@ Arguments list
 |---|---|
 |parameter|`--exclude`|
 |shortcut|`-e`|
-|default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git`|
+|default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git,.vscode,.env,.log`|
 |description|List of paths to exclude (comma seperated and wildcards support)|
 
 |||
