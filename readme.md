@@ -76,7 +76,7 @@ Arguments list
 |---|---|
 |parameter|`--exclude`|
 |shortcut|`-e`|
-|default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git`|
+|default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git,.vscode,.env,.log`|
 |description|List of paths to exclude (comma seperated and wildcards support)|
 
 |||
