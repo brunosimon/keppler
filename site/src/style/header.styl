@@ -100,14 +100,41 @@ section.header
 
     .demo
         position absolute
-        top 50%
+        top 520px
         left 50%
         width 1px
         height 1px
         background #ffffff
 
-        video
-            background #ff0000
+        .speaker
+            position absolute
+            top -150px
+            left -245px
+
+            .icon
+                position absolute
+                left calc(50% - 20px)
+                top calc(100% + 10px)
+                width 40px
+                height 40px
+                background-image url(../../static/svg/demo-speaker.svg)
+                background-repeat no-repeat
+                background-position center center
+
+        .audience
+            position absolute
+            top -150px
+            left -245px
+
+            .icon
+                position absolute
+                left calc(50% - 20px)
+                top calc(100% + 10px)
+                width 40px
+                height 40px
+                background-image url(../../static/svg/demo-audience.svg)
+                background-repeat no-repeat
+                background-position center center
 
     .get-started-button
         position absolute
