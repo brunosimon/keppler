@@ -1,0 +1,204 @@
+section.header
+    height 940px
+    position relative
+    color: #ffffff
+    font-size 17px
+
+    .background
+        position absolute
+        top -10vh
+        left 0
+        width 100%
+        height calc(100% + 10vh)
+        background linear-gradient(135deg, #330867 0%,#31a7bb 100%)
+        transform skewY(-5deg)
+        box-shadow 0px 0px 50px rgba(60, 117, 162, 0.4)
+
+    .navigation
+        position absolute
+        top 24px
+        right 65px
+        font-weight 300
+
+        .item
+            display inline-block
+            position relative
+            vertical-align middle
+            padding 10px
+            margin 0 7px
+
+            &.github
+                background-image url(../../static/svg/github.svg)
+                background-repeat no-repeat
+                background-position center center
+                width 40px
+                height 40px
+
+            &::after
+                content ''
+                display block
+                right 0
+                bottom 0
+                left 0
+                height 1px
+                background #ffffff
+                transform scaleX(0)
+                transform-origin 0 0
+                transition transform 0.3s cubic-bezier(0.75, 0, 0.58, 1)
+                will-change transform
+
+            &:hover
+                &::after
+                    transform scaleX(1)
+
+    .title
+        position absolute
+        top 210px
+        left 50%
+
+        .keppler
+            position absolute
+            left -60px
+            top -40px
+            width 259px
+            height 77px
+            background-image url(../../static/svg/logo-keppler.svg)
+
+        .sky
+            position absolute
+            left -270px
+            top -85px
+            width 264px
+            height 153px
+            background-image url(../../static/svg/logo-sky.svg)
+
+        .avatar
+            position absolute
+            left -165px
+            top -40px
+            width 50px
+            height 61px
+            background-image url(../../static/svg/logo-avatar.svg)
+            animation logo-avatar 6s ease-in-out infinite alternate
+            will-change transform
+
+            @keyframes logo-avatar
+                0%
+                    transform translateX(-10px) translateY(-5px) translateZ(0)
+                100%
+                    transform translateX(10px) translateY(5px) translateZ(0)
+
+    .sub-title
+        position absolute
+        top 270px
+        left 0
+        right 0
+        text-align center
+        line-height 35px
+        font-size 25px
+        font-weight 300
+
+    .demo
+        position absolute
+        top 50%
+        left 50%
+        width 1px
+        height 1px
+        background #ffffff
+
+        video
+            background #ff0000
+
+    .get-started-button
+        position absolute
+        bottom 130px
+        left calc(50% - 117px)
+        width 234px
+        height 43px
+        overflow hidden
+        border-radius 22px
+
+        .out
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            border 2px solid #fff
+            border-radius 22px
+            line-height 39px
+            text-align center
+
+        .hover
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            border-radius 22px
+            border-radius 22px
+            line-height 43px
+            text-align center
+            overflow hidden
+            background #ffffff
+            transform translateX(-100%)
+            transition transform 0.5s cubic-bezier(0.75, 0, 0.25, 1)
+            will-change transform
+
+            .inner
+                position absolute
+                top 0
+                left 0
+                width 100%
+                height 100%
+                color #3473a0
+                border-radius 22px
+                transform translateX(100%)
+                transition transform 0.5s cubic-bezier(0.75, 0, 0.25, 1)
+                will-change transform
+
+        &:hover
+            .hover
+                transform translateX(0%)
+
+                .inner
+                    transform translateX(0%)
+
+    .scroll-button
+        display block
+        position absolute
+        bottom 50px
+        left calc(50% - 20px)
+        width 40px
+        height 40px
+
+        .mouse
+            display block
+            position absolute
+            top 7px
+            left calc(50% - 9px)
+            width 17px
+            height 26px
+            border-radius 9px
+            border 1px solid #fff
+
+            .wheel
+                display block
+                position absolute
+                top 2px
+                left calc(50% - 1px)
+                width 1px
+                height 4px
+                background #ffffff
+                animation scroll-mouse-wheel 1.5s linear infinite
+                will-change transform
+
+                @keyframes scroll-mouse-wheel
+                    0%
+                        transform translateY(0px) scaleY(0)
+                    30%
+                        transform translateY(5px) scaleY(1)
+                    60%
+                        transform translateY(10px) scaleY(0)
+                    100%
+                        transform translateY(10px) scaleY(0)
