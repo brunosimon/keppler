@@ -1,0 +1,71 @@
+.landing
+    display flex
+    align-items center
+    justify-content center
+    flex-direction column
+    position absolute
+    top 0
+    right 0
+    left 290px
+    height 100%
+    background #2D2D49
+    font-family 'DINNextRoundedLTPro'
+
+.title
+    position relative
+    margin-bottom 12px
+    color #fff
+    font-size 35px
+
+.sub-title
+    position relative
+    margin-bottom 35px
+    color #fff
+    font-size 20px
+    opacity 0.5
+    font-weight 300
+
+.quote
+    position relative
+    margin-bottom 35px
+    color #4bd1c5
+    font-size 18px
+
+.url
+    color #fff
+    font-size 20px
+    margin-bottom 10px
+    padding 20px
+    cursor pointer
+    z-index 2
+    text-align center
+    transform translateX(0) translateY(0) scale(1, 1)
+    transition transform 0.3s
+    will-change transform
+
+    .network
+        padding-top 10px
+        font-size 14px
+        opacity 0.5
+
+    .focus &
+        transform  translateX(-145px) translateY(250px) scale(3, 3)
+        transition-duration 5s
+
+.mask
+    position absolute
+    top 0
+    left -290px
+    width calc(100% + 290px)
+    height 100%
+    background #000
+    z-index 1
+    pointer-events none
+    opacity 0
+    transition opacity 0.3s
+    will-change opacity
+
+    .focus &
+        pointer-events default
+        opacity 0.85
+        transition-duration 3s

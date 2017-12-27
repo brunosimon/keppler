@@ -1,0 +1,96 @@
+.tooltip
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+
+    .content
+        position absolute
+        padding-top 6px
+        padding-right 8px
+        padding-bottom 7px
+        padding-left 8px
+        background #1E202F
+        border 1px solid #586ca2
+        white-space nowrap
+        font-size 12px
+        line-height 1em
+        pointer-events none
+        opacity 0
+        transition opacity 0.15s
+        will-change opacity
+        color #fff
+
+    .arrow
+        position absolute
+        width 10px
+        height 10px
+        overflow hidden
+
+        .inner
+            position absolute
+            top 0
+            left 6px
+            width 10px
+            height 10px
+            background #1E202F
+            border 1px solid #586ca2
+            transform rotate(45deg)
+
+    &.top-left
+        .content
+            right 8px
+            bottom calc(100% + 5px)
+
+        .arrow
+            right 8px
+            top 100%
+            transform rotate(-90deg)
+
+    &.right
+        .content
+            transform translateY(-50%)
+            top 50%
+            left calc(100% + 5px)
+
+        .arrow
+            margin-top -5px
+            top 50%
+            right 100%
+
+    &.bottom-right
+        .content
+            left 8px
+            top calc(100% + 5px)
+
+        .arrow
+            left 8px
+            bottom 100%
+            transform rotate(90deg)
+
+    &.bottom
+        .content
+            transform translateX(-50%)
+            left 50%
+            top calc(100% + 5px)
+
+        .arrow
+            margin-left -5px
+            left 50%
+            bottom 100%
+            transform rotate(90deg)
+
+    &.bottom-left
+        .content
+            right 8px
+            top calc(100% + 5px)
+
+        .arrow
+            right 8px
+            bottom 100%
+            transform rotate(90deg)
+
+    &:hover
+        .content
+            opacity 1

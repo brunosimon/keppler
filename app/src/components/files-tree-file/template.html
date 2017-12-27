@@ -1,0 +1,12 @@
+<div v-show="visible">
+    <a href="#" class="name" :class="[ currentFile && currentFile.id === content.id ? 'active' : '' ]" :style="{ paddingLeft:depth * 20 + 'px' }" @click.prevent="onNameClick">
+        <file-icon class="icon" :extension="content.extension"></file-icon>
+        <span class="text">
+            <template v-for="(letter, key) in content.name">
+                <span class="letter" :class="[matchingPositions.indexOf(key) !== -1 ? 'highlight' : '']">{{ letter }}</span>
+            </template>
+        </span>
+        <span v-if="content.isNew" class="notif new">new</span>
+        <span v-if="content.isChanged && !content.isNew" class="notif changed">changed</span>
+    </a>
+</div>

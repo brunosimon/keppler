@@ -1,0 +1,27 @@
+<div class="projects-hub">
+    <div v-if="projectsCount === 1" class="single-project">
+        {{ currentProject.name }}
+    </div>
+
+    <div v-if="projectsCount > 1" class="select-projects">
+        <div class="current project">
+            {{ currentProject.name }}
+        </div>
+
+        <img class="icon arrow-down default" src="../../../static/svg/arrow-down.svg" alt="">
+        <img class="icon arrow-down hover" src="../../../static/svg/arrow-down-hover.svg" alt="">
+
+        <div class="others">
+            <a class="other-project project" v-if="currentProject.slug !== project.slug" href="#" v-for="project in projects" :key="project.slug" @click.prevent="onProjectClick(project.slug)">
+                {{ project.name }}
+            </a>
+        </div>
+    </div>
+
+    <a v-if="!serverConfig.server" class="download" :href="downloadUrl" download="test.zip">
+        <img class="icon default" src="../../../static/svg/download.svg" alt="">
+        <img class="icon hover" src="../../../static/svg/download-hover.svg" alt="">
+        <tooltip position="right">Download the whole project</tooltip>
+    </a>
+
+</div>

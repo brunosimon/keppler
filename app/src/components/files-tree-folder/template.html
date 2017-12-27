@@ -1,0 +1,15 @@
+<div v-show="visible">
+    <a href="#" class="name" :style="{ paddingLeft:(depth + 1) * 20 + 'px' }" @click.prevent="onNameClick">
+        <file-icon class="icon" extension="folder-active" v-show="open"></file-icon>
+        <file-icon class="icon" extension="folder" v-show="!open"></file-icon>
+        <span class="text">
+            <template v-for="(letter, key) in content.name">
+                <span class="letter" :class="[matchingPositions.indexOf(key) !== -1 ? 'highlight' : '']">{{ letter }}</span>
+            </template>
+        </span>
+    </a>
+    <div v-show="open">
+        <files-tree-folder class="js-child" v-for="folder of content.folders" :key="folder.name" :content="folder" :depth="depth + 1" :directory="fullPath + '/'"></files-tree-folder>
+        <files-tree-file class="js-child" v-for="file of files" :key="file.path.full" :content="file" :depth="depth + 2"></files-tree-file>
+    </div>
+</div>

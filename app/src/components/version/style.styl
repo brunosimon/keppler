@@ -1,0 +1,69 @@
+.version
+    position relative
+    display block
+    width 202px
+    height 50px
+    color #F6F6F6
+    -webkit-font-smoothing initial
+    -moz-osx-font-smoothing initial
+    
+    .background
+        position absolute
+        top 0
+        right 1px
+        bottom 1px
+        left 1px
+        background #232733
+
+    .date
+        position absolute
+        top 14px
+        left 8px
+        opacity 0.6
+        font-size 10px
+
+    .from-now
+        position absolute
+        top 28px
+        left 8px
+        opacity 0.6
+        font-size 8px
+        text-transform uppercase
+
+    .modified-lines
+        position absolute
+        top 25px
+        right 8px
+        opacity 0.6
+        font-size 10px
+
+    .repartition
+        position absolute
+        top 17px
+        right 6px
+        font-size 0
+
+        .block
+            display inline-block
+            width 4px
+            height 4px
+            margin-right 2px
+
+            &.added
+                background #41FF79
+
+            &.removed
+                background #FD4141
+
+    &.active
+        .background
+            background #2D2D49
+            right 0
+            left 0
+
+    &:hover
+        .date
+        .from-now
+        // .modified-lines
+            opacity 1
+            color #4BD1C5

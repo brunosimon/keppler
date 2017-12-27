@@ -1,0 +1,7 @@
+<div class="blast" :style="`left:${Math.random() * 100}%;top:${Math.random() * 100}%;`">
+    <div v-for="spark of sparks" class="spark" :style="`transform: rotate(${spark[0]}) scale(${spark[1]}, ${spark[1]});`">
+        <div class="inner-1" :style="`animation-duration: ${spark[2]}`">
+            <div class="inner-2" :style="`transform: scale(${1 - spark[1]}, ${1 - spark[1]}); background-color: ${cssColor};`"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+.alert
+    display block
+    position fixed
+    bottom 0
+    right 60px
+    width 62px
+    height 40px
+    background #24263A
+    user-select none
+
+    .stroke
+        position absolute
+        top 0
+        left 0
+        right 0
+        height 1px
+        background #FD4141
+        display none
+
+    .icon
+        position absolute
+        top 10px
+        left 18px
+
+        &.default
+            display inline-block
+
+        &.hover
+            display none
+
+    &:hover
+        .icon
+            &.default
+                display none
+
+            &.hover
+                display inline-block
+
+        .stroke
+            display block

@@ -3,4 +3,5 @@
 .npmignore
 test/
 resources/
-site/dist/static/js/*.map
+app/dist/static/js/*.map
+site/

@@ -1,0 +1,13 @@
+<div class="file-tree">
+    <div v-if="files.allCount === 0" class="no-file">
+        There is no file yet
+        <br>Please wait
+    </div>
+    <div v-else>
+        <input class="search" type="text" v-model="searchValue" placeholder="Search for files ...">
+        <div class="inner" :style="`right: -${scrollbarWidth}px;`">
+            <files-tree-folder class="content" v-for="folder of files.folders" :key="+ new Date()" :content="folder" :depth="0"></files-tree-folder>
+        </div>
+        <a href="#" class="all-read" @click.prevent="onAllReadClick">Mark all as read</a>
+    </div>
+</div>

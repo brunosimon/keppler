@@ -1,0 +1,5 @@
+<div class="versions">
+    <div class="scroll-hack" :style="`bottom:-${scrollbarWidth}px;right:-${scrollbarWidth}px;`">
+        <version v-for="(version, key) of versions" :key="version.date" :content="version" @click.native.prevent="onVersionClick(version, key)"></version>
+    </div>
+</div>

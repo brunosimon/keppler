@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>croix</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="1">
+        <g id="03.2.2---Questions-ouvert-click-ligne-6" transform="translate(-1299.000000, -826.000000)" fill="#4BD1C5">
+            <g id="Question" transform="translate(1018.000000, 450.000000)">
+                <g id="Croix" transform="translate(281.000000, 376.000000)">
+                    <g id="croix" transform="translate(5.071068, 5.071068) rotate(45.000000) translate(-5.071068, -5.071068) translate(0.071068, 0.071068)">
+                        <rect id="Rectangle-16" x="4" y="0" width="2" height="10"></rect>
+                        <rect id="Rectangle-17" x="0" y="4" width="10" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

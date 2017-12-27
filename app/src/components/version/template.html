@@ -1,0 +1,16 @@
+<a href="#" class="version" :class="[isActive ? 'active' : '']">
+    <span class="background"></span>
+    <div class="date">
+        {{ date }}
+    </div>
+    <div class="from-now">
+        {{ fromNow }}
+    </div>
+    <div class="repartition">
+        <span class="block added" v-for="block in repartition.added"></span>
+        <span class="block removed" v-for="block in repartition.removed"></span>
+    </div>
+    <div class="modified-lines">
+        {{ modifiedLines }}
+    </div>
+</a>

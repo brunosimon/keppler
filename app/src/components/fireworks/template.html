@@ -1,0 +1,3 @@
+<div class="fireworks">
+    <blast v-for="blast in blasts" :key="blast" :color="color" :sparks-count="sparksCount" @end="onBlastEnd(blast)"></blast>
+</div>

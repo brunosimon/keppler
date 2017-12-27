@@ -1,0 +1,15 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 208 128" enable-background="new 0 0 208 128" xml:space="preserve">
+<defs>
+	<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="208" height="128">
+		<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+	</filter>
+</defs>
+<mask maskUnits="userSpaceOnUse" x="0" y="0" width="208" height="128" id="mask">
+	<rect fill="#FFFFFF" filter="url(#Adobe_OpacityMaskFilter)" width="208" height="128"/>
+	<path d="M30,98V30h20l20,25l20-25h20v68H90V59L70,84L50,59v39H30z"/>
+	<path d="M155,98l-30-33h20V30h20v35h20L155,98z"/>
+</mask>
+<path mask="url(#mask)" fill="#CCCCCC" d="M15,0h178c8.3,0,15,6.7,15,15v98c0,8.3-6.7,15-15,15H15c-8.3,0-15-6.7-15-15V15
+	C0,6.7,6.7,0,15,0z"/>
+</svg>

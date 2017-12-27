@@ -1,0 +1,182 @@
+// Fonts
+@font-face
+    font-family 'Inconsolata'
+    font-weight normal
+    font-style normal
+    src url('../../../static/fonts/Inconsolata-Regular.ttf')
+
+@font-face
+    font-family 'Inconsolata'
+    font-weight bold
+    font-style normal
+    src url('../../../static/fonts/Inconsolata-Bold.ttf')
+
+// Viewer
+.viewer
+    position absolute
+    top 50px
+    right 0
+    width 100%
+    bottom 0
+    line-height 20px
+    letter-spacing 0.5px
+    font-size 15px
+    background #2d2d49
+    overflow hidden
+
+    .version-active &
+        width calc(100% - 202px)
+
+.lines
+    position absolute
+    top 0
+    left 0
+    right 0
+    width 65px
+    user-select none
+
+    .line
+        position relative
+        color #abb2bf
+        opacity 0.75
+        letter-spacing -1px
+        padding-left 25px
+        font-size 12px
+
+        .highlight
+            position absolute
+            top 0
+            left 0
+            width calc(100vw - 315px)
+            pointer-events none
+
+            .version-active &
+                width calc(100vw - 315px - 202px)
+
+        .added
+            height 20px
+            background #41FF79
+            opacity 0.2
+
+        .removed
+            height 1px
+
+            &::after
+                content ''
+                position absolute
+                top 0
+                left 0
+                width 100%
+                height 100%
+                background #FD4141
+                opacity 0.4
+
+            .icon
+                position absolute
+                left 8px
+                top -8px
+
+        .active
+            height 20px
+            background #00d8ff
+            opacity 0.2
+
+        .question
+            display none
+            position absolute
+            top 0
+            left 0
+            width 65px
+            text-align right
+            padding-right 8px
+            color #00d8ff
+            cursor pointer
+
+        &:hover
+            color #00d8ff
+
+            .question
+                display block
+
+.code
+    position absolute
+    top 0
+    left 70px
+    right 0
+    height 100%
+    outline none
+    font-family Inconsolata, Monaco, Consolas, 'Courier New', Courier
+    -webkit-font-smoothing initial
+    -moz-osx-font-smoothing initial
+
+    ::-moz-selection
+        background #bdb9bf
+    ::selection
+        background #bdb9bf
+
+// Highlight js
+.hljs-title
+    color red
+
+.hljs
+    display block
+    // overflow-x auto
+    color #abb2bf
+
+.hljs-comment
+.hljs-quote
+    color #5c6370
+    font-style italic
+
+.hljs-doctag
+.hljs-keyword
+.hljs-formula
+    color #c678dd
+
+.hljs-section
+.hljs-name
+.hljs-selector-tag
+.hljs-deletion
+.hljs-subst
+    color #e06c75
+
+.hljs-literal
+    color #56b6c2
+
+.hljs-string
+.hljs-regexp
+.hljs-addition
+.hljs-attribute
+.hljs-meta-string
+    color #98c379
+
+.hljs-built_in
+.hljs-class .hljs-title
+    color #e6c07b
+
+.hljs-attr
+.hljs-variable
+.hljs-template-variable
+.hljs-type
+.hljs-selector-class
+.hljs-selector-attr
+.hljs-selector-pseudo
+.hljs-number
+    color #d19a66
+
+.hljs-symbol
+.hljs-bullet
+.hljs-link
+.hljs-meta
+.hljs-selector-id
+.hljs-title
+    color #61aeee
+
+.hljs-emphasis
+    font-style italic
+
+.hljs-strong
+    font-weight bold
+
+.hljs-link
+    text-decoration underline

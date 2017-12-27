@@ -1,0 +1,45 @@
+.blast
+    position absolute
+    transform translateY(0px)
+    will-change transform, opacity
+    animation-name blast
+    animation-duration 3s
+    animation-timing-function ease-in-out
+    animation-fill-mode forwards
+
+    @keyframes blast
+        0%
+            opacity 1
+            transform translateY(0px)
+        50%
+            opacity 1
+        100%
+            opacity 0
+            transform translateY(80px)
+
+
+.spark
+    position absolute
+    will-change transform
+
+.inner-1
+    position absolute
+    transform translateY(0px)
+    will-change transform
+    animation-name spark-inner-1
+    animation-timing-function cubic-bezier(0, 0, 0, 1)
+    animation-fill-mode forwards
+
+    @keyframes spark-inner-1
+        0%
+            transform translateY(0px)
+        100%
+            transform translateY(160px)
+
+.inner-2
+    position absolute
+    top -3px
+    left -3px
+    width 30px
+    height 30px
+    will-change transform

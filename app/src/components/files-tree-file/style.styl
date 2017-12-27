@@ -1,0 +1,43 @@
+.name
+    display block
+    white-space nowrap
+
+    .text
+        padding-left 12px
+        padding-right 6px
+
+        .letter
+            opacity 0.6
+
+            &.highlight
+                opacity 1
+                font-weight bold
+
+    .notif
+        display inline-block
+        position relative
+        top -1px
+        padding-left 3px
+        padding-right 3px
+        margin-left 0px
+        border-radius: 6px;
+        color #fff
+        font-size 8px
+        height 11px
+        line-height 11px
+
+        &.new
+            background-image linear-gradient(-90deg, #6E67FD 0%, #9B52F5 100%)
+
+        &.changed
+            background-image linear-gradient(-90deg, #FF708F 0%, #FE846F 100%)
+
+    &.active
+        background #2D2D49
+
+    &:hover
+        .text
+            color #4bd1c5
+
+            .letter
+                opacity 1

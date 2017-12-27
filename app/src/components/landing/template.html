@@ -1,0 +1,25 @@
+<div class="landing" :class="[ focus ? 'focus' : '' ]" @click.prevent="onLandingClick">
+
+    <div class="url" @click.prevent.stop="onUrlClick">
+        {{ url }}
+        <div class="network">(on the same network)</div>
+    </div>
+
+    <illustration name="astronaut"></illustration>
+
+    <div class="title">
+        Welcome to keppler!
+    </div>
+
+    <div class="sub-title">
+        Here you can browse the presenter's code in real time.
+    </div>
+
+    <div class="quote">
+        — {{ quote }}
+    </div>
+
+    <div class="mask"></div>
+
+    <fireworks :running="fireworksRunning"></fireworks>
+</div>

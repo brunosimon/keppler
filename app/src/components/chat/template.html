@@ -1,0 +1,45 @@
+<div class="chat">
+    <a href="#" v-show="!open" class="trigger" @click="onHeaderClick">
+        <span class="stroke"></span>
+        Discussions
+        <img v-if="unreadCount === 0" class="icon default" src="../../../static/svg/chat-star.svg" alt="">
+        <img v-if="unreadCount > 0" class="icon hover" src="../../../static/svg/chat-star-hover.svg" alt="">
+        <span v-if="unreadCount > 0" class="unread">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
+        <tooltip position="top-left">Chat with other person on the project</tooltip>
+    </a>
+    <div class="content" v-show="open">
+        <a href="#" class="header" @click="onHeaderClick">
+            <span class="stroke"></span>
+            <div class="dash"></div>
+            Discussions
+        </a>
+        <div class="messages" :style="`right: -${scrollbarWidth}px;`" @scroll="onMessagesScroll">
+            <div class="inner-messages">
+                <div class="message" v-for="message of messages" :key="message.date">
+                    <div class="stroke" :style="`background: ${message.user.color};`"></div>
+                    <span class="message-user" :style="`color: ${message.user.color};`">
+                        {{ message.user.name }}
+                    </span>
+                    <span class="message-date">
+                        {{ formatMinutes(message.time) }}
+                    </span>
+                    <a href="#" class="message-file" v-if="message.file && message.line" @click.prevent="onFileClick(message.file, message.version, message.line)">
+                        {{ message.file }}:{{ message.line }}
+                    </a>
+                    <div class="message-text" v-html="message.text.replace(/\n/g, '<br>')"></div>
+                </div>
+            </div>
+        </div>
+        <div class="user" v-if="user">
+            <span class="user-label">Your nickname is</span> <input maxlength="22" class="user-name" :style="`color: ${user.color};`" v-model="userName" @change="onUserNameChange($event)" @keydown="onUserNameKeyDown($event)"/>
+        </div>
+        <textarea class="textarea" :style="`width:calc(100% + ${scrollbarWidth}px);padding-right:${scrollbarWidth}px;`" v-model="messageText" @keydown="onMessageTextKeyDown($event)" placeholder="Type you message here..."></textarea>
+        <div class="question" v-if="question">
+            <span class="question-file">{{ question.file }}:{{ question.line }}</span>
+            <a href="#" class="remove" @click.prevent="onQuestionRemoveClick">
+                <img class="icon default" src="../../../static/svg/cross.svg" alt="">
+                <img class="icon hover" src="../../../static/svg/cross-hover.svg" alt="">
+            </a>
+        </div>
+    </div>
+</div>

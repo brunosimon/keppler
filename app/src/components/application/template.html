@@ -1,0 +1,29 @@
+<div id="application">
+    <!-- Connexion -->
+    <connexion></connexion>
+
+    <!-- Favicon -->
+    <favicon></favicon>
+
+    <div v-if="serverConfig">
+
+        <!-- Header -->
+        <a class="application-header" href="#" @click.prevent="onHeaderClick">
+            <img class="element background" src="../../../static/svg/header-background.svg" alt="">
+            <span class="element robot-container">
+                <img class="element robot" src="../../../static/svg/header-robot.svg" alt="">
+            </span>
+            <img class="element title" src="../../../static/svg/keppler-title.svg" alt="">
+        </a>
+
+        <!-- Popin -->
+        <popin></popin>
+
+        <!-- Projects -->
+        <projects-hub></projects-hub>
+
+        <!-- Project -->
+        <project v-if="project"></project>
+
+    </div>
+</div>
