@@ -7,3 +7,24 @@ body
 
 a
     text-decoration none
+
+.underline
+    position relative
+
+    &::after
+        content ''
+        position absolute
+        display block
+        right 0
+        bottom 0
+        left 0
+        height 1px
+        background #ffffff
+        transform scaleX(0)
+        transform-origin 0 0
+        transition transform 0.3s cubic-bezier(0.75, 0, 0.58, 1)
+        will-change transform
+
+    &:hover
+        &::after
+            transform scaleX(1)

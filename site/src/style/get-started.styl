@@ -1,0 +1,186 @@
+section.get-started
+    position relative
+    padding-top 120px
+    padding-bottom 60px
+    color: #ffffff
+    font-size 17px
+
+    .background
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        background linear-gradient(135deg, #330867 0%,#31a7bb 100%)
+        transform skewY(-5deg)
+        box-shadow 0px 0px 50px rgba(60, 117, 162, 0.4)
+
+    .content
+        position relative
+        width 600px
+        margin-left auto
+        margin-right auto
+
+    .main-title
+        margin-bottom 80px
+        font-size 45px
+        text-align center
+
+    .step
+        position relative
+        margin-bottom 70px
+        font-size 17px
+        font-weight 300
+
+        .number
+            position absolute
+            top -28px
+            right calc(100% + 45px)
+            font-weight 500
+            font-size 60px
+
+        .paragraph
+            line-height 1.5em
+            padding-left 50px
+
+            &.title
+                font-size 20px
+                margin-bottom 20px
+                padding-left 0
+
+            &.small
+                font-size 13px
+
+            a
+                text-decoration underline
+                text-decoration-skip ink
+
+        .code
+            width 340px
+            margin-top 6px
+            margin-bottom 6px
+            padding-top 12px
+            padding-right 12px
+            padding-bottom 12px
+            padding-left 24px
+            background: rgba(10, 10, 10, 0.8)
+            border-left: 4px solid #D8D8D8
+
+    .illustration
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        width 100%
+        overflow hidden
+
+        .center
+            position absolute
+            top 50%
+            right 0
+
+        .circle
+            position absolute
+            top 0
+            left 0
+            border-radius 999px
+            border 1px solid #fff
+
+            &.index-1
+                width 250px
+                height 250px
+                margin-top -125px
+                margin-left -125px
+
+            &.index-2
+                width 400px
+                height 400px
+                margin-top -200px
+                margin-left -200px
+
+            &.index-3
+                width 550px
+                height 550px
+                margin-top -275px
+                margin-left -275px
+
+            &.index-4
+                width 700px
+                height 700px
+                margin-top -350px
+                margin-left -350px
+
+            &.index-5
+                width 850px
+                height 850px
+                margin-top -425px
+                margin-left -425px
+
+        .disc
+            position absolute
+            top 0
+            left 0
+            animation get-started-disc-rotation 2s infinite linear
+            will-change transform
+
+            .inner
+                position absolute
+                top 0
+                border-radius 999px
+                background #ffffff
+
+            &.index-1
+                animation-duration 6.1s
+
+                .inner
+                    top -125px
+                    width 10px
+                    height 10px
+                    margin-top -5px
+                    margin-left -5px
+
+            &.index-2
+                animation-duration 11.2s
+
+                .inner
+                    top -200px
+                    width 20px
+                    height 20px
+                    margin-top -10px
+                    margin-left -10px
+
+            &.index-3
+                animation-duration 16.3s
+
+                .inner
+                    top -275px
+                    width 30px
+                    height 30px
+                    margin-top -15px
+                    margin-left -15px
+
+            &.index-4
+                animation-duration 21.4s
+
+                .inner
+                    top -350px
+                    width 40px
+                    height 40px
+                    margin-top -20px
+                    margin-left -20px
+
+            &.index-5
+                animation-duration 26.5s
+
+                .inner
+                    top -425px
+                    width 50px
+                    height 50px
+                    margin-top -25px
+                    margin-left -25px
+
+            @keyframes get-started-disc-rotation
+                0%
+                    transform rotate(140deg)
+                100%
+                    transform rotate(380deg)

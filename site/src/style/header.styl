@@ -34,23 +34,11 @@ section.header
                 width 40px
                 height 40px
 
-            &::after
-                content ''
-                position absolute
-                display block
-                right 10px
-                bottom 2px
-                left 10px
-                height 1px
-                background #ffffff
-                transform scaleX(0)
-                transform-origin 0 0
-                transition transform 0.3s cubic-bezier(0.75, 0, 0.58, 1)
-                will-change transform
-
-            &:hover
+            &.underline
                 &::after
-                    transform scaleX(1)
+                    right 10px
+                    bottom 2px
+                    left 10px
 
     .title
         position absolute
