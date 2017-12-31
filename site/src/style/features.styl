@@ -1,6 +1,8 @@
 section.features
     padding-top 120px
+    padding-bottom 90px
     text-align center
+    overflow hidden
 
     .paragraph
         font-weight 300
@@ -13,13 +15,16 @@ section.features
 
     .intro
         width 520px
-        margin 0 auto
+        margin-left auto
+        margin-bottom 20px
+        margin-right auto
 
         .title
             margin-bottom 30px
             font-size 25px
 
     .info
+        position relative
         display flex
         align-items center
         width 1024px
@@ -35,5 +40,212 @@ section.features
                 margin-bottom 28px
                 font-size 35px
 
+        .illustration
+            position absolute
+            top 50%
+            right 25%
+            width 10px
+            height 10px
+            background #ff0000
+
+            .element
+                position absolute
+                background-repeat no-repeat
+                background-position center center
+                will-change transform
+
+                &.levitation-1
+                    animation features-levitation-1 5s ease-in-out infinite alternate
+
+                    @keyframes features-levitation-1
+                        0%
+                            transform translateX(-6px) translateY(-3px) translateZ(0)
+                        100%
+                            transform translateX(6px) translateY(3px) translateZ(0)
+
+                &.levitation-2
+                    animation features-levitation-2 6s ease-in-out infinite alternate
+
+                    @keyframes features-levitation-2
+                        0%
+                            transform translateX(6px) translateY(3px) translateZ(0)
+                        100%
+                            transform translateX(-6px) translateY(-3px) translateZ(0)
+
+                &.levitation-3
+                    animation features-levitation-3 8s ease-in-out infinite alternate
+
+                    @keyframes features-levitation-3
+                        0%
+                            transform translateX(10px) translateY(-5px) translateZ(0)
+                        100%
+                            transform translateX(-10px) translateY(5px) translateZ(0)
+
+            &.aliens
+                .background
+                    width 312px
+                    height 287px
+                    margin-top -143px
+                    margin-left -156px
+                    background-image url(../../static/svg/illustrations/aliens/background.svg)
+
+                .guy-1
+                    top 50px
+                    left -20px
+                    width 68px
+                    height 86px
+                    margin-top -43px
+                    margin-left -34px
+                    background-image url(../../static/svg/illustrations/aliens/guy-1.svg)
+
+                .guy-2
+                    top 0px
+                    left 10px
+                    width 47px
+                    height 58px
+                    margin-top -23px
+                    margin-left -29px
+                    background-image url(../../static/svg/illustrations/aliens/guy-2.svg)
+
+                .ship
+                    top 2px
+                    left -21px
+                    width 292px
+                    height 272px
+                    margin-top -146px
+                    margin-left -136px
+                    background-image url(../../static/svg/illustrations/aliens/ship.svg)
+
+            &.computer
+                .background
+                    width 312px
+                    height 287px
+                    margin-top -143px
+                    margin-left -156px
+                    background-image url(../../static/svg/illustrations/computer/background.svg)
+
+                .laptop
+                    top 25px
+                    left -35px
+                    width 215px
+                    height 192px
+                    margin-top -96px
+                    margin-left -107px
+                    background-image url(../../static/svg/illustrations/computer/laptop.svg)
+
+            &.astronaut
+                .background
+                    width 312px
+                    height 287px
+                    margin-top -143px
+                    margin-left -156px
+                    background-image url(../../static/svg/illustrations/astronaut/background.svg)
+
+                .guy
+                    top 10px
+                    left -50px
+                    width 172px
+                    height 172px
+                    margin-top -86px
+                    margin-left -86px
+                    background-image url(../../static/svg/illustrations/astronaut/guy.svg)
+
+                .green-book
+                    top 90px
+                    left 0px
+                    width 56px
+                    height 58px
+                    margin-top -29px
+                    margin-left -28px
+                    background-image url(../../static/svg/illustrations/astronaut/green-book.svg)
+
+                .red-book
+                    top -80px
+                    left 40px
+                    width 54px
+                    height 46px
+                    margin-top -23px
+                    margin-left -27px
+                    background-image url(../../static/svg/illustrations/astronaut/red-book.svg)
+
+            .system
+                .circle
+                    position absolute
+                    top 0
+                    left 0
+                    border-radius 999px
+                    border 1px solid #32528E
+
+                    &.index-1
+                        width 330px
+                        height 330px
+                        margin-top -165px
+                        margin-left -165px
+
+                    &.index-2
+                        width 430px
+                        height 430px
+                        margin-top -215px
+                        margin-left -215px
+
+                    &.index-3
+                        width 530px
+                        height 530px
+                        margin-top -265px
+                        margin-left -265px
+
+                .disc
+                    position absolute
+                    top 0
+                    left 0
+                    animation features-disc-rotation 2s infinite linear
+                    will-change transform
+
+                    @keyframes features-disc-rotation
+                        0%
+                            transform rotate(0deg)
+                        100%
+                            transform rotate(360deg)
+
+                    .inner
+                        position absolute
+                        top 0
+                        border-radius 999px
+                        background #32528E
+
+                    &.index-1
+                        animation-duration 15.1s
+
+                        .inner
+                            top -165px
+                            width 10px
+                            height 10px
+                            margin-top -5px
+                            margin-left -5px
+
+                    &.index-2
+                        animation-duration 28.2s
+
+                        .inner
+                            top -215px
+                            width 20px
+                            height 20px
+                            margin-top -10px
+                            margin-left -10px
+
+                    &.index-3
+                        animation-duration 56.3s
+
+                        .inner
+                            top -265px
+                            width 30px
+                            height 30px
+                            margin-top -15px
+                            margin-left -15px
+
         &.right
             justify-content flex-end
+
+            .illustration
+                right auto
+                left 25%
