@@ -72,6 +72,16 @@ export default class Demo
             this.goStep(3)
         }
 
+        if(this.speakerCurrentTime < 15.5 && this.$speakerVideo.currentTime >= 15.5)
+        {
+            this.goStep(4)
+        }
+
+        if(this.speakerCurrentTime < 17.5 && this.$speakerVideo.currentTime >= 17.5)
+        {
+            this.goStep(5)
+        }
+
         this.speakerCurrentTime = this.$speakerVideo.currentTime
         this.audienceCurrentTime = this.$audienceVideo.currentTime
     }

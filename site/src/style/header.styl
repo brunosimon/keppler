@@ -1,3 +1,6 @@
+random(min, max)
+    return math(0, 'random')*(max - min + 1) + min
+
 section.header
     height 940px
     position relative
@@ -97,7 +100,6 @@ section.header
             top -150px
             left -245px
             opacity 0
-            overflow hidden
             transition transform 0.75s, opacity 0.75s
             will-change transform
 
@@ -120,12 +122,12 @@ section.header
             left -245px
             transform translateX(-120%)
             opacity 0
-            overflow hidden
             transition transform 0.75s, opacity 0.75s
             will-change transform
 
             video
                 border-radius 5px
+
             .icon
                 position absolute
                 left calc(50% - 20px)
@@ -166,6 +168,62 @@ section.header
             transition transform 1s cubic-bezier(0.75, 0, 0.58, 1)
             will-change transform
 
+        .bars
+            position absolute
+            top 0
+            left 0
+            opacity 0
+            transition opacity 0.5s
+            will-change opacity
+
+            .bar
+                position absolute
+                top 0
+                left 0
+                animation-name header-bar-translation
+                animation-iteration-count infinite
+                animation-timing-function linear
+                animation-play-state paused
+                will-change transform
+
+                &.color-1
+                    background #a3d1c6
+
+                &.color-2
+                    background #ffffff
+
+                &.color-3
+                    background #e67553
+
+                &.color-4
+                    background #fbfb8c
+
+                &.size-1
+                    width 100px
+                    height 5px
+
+                &.size-2
+                    width 60px
+                    height 3px
+
+                &.size-3
+                    width 80px
+                    height 4px
+
+                for $num in (0..50)
+                    &.animation-{$num}
+                        animation-duration unit(random(0.2, 0.5), 's')
+
+                for $num in (0..50)
+                    &.pos-{$num}
+                        top unit(random(-50, 50), 'px')
+
+            @keyframes header-bar-translation
+                0%
+                    transform translateX(200px)
+                100%
+                    transform translateX(-200px)
+
         &.step-1
             .speaker
                 opacity 1
@@ -183,6 +241,20 @@ section.header
             .url
                 opacity 1
                 transform translateX(-432px) translateY(-111px)
+
+        &.step-4
+            .bars
+                opacity 1
+
+                .bar
+                    animation-play-state running
+
+        &.step-5
+            .bars
+                opacity 0
+
+                .bar
+                    animation-play-state running
 
     .get-started-button
         position absolute
