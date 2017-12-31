@@ -5,6 +5,7 @@ export default class Demo
 {
     constructor()
     {
+        this.step = 0
         this.$container = document.querySelector('.js-demo')
 
         // Speaker
@@ -13,9 +14,10 @@ export default class Demo
         this.$speakerVideo = document.createElement('video')
         this.$speakerVideo.src = speaker
         this.$speakerVideo.height = 300
-        this.$speakerVideo.autoplay = true
 
         this.$speaker.appendChild(this.$speakerVideo)
+
+        this.speakerCurrentTime = 0
 
         // Audience
         this.$audience = this.$container.querySelector('.js-audience')
@@ -23,8 +25,90 @@ export default class Demo
         this.$audienceVideo = document.createElement('video')
         this.$audienceVideo.src = audience
         this.$audienceVideo.height = 300
-        this.$audienceVideo.autoplay = true
 
         this.$audience.appendChild(this.$audienceVideo)
+
+        this.audienceCurrentTime = 0
+
+        // Go step
+        window.setTimeout(() =>
+        {
+            this.goStep(0)
+        }, 1000)
+
+        /**
+         * Loop
+         */
+        this.setLoop()
+    }
+
+    /**
+     * Set loop
+     */
+    setLoop()
+    {
+        const loop = () =>
+        {
+            window.requestAnimationFrame(loop)
+
+            this.loop()
+        }
+
+        loop()
+    }
+
+    /**
+     * Loop
+     */
+    loop()
+    {
+        if(this.speakerCurrentTime < 7 && this.$speakerVideo.currentTime >= 7)
+        {
+            this.goStep(2)
+        }
+
+        if(this.audienceCurrentTime < 0.85 && this.$audienceVideo.currentTime >= 0.85)
+        {
+            this.goStep(3)
+        }
+
+        this.speakerCurrentTime = this.$speakerVideo.currentTime
+        this.audienceCurrentTime = this.$audienceVideo.currentTime
+    }
+
+    /**
+     * Go to step
+     */
+    goStep(index)
+    {
+        console.log(index)
+        // // Remove old step class
+        // if(this.step !== null)
+        // {
+        //     this.$container.classList.remove(`step-${this.step}`)
+        // }
+
+        // Add new step class
+        this.step = index
+        this.$container.classList.add(`step-${this.step}`)
+
+        // Cases
+        switch(this.step)
+        {
+            case 0:
+                this.$speakerVideo.play()
+                    .then(() =>
+                    {
+                        this.goStep(1)
+                    })
+                break
+
+            case 1:
+                break
+
+            case 2:
+                this.$audienceVideo.play()
+                break
+        }
     }
 }

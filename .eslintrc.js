@@ -4,15 +4,14 @@ module.exports = {
         'browser': true,
         'es6': true
     },
-    'plugins': ['node'],
-    'extends': ['eslint:recommended', 'plugin:node/recommended'],
+    'extends': ['eslint:recommended'],
     'parserOptions':
     {
         'sourceType': 'module'
     },
     'rules':
     {
-        'node/no-unsupported-features': 0,
+        'no-unused-vars': 1,
         'no-console': 0,
         'dot-notation': 1,
         'eqeqeq': 1,
@@ -30,8 +29,8 @@ module.exports = {
         'comma-style': [1, 'last'],
         'func-style': [1, 'expression'],
         'id-length': 0,
-        'indent': [1, 4],
-        'keyword-spacing': 0,
+        'indent': [1, 4, { SwitchCase: 1 }],
+        'keyword-spacing': [1, { after: false, before: true, overrides: { from: { after: true }, return: { after: true }, import: { after: true }, case: { after: true } } }],
         'max-len': 0,
         'new-cap': [1, { newIsCap: true, newIsCapExceptions: [], capIsNew: false, capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'] }],
         'no-array-constructor': 1,
@@ -41,7 +40,7 @@ module.exports = {
         'no-new-object': 1,
         'no-plusplus': 0,
         'no-restricted-syntax': 0,
-        'no-trailing-spaces': 0,
+        'no-trailing-spaces': 1,
         'no-underscore-dangle': 0,
         'no-unneeded-ternary': 1,
         'no-whitespace-before-property': 1,
@@ -49,14 +48,14 @@ module.exports = {
         'one-var': [1, 'never'],
         'padded-blocks': [1, 'never'],
         'quote-props': [1, 'as-needed'],
-        'quotes': 0,
+        'quotes': [1, 'single'],
         'semi': [1, 'never'],
         'space-before-blocks': [1, 'always'],
         'space-before-function-paren': [1, { anonymous: 'never', named: 'never', asyncArrow: 'never' }],
         'space-in-parens': [1, 'never'],
         'space-infix-ops': 1,
         'spaced-comment': [1, 'always'],
-        'arrow-body-style': [1, 'as-needed'],
+        'arrow-body-style': 0,
         'arrow-parens': [1, 'always'],
         'arrow-spacing': [1, { before: true, 'after': true }],
         'no-confusing-arrow': 0,
@@ -64,11 +63,11 @@ module.exports = {
         'no-duplicate-imports': 0,
         'no-useless-constructor': 1,
         'no-var': 1,
-        'object-shorthand': 1,
+        'object-shorthand': 0,
         'prefer-const': 1,
         'prefer-rest-params': 1,
         'prefer-spread': 1,
         'prefer-template': 0,
         'template-curly-spacing': [1, 'never']
     }
-};
+}

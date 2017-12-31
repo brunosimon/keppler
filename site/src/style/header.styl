@@ -91,14 +91,18 @@ section.header
         position absolute
         top 520px
         left 50%
-        width 1px
-        height 1px
-        background #ffffff
 
         .speaker
             position absolute
             top -150px
             left -245px
+            opacity 0
+            overflow hidden
+            transition transform 0.75s, opacity 0.75s
+            will-change transform
+
+            video
+                border-radius 5px
 
             .icon
                 position absolute
@@ -114,7 +118,14 @@ section.header
             position absolute
             top -150px
             left -245px
+            transform translateX(-120%)
+            opacity 0
+            overflow hidden
+            transition transform 0.75s, opacity 0.75s
+            will-change transform
 
+            video
+                border-radius 5px
             .icon
                 position absolute
                 left calc(50% - 20px)
@@ -124,6 +135,54 @@ section.header
                 background-image url(../../static/svg/demo-audience.svg)
                 background-repeat no-repeat
                 background-position center center
+
+            .url-bar
+                position absolute
+                top 1.5%
+                left 30%
+                right 30%
+                height 7.5%
+                border-radius 3px
+                background #adadad
+
+            .white-cache
+                position absolute
+                top 0
+                left 30%
+                right 6px
+                height 10.7%
+                background #fffeff
+
+        .url
+            position absolute
+            top -30px
+            left 61px
+            font-size 13px
+            letter-spacing 0.4px
+            font-family Courier
+            color #ffffff
+            opacity 0
+            transform translateX(0px) translateY(0px)
+            transition transform 1s cubic-bezier(0.75, 0, 0.58, 1)
+            will-change transform
+
+        &.step-1
+            .speaker
+                opacity 1
+
+        &.step-2
+            .speaker
+                transform translateX(60%)
+
+            .audience
+                transform translateX(-60%)
+                transition-delay 0.15s, 0.15s
+                opacity 1
+
+        &.step-3
+            .url
+                opacity 1
+                transform translateX(-432px) translateY(-111px)
 
     .get-started-button
         position absolute
