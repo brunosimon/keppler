@@ -92,7 +92,7 @@ section.header
 
     .demo
         position absolute
-        top 520px
+        top 505px
         left 50%
 
         .speaker
@@ -116,6 +116,14 @@ section.header
                 background-repeat no-repeat
                 background-position center center
 
+                .label
+                    position absolute
+                    top calc(100% + 6px)
+                    left -50px
+                    right -50px
+                    white-space nowrap
+                    text-align center
+
         .audience
             position absolute
             top -150px
@@ -137,6 +145,14 @@ section.header
                 background-image url(../../static/svg/demo-audience.svg)
                 background-repeat no-repeat
                 background-position center center
+
+                .label
+                    position absolute
+                    top calc(100% + 6px)
+                    left -50px
+                    right -50px
+                    white-space nowrap
+                    text-align center
 
             .url-bar
                 position absolute
@@ -173,7 +189,7 @@ section.header
             top 0
             left 0
             opacity 0
-            transition opacity 0.5s
+            transition opacity 0.25s
             will-change opacity
 
             .bar
