@@ -7,6 +7,23 @@ section.header
     color: #ffffff
     font-size 17px
 
+    @media (max-width: $breakpoints.xl)
+        height 890px
+
+    @media (max-width: $breakpoints.l)
+        height 810px
+
+    @media (max-width: $breakpoints.m)
+        height 760px
+        font-size 16px
+
+    @media (max-width: $breakpoints.s)
+        height 520px
+        font-size 15px
+
+    @media (max-width: $breakpoints.xs)
+        font-size 14px
+
     .background
         position absolute
         top -10vh
@@ -23,12 +40,32 @@ section.header
         right 65px
         font-weight 300
 
+        @media (max-width: $breakpoints.l)
+            right 45px
+
+        @media (max-width: $breakpoints.m)
+            right 25px
+
+        @media (max-width: $breakpoints.s)
+            right 0
+            left 0
+            text-align center
+
         .item
             display inline-block
             position relative
             vertical-align middle
             padding 10px
-            margin 0 7px
+            margin-left 7px
+            margin-right 7px
+
+            @media (max-width: $breakpoints.s)
+                margin-left 0
+                margin-right 0
+
+            @media (max-width: $breakpoints.xs)
+                padding-right 4px
+                padding-left 4px
 
             &.github
                 background-image url(../../static/svg/github.svg)
@@ -43,10 +80,29 @@ section.header
                     bottom 2px
                     left 10px
 
+                    @media (max-width: $breakpoints.xs)
+                        right 4px
+                        left 4px
+
     .title
         position absolute
         top 190px
         left 50%
+
+        @media (max-width: $breakpoints.l)
+            top 180px
+            transform scale(0.9)
+
+        @media (max-width: $breakpoints.m)
+            top 175px
+            transform scale(0.8)
+
+        @media (max-width: $breakpoints.s)
+            top 170px
+            transform scale(0.7)
+
+        @media (max-width: $breakpoints.xs)
+            top 165px
 
         .keppler
             position absolute
@@ -85,15 +141,48 @@ section.header
         top 250px
         left 0
         right 0
+        padding-left 20px
+        padding-right 20px
         text-align center
-        line-height 35px
+        line-height 1.5em
         font-size 25px
         font-weight 300
+
+        @media (max-width: $breakpoints.l)
+            top 240px
+            font-size 23px
+
+        @media (max-width: $breakpoints.m)
+            top 235px
+            font-size 21px
+
+        @media (max-width: $breakpoints.s)
+            top 230px
+            font-size 19px
+
+        @media (max-width: $breakpoints.xs)
+            top 225px
+            font-size 17px
 
     .demo
         position absolute
         top 505px
         left 50%
+
+        @media (max-width: $breakpoints.xl)
+            top 485px
+            transform scale(0.8)
+
+        @media (max-width: $breakpoints.l)
+            top 455px
+            transform scale(0.6)
+
+        @media (max-width: $breakpoints.m)
+            top 435px
+            transform scale(0.5)
+
+        @media (max-width: $breakpoints.s)
+            display none
 
         .speaker
             position absolute

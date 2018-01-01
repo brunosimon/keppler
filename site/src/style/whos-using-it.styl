@@ -3,17 +3,47 @@ section.whos-using-it
     padding-bottom 90px
     text-align center
 
+    @media (max-width: $breakpoints.l)
+        padding-top 90px
+        padding-bottom 60px
+
+    @media (max-width: $breakpoints.m)
+        padding-top 70px
+        padding-bottom 40px
+
     .main-title
+        margin-right 20px
         margin-bottom 60px
+        margin-left 20px
         font-size 45px
+
+        @media (max-width: $breakpoints.l)
+            margin-bottom 60px
+            font-size 40px
+
+        @media (max-width: $breakpoints.m)
+            margin-bottom 40px
+            font-size 35px
+
+        @media (max-width: $breakpoints.s)
+            margin-bottom 30px
+            font-size 30px
 
     .text
         margin-bottom 40px
+        margin-right 20px
+        margin-left 20px
 
         .paragraph
             font-weight 300
             font-size 17px
             line-height 22px
+
+            @media (max-width: $breakpoints.m)
+                font-size 16px
+
+            @media (max-width: $breakpoints.s)
+                font-size 15px
 
     .items
         width 50%

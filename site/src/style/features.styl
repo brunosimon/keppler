@@ -4,14 +4,40 @@ section.features
     text-align center
     overflow hidden
 
+    @media (max-width: $breakpoints.l)
+        padding-top 90px
+        padding-bottom 60px
+
+    @media (max-width: $breakpoints.m)
+        padding-top 70px
+        padding-bottom 40px
+
     .paragraph
         font-weight 300
         font-size 17px
         line-height 22px
 
+        @media (max-width: $breakpoints.m)
+            font-size 16px
+
+        @media (max-width: $breakpoints.s)
+            font-size 15px
+
     .main-title
         margin-bottom 80px
         font-size 45px
+
+        @media (max-width: $breakpoints.l)
+            margin-bottom 60px
+            font-size 40px
+
+        @media (max-width: $breakpoints.m)
+            margin-bottom 40px
+            font-size 35px
+
+        @media (max-width: $breakpoints.s)
+            margin-bottom 30px
+            font-size 30px
 
     .intro
         width 520px
@@ -19,9 +45,27 @@ section.features
         margin-bottom 20px
         margin-right auto
 
+        @media (max-width: $breakpoints.s)
+            width auto
+            margin-right 20px
+            margin-bottom 30px
+            margin-left 20px
+
         .title
             margin-bottom 30px
             font-size 25px
+
+            @media (max-width: $breakpoints.l)
+                margin-bottom 25px
+                font-size 23px
+
+            @media (max-width: $breakpoints.m)
+                margin-bottom 20px
+                font-size 21px
+
+            @media (max-width: $breakpoints.s)
+                margin-bottom 15px
+                font-size 19px
 
     .info
         position relative
@@ -33,12 +77,52 @@ section.features
         margin-right auto
         text-align left
 
+        @media (max-width: $breakpoints.xl)
+            width 920px
+
+        @media (max-width: $breakpoints.l)
+            width auto
+            height 350px
+            margin-right 20px
+            margin-left 20px
+
+        @media (max-width: $breakpoints.s)
+            display block
+            height auto
+            margin-bottom 30px
+            padding-top 340px
+            text-align center
+
+        @media (max-width: $breakpoints.xs)
+            padding-top 280px
+
         .text
             width 450px
+
+            @media (max-width: $breakpoints.xl)
+                width 400px
+
+            @media (max-width: $breakpoints.l)
+                width 50%
+
+            @media (max-width: $breakpoints.s)
+                width auto
 
             .title
                 margin-bottom 28px
                 font-size 35px
+
+                @media (max-width: $breakpoints.l)
+                    margin-bottom 24px
+                    font-size 30px
+
+                @media (max-width: $breakpoints.m)
+                    margin-bottom 20px
+                    font-size 25px
+
+                @media (max-width: $breakpoints.s)
+                    margin-bottom 16px
+                    font-size 20px
 
         .illustration
             position absolute
@@ -47,6 +131,17 @@ section.features
             width 10px
             height 10px
             background #ff0000
+
+            @media (max-width: $breakpoints.l)
+                right 20%
+
+            @media (max-width: $breakpoints.s)
+                top 160px
+                left 50%
+
+            @media (max-width: $breakpoints.xs)
+                top 140px
+                transform scale(0.8)
 
             .element
                 position absolute
@@ -169,6 +264,9 @@ section.features
                     background-image url(../../static/svg/illustrations/astronaut/red-book.svg)
 
             .system
+                @media (max-width: $breakpoints.l)
+                    display none
+
                 .circle
                     position absolute
                     top 0
@@ -249,3 +347,10 @@ section.features
             .illustration
                 right auto
                 left 25%
+
+                @media (max-width: $breakpoints.l)
+                    left 20%
+
+                @media (max-width: $breakpoints.s)
+                    top 160px
+                    left 50%

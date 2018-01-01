@@ -5,6 +5,14 @@ section.get-started
     color: #ffffff
     font-size 17px
 
+    @media (max-width: $breakpoints.l)
+        padding-top 90px
+        padding-bottom 60px
+
+    @media (max-width: $breakpoints.m)
+        padding-top 70px
+        padding-bottom 40px
+
     .background
         position absolute
         top 0
@@ -21,16 +29,54 @@ section.get-started
         margin-left auto
         margin-right auto
 
+        @media (max-width: $breakpoints.l)
+            width auto
+            margin-left 120px
+            margin-right 20px
+
+        @media (max-width: $breakpoints.m)
+            width auto
+            margin-left 80px
+
+        @media (max-width: $breakpoints.xs)
+            margin-left 45px
+
     .main-title
         margin-bottom 80px
         font-size 45px
         text-align center
+
+        @media (max-width: $breakpoints.l)
+            margin-bottom 60px
+            font-size 40px
+
+        @media (max-width: $breakpoints.m)
+            margin-bottom 40px
+            font-size 35px
+
+        @media (max-width: $breakpoints.s)
+            margin-bottom 30px
+            font-size 30px
 
     .step
         position relative
         margin-bottom 70px
         font-size 17px
         font-weight 300
+
+        @media (max-width: $breakpoints.l)
+            font-size 16px
+
+        @media (max-width: $breakpoints.m)
+            margin-bottom 60px
+            font-size 15px
+
+        @media (max-width: $breakpoints.s)
+            margin-bottom 50px
+            font-size 14px
+
+        @media (max-width: $breakpoints.xs)
+            margin-bottom 40px
 
         .number
             position absolute
@@ -39,17 +85,65 @@ section.get-started
             font-weight 500
             font-size 60px
 
+            @media (max-width: $breakpoints.l)
+                top -20px
+                right calc(100% + 25px)
+                font-size 50px
+
+            @media (max-width: $breakpoints.m)
+                top -12px
+                right calc(100% + 16px)
+                font-size 40px
+
+            @media (max-width: $breakpoints.s)
+                top -6px
+                right calc(100% + 16px)
+                font-size 30px
+
+            @media (max-width: $breakpoints.xs)
+                top -7px
+                right calc(100% + 8px)
+
         .paragraph
             line-height 1.5em
             padding-left 50px
+
+            @media (max-width: $breakpoints.l)
+                padding-left 45px
+
+            @media (max-width: $breakpoints.m)
+                padding-left 35px
+
+            @media (max-width: $breakpoints.s)
+                padding-left 30px
+
+            @media (max-width: $breakpoints.xs)
+                padding-left 25px
 
             &.title
                 font-size 20px
                 margin-bottom 20px
                 padding-left 0
 
+                @media (max-width: $breakpoints.l)
+                    font-size 19px
+
+                @media (max-width: $breakpoints.m)
+                    font-size 18px
+
+                @media (max-width: $breakpoints.s)
+                    margin-bottom 16px
+                    font-size 17px
+
+                @media (max-width: $breakpoints.xs)
+                    margin-bottom 12px
+                    font-size 16px
+
             &.small
                 font-size 13px
+
+                @media (max-width: $breakpoints.m)
+                    font-size 12px
 
             a
                 text-decoration underline
@@ -67,6 +161,13 @@ section.get-started
             border-left: 4px solid #D8D8D8
             font-family Courier
 
+            @media (max-width: $breakpoints.s)
+                width 300px
+
+            @media (max-width: $breakpoints.xs)
+                padding-left 12px
+                width 260px
+
     .illustration
         position absolute
         top 0
@@ -75,6 +176,14 @@ section.get-started
         width 100%
         overflow hidden
         pointer-events none
+        transform-origin 100% 50%
+
+        @media (max-width: $breakpoints.l)
+            opacity 0.3
+            transform scale(0.75)
+
+        @media (max-width: $breakpoints.m)
+            transform scale(0.5)
 
         .center
             position absolute
