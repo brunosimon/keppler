@@ -12,6 +12,9 @@ export default class Demo
         this.$speaker = this.$container.querySelector('.js-speaker')
 
         this.$speakerVideo = document.createElement('video')
+        this.$speakerVideo.playsinline = true
+        this.$speakerVideo.webkitPlaysinline = true
+        this.$speakerVideo.muted = true
         this.$speakerVideo.src = speaker
         this.$speakerVideo.height = 300
 
@@ -23,6 +26,9 @@ export default class Demo
         this.$audience = this.$container.querySelector('.js-audience')
 
         this.$audienceVideo = document.createElement('video')
+        this.$audienceVideo.playsinline = true
+        this.$audienceVideo.webkitPlaysinline = true
+        this.$audienceVideo.muted = true
         this.$audienceVideo.src = audience
         this.$audienceVideo.height = 300
 

@@ -174,11 +174,11 @@ section.header
             transform scale(0.8)
 
         @media (max-width: $breakpoints.l)
-            top 455px
+            top 445px
             transform scale(0.6)
 
         @media (max-width: $breakpoints.m)
-            top 435px
+            top 425px
             transform scale(0.5)
 
         @media (max-width: $breakpoints.s)
@@ -433,12 +433,13 @@ section.header
                 transition transform 0.5s cubic-bezier(0.75, 0, 0.25, 1)
                 will-change transform
 
-        &:hover
-            .hover
-                transform translateX(0%)
-
-                .inner
+        .no-touch &
+            &:hover
+                .hover
                     transform translateX(0%)
+
+                    .inner
+                        transform translateX(0%)
 
     .scroll-button
         display block
