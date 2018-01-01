@@ -45,7 +45,7 @@ section.header
 
     .title
         position absolute
-        top 210px
+        top 190px
         left 50%
 
         .keppler
@@ -82,7 +82,7 @@ section.header
 
     .sub-title
         position absolute
-        top 270px
+        top 250px
         left 0
         right 0
         text-align center
@@ -279,9 +279,26 @@ section.header
                 .bar
                     animation-play-state running
 
+        &.step-6
+            .speaker
+                opacity 0
+                transform translateX(60%) scale(0.8, 0.8)
+                transition-duration 0.5s, 0.5s
+                transition-timing-function ease-in-out, ease-in-out
+
+            .audience
+                opacity 0
+                transform translateX(-60%) scale(0.8, 0.8)
+                transition-duration 0.5s, 0.5s
+                transition-timing-function ease-in-out, ease-in-out
+
+            .url
+                opacity 0
+                transition-duration 0.2s
+
     .get-started-button
         position absolute
-        bottom 130px
+        bottom 120px
         left calc(50% - 117px)
         width 234px
         height 43px

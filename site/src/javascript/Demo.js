@@ -36,6 +36,14 @@ export default class Demo
             this.goStep(0)
         }, 1000)
 
+        this.$audienceVideo.addEventListener('ended', () =>
+        {
+            window.setTimeout(() =>
+            {
+                this.goStep(6)
+            }, 2000)
+        })
+
         /**
          * Loop
          */
@@ -105,6 +113,7 @@ export default class Demo
         switch(this.step)
         {
             case 0:
+                this.$speakerVideo.currentTime = 0
                 this.$speakerVideo.play()
                     .then(() =>
                     {
@@ -117,6 +126,22 @@ export default class Demo
 
             case 2:
                 this.$audienceVideo.play()
+                break
+
+            case 6:
+                window.setTimeout(() =>
+                {
+                    for(let step = 0; step < 7; step++)
+                    {
+                        this.$container.classList.remove(`step-${step}`)
+                    }
+                }, 800)
+
+                window.setTimeout(() =>
+                {
+                    this.goStep(0)
+                }, 1600)
+
                 break
         }
     }
