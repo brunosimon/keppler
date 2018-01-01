@@ -1,6 +1,8 @@
-# Keppler
+# [Keppler](https://brunosimon.github.io/keppler/)
 
 > Real time code sharing for your lectures and presentations.
+
+[Website](https://brunosimon.github.io/keppler/)
 
 ## What is keppler
 
