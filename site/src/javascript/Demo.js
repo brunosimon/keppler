@@ -91,7 +91,6 @@ export default class Demo
      */
     goStep(index)
     {
-        console.log(index)
         // // Remove old step class
         // if(this.step !== null)
         // {

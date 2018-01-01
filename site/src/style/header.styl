@@ -100,7 +100,10 @@ section.header
             top -150px
             left -245px
             opacity 0
-            transition transform 0.75s, opacity 0.75s
+            transform scale(0.8, 0.8)
+            transition-property transform, opacity
+            transition-duration 0.75s, 0.75s
+            transition-timing-function cubic-bezier(0.42, 0, 0.70, 1.40), ease-in-out
             will-change transform
 
             video
@@ -131,6 +134,7 @@ section.header
             transform translateX(-120%)
             opacity 0
             transition transform 0.75s, opacity 0.75s
+            transition-timing-function cubic-bezier(0.42, 0, 0.70, 1.40), ease-in-out
             will-change transform
 
             video
@@ -243,14 +247,17 @@ section.header
         &.step-1
             .speaker
                 opacity 1
+                transition-duration 0.5s, 0.5s
+                transform scale(1, 1)
 
         &.step-2
             .speaker
                 transform translateX(60%)
+                transition-duration 0.75s, 0.75s
 
             .audience
                 transform translateX(-60%)
-                transition-delay 0.15s, 0.15s
+                transition-delay 0.25s, 0.25s
                 opacity 1
 
         &.step-3
