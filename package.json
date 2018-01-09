@@ -16,7 +16,7 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "demo-folder": "cd test/demo-folder && node ../../bin 'Demo folder' --open false --test true --initial-send true",
+    "demo-folder": "cd test/demo-folder-1 && node ../../bin 'Demo folder' --open false --test true --initial-send true",
     "app-dev": "node app/build/dev-server.js",
     "app-build": "node app/build/build.js",
     "site-dev": "node site/build/dev-server.js",

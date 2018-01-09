@@ -1,7 +1,7 @@
 <div class="file" :class="[versionsActive && isCode ? 'version-active' : '']">
 
     <!-- Versions -->
-    <versions :file="content" :content="content.versions" v-if="versionsActive && isCode"></versions>
+    <versions :file="content" :content="content.versions" v-show="versionsActive && isCode"></versions>
 
     <!-- Viewer / Code -->
     <viewer :differences-active="differencesActive" v-if="isCode"></viewer>
