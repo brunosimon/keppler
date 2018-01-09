@@ -11,6 +11,6 @@
                 <span class="question" @click.prevent="onLineClick(line)">?</span>
             </div>
         </div>
-        <pre class="code" v-highlightjs="version.content" contenteditable @keydown="onCodeKeyDown($event)"><code :class="[ extension ]"></code></pre>
+        <pre class="code" v-highlightjs="version.content" spellcheck="false" contenteditable @keydown="onCodeKeyDown($event)"><code :class="[ extension ]"></code></pre>
     </div>
 </div>
