@@ -30,14 +30,14 @@ npm install -g keppler
 #### 2 - Launch Keppler inside your project folder
 
 In your console, navigate to your project folder.
-Then launch Keppler with the name of your choice:
+Then launch Keppler:
 
 ```
 cd ./my-awesome-project
-keppler "My awesome project"
+keppler
 ```
 
-Keppler should open in your default browser and start watching any changes you make on the files inside the folder.
+Keppler should open in your default browser and start watching any changes you make inside the folder.
 
 #### 3 - Share the URL with your audience
 
@@ -49,13 +49,19 @@ By default, you must be on the same network.
 You can add configuration arguments when calling Keppler.
 
 ```
-keppler "My project" --debug 0 --port 1234 --exclude "node_modules/**" --open true --test true --initial-send true --max-file-size 99999
+keppler "My project" --debug 0 --port 1234 --exclude "node_modules/**" --open true --test true --limit 200 --max-file-size 99999
 ```
 
-And you can use shortcuts for those arguments
+And you can use shortcuts for those same arguments.
 
 ```
-keppler "My project" -d 0 -p 1234 -e "node_modules/**" -oti -m 99999
+keppler "My project" -d 0 -p 1234 -e "node_modules/**" -oti -l 200 -m 99999
+```
+
+All those arguments are optional. You can simply run Keppler.
+
+```
+keppler
 ```
 
 Arguments list
@@ -78,8 +84,8 @@ Arguments list
 |---|---|
 |parameter|`--exclude`|
 |shortcut|`-e`|
-|default value|*(string)*`**/.DS_Store,node_modules/**,vendor/**,.git,.vscode,.env,.log,.idea/**,*___jb_old___,*___jb_tmp___`|
-|description|List of paths to exclude (comma seperated and wildcards support)|
+|default value|*(string)*`**/.DS_Store,**/node_modules/**,**/vendor/**,**/.git,**/.vscode,**/.env,**/.log,.idea/**,**/*___jb_old___,**/*___jb_tmp___`|
+|description|List of paths to exclude (glob pattern with comma seperation)|
 
 |||
 |---|---|
@@ -97,10 +103,10 @@ Arguments list
 
 |||
 |---|---|
-|parameter|`--initial-send`|
-|shortcut|`-i`|
-|default value|*(bool)*`false`|
-|description|Send current files in the folder<br>:warning: Too much files may cause issues|
+|parameter|`--limit`|
+|shortcut|`-l`|
+|default value|*(number)*`99`|
+|description|Limit of files above which nothing will be sent at start<br>:warning: Too much files may cause issues|
 
 |||
 |---|---|
@@ -132,7 +138,7 @@ Arguments list
 
 ## Online instance
 
-You can run Keppler online. Anybody would be able to connect to it and your audience won't need to be on the same network as you.
+You can run Keppler online. Anyone with access to the server will be able to see the projects without having to be on the same network as you.
 
 Keppler doesn't provide any host solution. You'll have to use your own server.
 

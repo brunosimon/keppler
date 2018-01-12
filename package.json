@@ -36,10 +36,10 @@
   "homepage": "https://github.com/brunosimon/keppler",
   "dependencies": {
     "chalk": "^2.3.0",
-    "chokidar": "^1.7.0",
+    "chokidar": "^2.0.0",
     "diff": "^3.3.0",
     "express": "^4.15.3",
-    "glob": "^7.1.2",
+    "globby": "^7.1.1",
     "gradient-string": "^1.0.0",
     "helmet": "^3.8.1",
     "html-entities": "^1.2.1",
