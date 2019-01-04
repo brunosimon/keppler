@@ -13,7 +13,7 @@ Any time you save a file, viewers will receive those changes. They can browse th
 <img width="700" src="https://github.com/brunosimon/keppler/raw/master/resources/screenshots/screen-project-2.png" alt="Keppler screen">
 <img width="700" src="https://github.com/brunosimon/keppler/raw/master/resources/screenshots/screen-project-3.png" alt="Keppler screen">
 
-## Instructions
+## User instructions
 
 #### 1 - Install Keppler globally
 
@@ -185,6 +185,49 @@ keppler "My awesome project" --host 12.34.56.78
 - Alert button
 - Tooltips
 - Online support
+
+## Developer instructions
+
+#### Structure
+
+`/app/`: Keppler front part
+`/bin/`: Main folder only containing `index.js` that will run what's located in `/lib/` folder
+`/lib/`: Keppler application classes
+`/resources/`: Random resources (not directly use)
+`/site/`: Website
+`/text/`: Demo folder
+
+#### Tasks
+
+Installation
+
+- `npm install`
+
+Keppler application
+
+- `npm run demo-folder`: To run the Keppler application with a demo project located in `/test/`
+- `npm run app-dev`: To run the Keppler front part (you'll need to run keppler application in order to have the front to connect to something)
+- `npm run app-build`: To build the front part
+- `npm run dev`: To run both `demo-folder` and `app-dev`
+
+Website
+
+- `npm run site-dev`: To run the website
+- `npm run site-build`: To build the website
+- `npm run site-deploy`: To deploy the website to GitHub Pages
+
+#### Requirements
+
+- Install EditorConfig on your editor
+- Install ESLint on your editor
+
+#### Deployment
+
+- `npm run app-build` to build the app
+- `npm version major|patch|minor` to update the version (will create a commit)
+- `git --amend` to update the commit message and add `:bookmark:` at the beginning ([GitMoji](https://gitmoji.carloscuesta.me/))
+- `git push` to push to GitHub
+- `npm publish` to send to NPM (you need to be logged in and have the right to update Keppler on NPM)
 
 ## Credits
 
