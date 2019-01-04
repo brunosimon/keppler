@@ -224,8 +224,8 @@ Website
 #### Deployment
 
 - `npm run app-build` to build the app
-- `npm version major|patch|minor` to update the version (will create a commit)
-- `git --amend` to update the commit message and add `:bookmark:` at the beginning ([GitMoji](https://gitmoji.carloscuesta.me/))
+- `npm version major|minor|patch` to update the version (will create a commit)
+- `git commit --amend` to update the commit message and add `:bookmark:` at the beginning ([GitMoji](https://gitmoji.carloscuesta.me/))
 - `git push` to push to GitHub
 - `npm publish` to send to NPM (you need to be logged in and have the right to update Keppler on NPM)
 
