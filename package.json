@@ -16,7 +16,7 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "demo-folder": "cd test/demo-folder-1 && node ../../bin 'Demo folder' --open false --test true --initial-send true",
+    "demo-folder": "cd test/demo-folder-2 && node ../../bin 'Demo folder' --open false --test true --initial-send true",
     "app-dev": "node app/build/dev-server.js",
     "app-build": "node app/build/build.js",
     "site-dev": "node site/build/dev-server.js",
@@ -45,7 +45,7 @@
     "html-entities": "^1.2.1",
     "ip": "^1.1.5",
     "jszip": "^3.1.5",
-    "mime": "^1.4.1",
+    "mime": "^2.4.0",
     "minimatch": "^3.0.4",
     "node-notifier": "^5.1.2",
     "opener": "^1.4.3",

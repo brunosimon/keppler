@@ -11,6 +11,7 @@ export default
     {
         this.icons = {
             js: ['js'],
+            typescript: ['ts'],
             html: ['html', 'htm'],
             sass: ['sass', 'scss'],
             less: ['less'],
