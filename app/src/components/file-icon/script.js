@@ -38,7 +38,9 @@ export default
             twig: ['twig'],
             c: ['c', 'h'],
             folder: ['folder'],
-            'folder-active': ['folder-active']
+            'folder-active': ['folder-active'],
+            kotlin: ['kt'],
+            go: ['go']
         }
 
         this.icon = 'random'
