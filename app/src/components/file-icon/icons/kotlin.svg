@@ -1,1 +1,28 @@
-<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 125 125" width="2500" height="2500"><defs><linearGradient id="b" x1="-21.045" y1="114.925" x2="95.274" y2="-1.395" gradientUnits="userSpaceOnUse"><stop offset=".108" stop-color="#c757bc"/><stop offset=".173" stop-color="#cd5ca9"/><stop offset=".492" stop-color="#e8744f"/><stop offset=".716" stop-color="#f88316"/><stop offset=".823" stop-color="#ff8900"/></linearGradient><linearGradient id="a" x1="39.893" y1="147.552" x2="96.589" y2="90.856" gradientUnits="userSpaceOnUse"><stop offset=".296" stop-color="#00afff"/><stop offset=".694" stop-color="#5282ff"/><stop offset="1" stop-color="#945dff"/></linearGradient><linearGradient id="c" x1="-1.501" y1="34.501" x2="38.272" y2="-5.273" xlink:href="#a"/></defs><title>icon_Kotlin</title><path fill="url(#b)" d="M62.759 0L0 65.999V125l62.669-62.779L125 0H62.759z"/><path data-name="&lt;Path&gt;" fill="url(#a)" d="M0 125l62.669-62.778L125 125H0z"/><path fill="url(#c)" d="M0 0h62.759L0 65.999V0z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="60" viewBox="0 0 60 60">
+    <defs>
+        <linearGradient id="a" x1="15.97" y1="805.03" x2="44.32" y2="776.68" gradientTransform="translate(0 -731)" gradientUnits="userSpaceOnUse">
+            <stop offset="0.1" stop-color="#0095d5"/>
+            <stop offset="0.3" stop-color="#238ad9"/>
+            <stop offset="0.62" stop-color="#557bde"/>
+            <stop offset="0.86" stop-color="#7472e2"/>
+            <stop offset="1" stop-color="#806ee3"/>
+        </linearGradient>
+        <linearGradient id="b" x1="4.2" y1="743.05" x2="20.66" y2="726.59" gradientTransform="translate(0 -731)" gradientUnits="userSpaceOnUse">
+            <stop offset="0.12" stop-color="#0095d5"/>
+            <stop offset="0.42" stop-color="#3c83dc"/>
+            <stop offset="0.7" stop-color="#6d74e1"/>
+            <stop offset="0.83" stop-color="#806ee3"/>
+        </linearGradient>
+        <linearGradient id="c" x1="-10.11" y1="786.16" x2="45.72" y2="730.33" gradientTransform="translate(0 -731)" gradientUnits="userSpaceOnUse">
+            <stop offset="0.11" stop-color="#c757bc"/>
+            <stop offset="0.21" stop-color="#d0609a"/>
+            <stop offset="0.42" stop-color="#e1725c"/>
+            <stop offset="0.6" stop-color="#ee7e2f"/>
+            <stop offset="0.74" stop-color="#f58613"/>
+            <stop offset="0.82" stop-color="#f88909"/>
+        </linearGradient>
+    </defs>
+    <path d="M0,60L30.1,29.9,60,60H0Z" fill="url(#a)"/>
+    <path d="M0,0H30.1L0,32.5V0Z" fill="url(#b)"/>
+    <path d="M30.1,0L0,31.7V60L30.1,29.9,60,0H30.1Z" fill="url(#c)"/>
+</svg>
