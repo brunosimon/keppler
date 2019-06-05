@@ -16,7 +16,10 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "demo-folder": "cd test/demo-folder-2 && node ../../bin 'Demo folder' --open false --test true --initial-send true",
+    "server": "node ./bin --server true",
+    "demo-folder-host-1": "cd test/demo-folder-1 && node ../../bin 'Demo folder 1' --open false --host localhost",
+    "demo-folder-host-2": "cd test/demo-folder-2 && node ../../bin 'Demo folder 2' --open false --host localhost",
+    "demo-folder": "cd test/demo-folder-2 && node ../../bin 'Demo folder' --open false --test true",
     "app-dev": "node app/build/dev-server.js",
     "app-build": "node app/build/build.js",
     "site-dev": "node site/build/dev-server.js",
