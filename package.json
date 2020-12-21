@@ -50,7 +50,7 @@
     "jszip": "^3.1.5",
     "mime": "^2.4.0",
     "minimatch": "^3.0.4",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^8.0.1",
     "opener": "^1.4.3",
     "slug": "^0.9.1",
     "socket.io": "^2.0.3",
