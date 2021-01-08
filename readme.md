@@ -190,12 +190,12 @@ keppler "My awesome project" --host 12.34.56.78
 
 #### Structure
 
-`/app/`: Keppler front part
-`/bin/`: Main folder only containing `index.js` that will run what's located in `/lib/` folder
-`/lib/`: Keppler application classes
-`/resources/`: Random resources (not directly use)
-`/site/`: Website
-`/text/`: Demo folder
+- `/app/`: Keppler front part
+- `/bin/`: Main folder only containing `index.js` that will run what's located in `/lib/` folder
+- `/lib/`: Keppler application classes
+- `/resources/`: Random resources (not directly use)
+- `/site/`: Website
+- `/text/`: Demo folder
 
 #### Tasks
 
