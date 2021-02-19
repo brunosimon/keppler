@@ -38,6 +38,10 @@ export default
             {
                 return ''
             }
+            
+            if (process.env.NODE_ENV === "production") {
+                return `/${this.currentProject.slug}/download`;
+            }
 
             return `${this.$store.state.serverConfig.domain}/${this.currentProject.slug}/download`
         }
