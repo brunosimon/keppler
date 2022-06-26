@@ -138,8 +138,8 @@ Arguments list
 
 |||
 |---|---|
-|parameter|`--host`|
-|shortcut|`-h`|
+|parameter|`--config`|
+|shortcut|`-c`|
 |default value|*(string)*`.kepplerrc`|
 |description|Configuration file<br>(as JSON, with parameters as keys)|
 
