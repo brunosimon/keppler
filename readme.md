@@ -136,6 +136,13 @@ Arguments list
 |default value|*(number)*`1571`|
 |description|Server port|
 
+|||
+|---|---|
+|parameter|`--config`|
+|shortcut|`-c`|
+|default value|*(string)*`.kepplerrc`|
+|description|Configuration file<br>(as JSON, with parameters as keys)|
+
 ## Online instance
 
 You can run Keppler online. Anyone with access to the server will be able to see the projects without having to be on the same network as you.
